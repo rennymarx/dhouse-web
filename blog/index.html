@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Blog — dhouse · prémiové kuchyně</title>
+<meta name="description" content="Týdně píšeme o materiálech, návrhu, řemesle a o tom, co dělá kuchyni opravdu prémiovou." />
+<link rel="canonical" href="https://dhouse.cz/blog" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Blog — dhouse" />
+<meta property="og:description" content="Týdně o materiálech, návrhu a řemesle prémiových kuchyní." />
+<meta property="og:image" content="https://dhouse.cz/assets/og-default.jpg" />
+<link rel="alternate" type="application/rss+xml" title="dhouse blog (RSS)" href="/blog/rss.xml" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f5f3ee'/><text x='16' y='23' font-size='20' text-anchor='middle' fill='%238a6a3b' font-family='Georgia,serif'>d</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body id="top">
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__logo" href="/" aria-label="dhouse — domů">dhouse<span class="dot">.</span><small>Atelier prémiových kuchyní</small></a>
+    <nav class="nav__links" id="navLinks" aria-label="Hlavní navigace">
+      <a href="/galerie">Galerie</a><a href="/kvalita">Kvalita</a><a href="/atelier">Atelier</a><a href="/blog">Blog</a><a href="/kontakt">Kontakt</a>
+    </nav>
+    <a class="btn btn--sm nav__cta" href="/atelier">Navštívit atelier →</a>
+    <button class="nav__burger" id="navBurger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+  </div>
+</header>
+
+<main>
+
+<section class="section section--pad" style="padding-top: clamp(80px, 10vw, 140px);">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Blog · dhouse</p>
+        <h1 class="mt-sm" style="font-size: clamp(2.5rem, 6vw, 5rem);">Z atelieru<span class="dot">.</span></h1>
+      </div>
+      <p class="section-head__lead">Týdně o materiálech, návrhových principech a o tom, co dělá kuchyni opravdu prémiovou. <a href="/blog/rss.xml" style="color: var(--accent); border-bottom: 1px solid var(--rule);">RSS</a></p>
+    </div>
+
+    <!-- Dynamický render z /blog/posts.js -->
+    <div class="grid" id="blogGrid"></div>
+
+    <!--
+      ===========================================================================
+      FALLBACK pro vypnutý JS a sdílecí boty
+      Robert tady udržuje seznam 10 nejnovějších článků (newest first).
+      Při přidání nového článku: vlož nahoru, smaž nejstarší ze spodu.
+      ===========================================================================
+    -->
+    <noscript>
+      <ul style="margin-top: 32px; display: grid; gap: 16px;">
+        <!-- BLOG:NOSCRIPT_LIST_START -->
+        <li><a href="/blog/jak-vybrat-pracovni-desku-kuchyne"><strong>Jak vybrat pracovní desku kuchyně</strong> — keramika, kámen, nebo HPL? <em>(9. 6. 2026)</em></a></li>
+        <!-- BLOG:NOSCRIPT_LIST_END -->
+      </ul>
+    </noscript>
+  </div>
+</section>
+
+<section class="section section--pad section--deep">
+  <div class="wrap text-center">
+    <p class="eyebrow">Mezi články se zastavte u nás</p>
+    <h2 class="h2 mt-md" style="max-width: 20ch; margin: auto;">Atelier · Praha 10 — Vršovice<span class="dot">.</span></h2>
+    <div class="mt-lg" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a class="btn" href="/atelier">Naplánovat návštěvu <span class="arrow">→</span></a>
+      <a class="btn btn--ghost" href="/galerie">Galerie</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">dhouse<span class="dot">.</span></div>
+        <div class="footer__tag">Atelier prémiových kuchyní · Praha</div>
+      </div>
+      <div>
+        <div class="footer__heading">Web</div>
+        <div class="footer__list"><a href="/galerie">Galerie</a><a href="/kvalita">Kvalita</a><a href="/atelier">Atelier</a><a href="/blog">Blog</a><a href="/kontakt">Kontakt</a></div>
+      </div>
+      <div>
+        <div class="footer__heading">Atelier</div>
+        <div class="footer__list"><a href="/atelier">Nám. Sv. Čecha 1350/5<br>Praha 10 — Vršovice</a><a href="tel:+420272681854">+420 272 681 854</a><a href="mailto:marketing@rennymarx.com">marketing@rennymarx.com</a></div>
+      </div>
+      <div>
+        <div class="footer__heading">Právní</div>
+        <div class="footer__list"><a href="/impressum">Impressum</a><a href="/obchodni-podminky">Obchodní podmínky</a><a href="/ochrana-osobnich-udaju">Ochrana osobních údajů</a></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© <span id="year">2026</span> Renny Marx s.r.o. · IČO 02462273 · DIČ CZ02462273</div>
+      <div>Manufaktura SACHSENKÜCHEN · Made in Germany</div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js" defer></script>
+<script src="/blog/posts.js" defer></script>
+<script defer>
+  document.addEventListener('DOMContentLoaded', function () {
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+
+    var grid = document.getElementById('blogGrid');
+    if (!grid) return;
+    try {
+      if (!window.BLOG_POSTS || !Array.isArray(window.BLOG_POSTS)) {
+        throw new Error('BLOG_POSTS chybí nebo není pole');
+      }
+      var posts = window.BLOG_POSTS;
+      if (posts.length === 0) {
+        grid.innerHTML = '<p class="muted">Zatím žádné články. Brzy přibudou.</p>';
+        return;
+      }
+      grid.innerHTML = posts.map(function (p) {
+        var d = new Date(p.date);
+        var dStr = isNaN(d) ? p.date : d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
+        var img = p.image ? 'style="background-image:url(' + p.image + ')"' : '';
+        return '<a class="bcard" href="/blog/' + p.slug + '">' +
+          '<div class="bcard__media" ' + img + '></div>' +
+          '<div class="bcard__body">' +
+          '<div class="bcard__meta"><span class="accent">' + dStr + '</span>' +
+          (p.tags && p.tags[0] ? '<span>·</span><span>' + p.tags[0] + '</span>' : '') +
+          '</div>' +
+          '<div class="bcard__title">' + p.title + '</div>' +
+          '<p class="bcard__excerpt">' + (p.excerpt || '') + '</p>' +
+          '</div></a>';
+      }).join('');
+    } catch (e) {
+      console.error('Blog index render selhal:', e);
+      grid.innerHTML = '<p class="muted">Chyba načtení článků. Otevřete <a href="/blog/_check.html" style="color: var(--accent);">_check.html</a> pro diagnostiku.</p>';
+    }
+  });
+</script>
+</body>
+</html>

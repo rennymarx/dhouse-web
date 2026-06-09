@@ -1,0 +1,92 @@
+# Netlify konfigurace — statický web, žádný build.
+[build]
+  publish = "."
+  command = ""
+
+# Hezké URL bez .html
+[[redirects]]
+  from = "/galerie"
+  to = "/galerie.html"
+  status = 200
+[[redirects]]
+  from = "/kvalita"
+  to = "/kvalita.html"
+  status = 200
+[[redirects]]
+  from = "/atelier"
+  to = "/atelier.html"
+  status = 200
+[[redirects]]
+  from = "/kontakt"
+  to = "/kontakt.html"
+  status = 200
+[[redirects]]
+  from = "/dekujeme"
+  to = "/dekujeme.html"
+  status = 200
+[[redirects]]
+  from = "/impressum"
+  to = "/impressum.html"
+  status = 200
+[[redirects]]
+  from = "/obchodni-podminky"
+  to = "/obchodni-podminky.html"
+  status = 200
+[[redirects]]
+  from = "/ochrana-osobnich-udaju"
+  to = "/ochrana-osobnich-udaju.html"
+  status = 200
+
+# Blog — hezké URL bez .html
+[[redirects]]
+  from = "/blog"
+  to = "/blog/index.html"
+  status = 200
+[[redirects]]
+  from = "/blog/:slug"
+  to = "/blog/:slug.html"
+  status = 200
+
+# Skryté soubory blogu (šablona, validátor) — nechceme indexovat
+[[redirects]]
+  from = "/blog/_template"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Bezpečnostní hlavičky (všude)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+
+# Assets — dlouhá cache (nemění se často)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Blog obrázky — dlouhá cache
+[[headers]]
+  for = "/blog/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML — vždy ověřit čerstvost
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Blog manifest a feed — vždy čerstvé
+[[headers]]
+  for = "/blog/posts.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+[[headers]]
+  for = "/blog/rss.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
