@@ -3,6 +3,18 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+document.documentElement.classList.add('js');
+// Pojistka: kdyby se js/main.js nenačetl (404, blokace), odkryj .reveal obsah,
+// jinak by stránka pod hero zůstala trvale neviditelná (.js .reveal { opacity: 0 }).
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    if (window.__dhouseMain) return;
+    var els = document.querySelectorAll('.reveal');
+    for (var i = 0; i < els.length; i++) els[i].classList.add('in-view');
+  }, 2500);
+});
+</script>
 <!-- STAGING: skrytá verze do spuštění na dhouse.cz — tento řádek při ostrém spuštění ODSTRANIT -->
 <meta name="robots" content="noindex, nofollow" />
 <title>dhouse — Prémiové kuchyně. Atelier v Praze.</title>
@@ -50,25 +62,148 @@
 
 <main>
 
-<!-- =============================== HERO =============================== -->
-<section class="hero">
-  <div class="hero__media" style="background-image: linear-gradient(135deg, #2a2520 0%, #1a1714 60%);"></div>
-  <div class="hero__corner">SACHSENKÜCHEN · EST. 1992</div>
-  <div class="wrap hero__content">
-    <p class="eyebrow hero__eyebrow">Atelier prémiových kuchyní · Praha</p>
-    <h1>Prémiové kuchyně.<br>Atelier v&nbsp;Praze<span class="dot">.</span></h1>
-    <p class="lead hero__lead">Výhradní zastoupení SACHSENKÜCHEN v Česku. Německá manufaktura, návrh a poradenství v našem atelieru v Praze 10 — Vršovice.</p>
-    <div class="hero__cta">
+<!-- =============================== HERO — výkres atelieru =============================== -->
+<section class="hero2" id="hero">
+  <div class="hero2__bg" aria-hidden="true"></div>
+  <div class="hero2__vignette" aria-hidden="true"></div>
+  <div class="hero2__corner a-fade" style="--d:.25s">Sachsenküchen · est. 1992</div>
+
+  <div class="wrap hero2__content">
+    <p class="eyebrow hero2__eyebrow line-mask" style="--d:.35s"><span>Atelier prémiových kuchyní · Praha</span></p>
+    <h1>
+      <span class="line-mask" style="--d:.5s"><span>Prémiové kuchyně.</span></span>
+      <span class="line-mask" style="--d:.66s"><span>Atelier v&nbsp;Praze<span class="dot">.</span></span></span>
+    </h1>
+    <p class="lead hero2__lead line-mask" style="--d:.95s"><span>Výhradní zastoupení SACHSENKÜCHEN v Česku. Německá manufaktura, návrh a poradenství v atelieru v Praze 10 — Vršovice.</span></p>
+    <div class="hero2__cta a-fade" style="--d:1.3s">
       <a class="btn" href="/atelier">Navštívit atelier <span class="arrow">→</span></a>
       <a class="btn btn--ghost" href="/galerie">Prohlédnout galerii</a>
     </div>
   </div>
+
+  <!-- technický výkres kuchyně — rýsuje se po načtení -->
+  <div class="hero2__draw" aria-hidden="true">
+    <svg viewBox="0 0 1440 580" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+      <!-- podlaha -->
+      <g class="ln strong" style="--i:0">
+        <line x1="60" y1="520" x2="1380" y2="520" pathLength="1" />
+      </g>
+      <!-- vysoké skříně -->
+      <g class="ln strong" style="--i:1">
+        <rect x="120" y="150" width="220" height="370" pathLength="1" />
+        <line x1="230" y1="150" x2="230" y2="520" pathLength="1" />
+        <line x1="218" y1="300" x2="218" y2="336" pathLength="1" />
+        <line x1="242" y1="300" x2="242" y2="336" pathLength="1" />
+      </g>
+      <!-- horní skříňky -->
+      <g class="ln strong" style="--i:2">
+        <rect x="360" y="150" width="520" height="78" pathLength="1" />
+        <line x1="490" y1="150" x2="490" y2="228" pathLength="1" />
+        <line x1="620" y1="150" x2="620" y2="228" pathLength="1" />
+        <line x1="750" y1="150" x2="750" y2="228" pathLength="1" />
+      </g>
+      <!-- pracovní deska -->
+      <g class="ln strong" style="--i:3">
+        <line x1="360" y1="360" x2="880" y2="360" pathLength="1" />
+        <line x1="360" y1="374" x2="880" y2="374" pathLength="1" />
+      </g>
+      <!-- spodní skříňky + trouba -->
+      <g class="ln" style="--i:4">
+        <line x1="360" y1="374" x2="360" y2="520" pathLength="1" />
+        <line x1="880" y1="374" x2="880" y2="520" pathLength="1" />
+        <line x1="490" y1="374" x2="490" y2="520" pathLength="1" />
+        <line x1="620" y1="374" x2="620" y2="520" pathLength="1" />
+        <line x1="750" y1="374" x2="750" y2="520" pathLength="1" />
+        <line x1="376" y1="420" x2="474" y2="420" pathLength="1" />
+        <line x1="376" y1="466" x2="474" y2="466" pathLength="1" />
+        <rect x="636" y="394" width="98" height="86" pathLength="1" />
+        <line x1="646" y1="408" x2="724" y2="408" pathLength="1" />
+      </g>
+      <!-- digestoř + hrnec s párou -->
+      <g class="ln" style="--i:5">
+        <rect x="560" y="252" width="120" height="32" pathLength="1" />
+        <line x1="606" y1="150" x2="606" y2="252" pathLength="1" />
+        <line x1="634" y1="150" x2="634" y2="252" pathLength="1" />
+        <rect x="596" y="332" width="48" height="28" pathLength="1" />
+        <line x1="588" y1="338" x2="596" y2="338" pathLength="1" />
+        <line x1="644" y1="338" x2="652" y2="338" pathLength="1" />
+        <path d="M610 318 q4 -8 0 -14" pathLength="1" />
+        <path d="M628 320 q5 -9 0 -16" pathLength="1" />
+      </g>
+      <!-- ostrov -->
+      <g class="ln strong" style="--i:6">
+        <line x1="940" y1="380" x2="1320" y2="380" pathLength="1" />
+        <line x1="940" y1="394" x2="1320" y2="394" pathLength="1" />
+        <line x1="1066" y1="394" x2="1066" y2="520" pathLength="1" />
+        <line x1="1192" y1="394" x2="1192" y2="520" pathLength="1" />
+      </g>
+      <!-- waterfall hrany ostrova -->
+      <g class="ln strong" style="--i:7">
+        <line x1="940" y1="380" x2="940" y2="520" pathLength="1" />
+        <line x1="954" y1="394" x2="954" y2="520" pathLength="1" />
+        <line x1="1320" y1="380" x2="1320" y2="520" pathLength="1" />
+        <line x1="1306" y1="394" x2="1306" y2="520" pathLength="1" />
+      </g>
+      <!-- závěsná světla -->
+      <g class="ln" style="--i:8">
+        <line x1="1030" y1="60" x2="1030" y2="248" pathLength="1" />
+        <path d="M1008 248 q22 -30 44 0" pathLength="1" />
+        <circle cx="1030" cy="256" r="4" pathLength="1" />
+        <line x1="1130" y1="60" x2="1130" y2="268" pathLength="1" />
+        <path d="M1108 268 q22 -30 44 0" pathLength="1" />
+        <circle cx="1130" cy="276" r="4" pathLength="1" />
+        <line x1="1230" y1="60" x2="1230" y2="248" pathLength="1" />
+        <path d="M1208 248 q22 -30 44 0" pathLength="1" />
+        <circle cx="1230" cy="256" r="4" pathLength="1" />
+      </g>
+      <!-- barová židle -->
+      <g class="ln" style="--i:9">
+        <line x1="868" y1="432" x2="924" y2="432" pathLength="1" />
+        <line x1="874" y1="432" x2="878" y2="520" pathLength="1" />
+        <line x1="918" y1="432" x2="914" y2="520" pathLength="1" />
+        <line x1="877" y1="482" x2="915" y2="482" pathLength="1" />
+      </g>
+      <!-- mísa + rostlina na ostrově -->
+      <g class="ln" style="--i:10">
+        <path d="M1088 380 q14 16 28 0" pathLength="1" />
+        <path d="M1252 380 q-2 -22 6 -34" pathLength="1" />
+        <path d="M1258 346 q-14 -4 -18 -16" pathLength="1" />
+        <path d="M1258 346 q12 -8 12 -20" pathLength="1" />
+      </g>
+      <!-- kótování -->
+      <g class="ln dim" style="--i:11">
+        <line x1="940" y1="548" x2="1320" y2="548" pathLength="1" />
+        <line x1="940" y1="540" x2="940" y2="556" pathLength="1" />
+        <line x1="1320" y1="540" x2="1320" y2="556" pathLength="1" />
+        <line x1="96" y1="374" x2="96" y2="520" pathLength="1" />
+        <line x1="88" y1="374" x2="104" y2="374" pathLength="1" />
+        <line x1="88" y1="520" x2="104" y2="520" pathLength="1" />
+      </g>
+      <!-- popisky výkresu -->
+      <g class="lbl">
+        <text x="1130" y="542" text-anchor="middle">2 400</text>
+        <text x="78" y="447" text-anchor="middle" transform="rotate(-90 78 447)">900</text>
+        <text x="120" y="130">VÝKRES Č. 001 · ATELIER PRAHA</text>
+        <text x="1380" y="130" text-anchor="end">SACHSENKÜCHEN · FACELINE</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero2__hint a-fade" style="--d:2s">Posuňte dolů</div>
 </section>
+
+<!-- =============================== MARQUEE — modely =============================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Lara · Fiora · Donna · Edda · Patrizia · Samara · Lana · Tessa · Ronda · Letizia ·&nbsp;</span>
+    <span>Lara · Fiora · Donna · Edda · Patrizia · Samara · Lana · Tessa · Ronda · Letizia ·&nbsp;</span>
+  </div>
+</div>
 
 <!-- =============================== PROOF BAR =============================== -->
 <section class="section">
   <div class="wrap">
-    <div class="proof">
+    <div class="proof reveal">
       <div class="proof__item">
         <div class="proof__n">1992</div>
         <div class="proof__l">SACHSENKÜCHEN — rok&nbsp;založení</div>
@@ -89,63 +224,63 @@
   </div>
 </section>
 
-<!-- =============================== GALERIE PREVIEW =============================== -->
+<!-- =============================== GALERIE — lamely =============================== -->
 <section class="section section--pad" id="galerie-preview">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <p class="eyebrow">01 · Galerie</p>
         <h2 class="h2 mt-sm">Aktuální kuchyně<span class="dot">.</span></h2>
       </div>
-      <p class="section-head__lead">Vybrané realizace a reference modelů z aktuální kolekce SACHSENKÜCHEN.</p>
+      <p class="section-head__lead">Šest modelů z aktuální kolekce. Najeďte kurzorem — kuchyně se otevírají jako vzorník materiálů.</p>
     </div>
 
-    <div class="grid">
-      <a class="gcard" href="/galerie#lara" data-lb="assets/gallery/lara.jpg" data-lb-caption="LARA — minimalistická kuchyně v béžových tónech">
-        <div class="gcard__media" style="background: linear-gradient(135deg, #d8d2c2, #b8ad96);"></div>
-        <div class="gcard__overlay">
-          <div class="gcard__line"></div>
-          <div class="gcard__title">LARA</div>
-        </div>
+    <div class="slats reveal" style="--d:.15s">
+      <a class="slat is-open" href="/galerie#lara">
+        <span class="slat__bg" style="background-image: linear-gradient(135deg, #d8d2c2, #b8ad96);"></span>
+        <span class="slat__num" aria-hidden="true">01</span>
+        <span class="slat__name slat__name--v">LARA</span>
+        <span class="slat__name slat__name--h" aria-hidden="true">LARA</span>
+        <span class="slat__hint" aria-hidden="true">Prohlédnout →</span>
       </a>
-      <a class="gcard" href="/galerie#fiora" data-lb="assets/gallery/fiora.jpg" data-lb-caption="FIORA — ostrov s pracovní deskou AKP">
-        <div class="gcard__media" style="background: linear-gradient(135deg, #c6bba5, #a89a82);"></div>
-        <div class="gcard__overlay">
-          <div class="gcard__line"></div>
-          <div class="gcard__title">FIORA</div>
-        </div>
+      <a class="slat" href="/galerie#fiora">
+        <span class="slat__bg" style="background-image: linear-gradient(135deg, #c6bba5, #a89a82);"></span>
+        <span class="slat__num" aria-hidden="true">02</span>
+        <span class="slat__name slat__name--v">FIORA</span>
+        <span class="slat__name slat__name--h" aria-hidden="true">FIORA</span>
+        <span class="slat__hint" aria-hidden="true">Prohlédnout →</span>
       </a>
-      <a class="gcard" href="/galerie#donna" data-lb="assets/gallery/donna.jpg" data-lb-caption="DONNA — tmavý dub a antracit">
-        <div class="gcard__media" style="background: linear-gradient(135deg, #5e544a, #3d352c);"></div>
-        <div class="gcard__overlay">
-          <div class="gcard__line"></div>
-          <div class="gcard__title">DONNA</div>
-        </div>
+      <a class="slat" href="/galerie#donna">
+        <span class="slat__bg" style="background-image: linear-gradient(135deg, #5e544a, #3d352c);"></span>
+        <span class="slat__num" aria-hidden="true">03</span>
+        <span class="slat__name slat__name--v">DONNA</span>
+        <span class="slat__name slat__name--h" aria-hidden="true">DONNA</span>
+        <span class="slat__hint" aria-hidden="true">Prohlédnout →</span>
       </a>
-      <a class="gcard" href="/galerie#edda" data-lb="assets/gallery/edda.jpg" data-lb-caption="EDDA — moderní lakovaný systém">
-        <div class="gcard__media" style="background: linear-gradient(135deg, #e8e2d4, #cabe9d);"></div>
-        <div class="gcard__overlay">
-          <div class="gcard__line"></div>
-          <div class="gcard__title">EDDA</div>
-        </div>
+      <a class="slat" href="/galerie#edda">
+        <span class="slat__bg" style="background-image: linear-gradient(135deg, #e8e2d4, #cabe9d);"></span>
+        <span class="slat__num" aria-hidden="true">04</span>
+        <span class="slat__name slat__name--v">EDDA</span>
+        <span class="slat__name slat__name--h" aria-hidden="true">EDDA</span>
+        <span class="slat__hint" aria-hidden="true">Prohlédnout →</span>
       </a>
-      <a class="gcard" href="/galerie#patrizia" data-lb="assets/gallery/patrizia.jpg" data-lb-caption="PATRIZIA — výrazný design s ostrovem">
-        <div class="gcard__media" style="background: linear-gradient(135deg, #b3a791, #8a7d68);"></div>
-        <div class="gcard__overlay">
-          <div class="gcard__line"></div>
-          <div class="gcard__title">PATRIZIA</div>
-        </div>
+      <a class="slat" href="/galerie#patrizia">
+        <span class="slat__bg" style="background-image: linear-gradient(135deg, #b3a791, #8a7d68);"></span>
+        <span class="slat__num" aria-hidden="true">05</span>
+        <span class="slat__name slat__name--v">PATRIZIA</span>
+        <span class="slat__name slat__name--h" aria-hidden="true">PATRIZIA</span>
+        <span class="slat__hint" aria-hidden="true">Prohlédnout →</span>
       </a>
-      <a class="gcard" href="/galerie#samara" data-lb="assets/gallery/samara.jpg" data-lb-caption="SAMARA — přírodní dýha v jemných tónech">
-        <div class="gcard__media" style="background: linear-gradient(135deg, #d4c8b0, #b09e7e);"></div>
-        <div class="gcard__overlay">
-          <div class="gcard__line"></div>
-          <div class="gcard__title">SAMARA</div>
-        </div>
+      <a class="slat" href="/galerie#samara">
+        <span class="slat__bg" style="background-image: linear-gradient(135deg, #d4c8b0, #b09e7e);"></span>
+        <span class="slat__num" aria-hidden="true">06</span>
+        <span class="slat__name slat__name--v">SAMARA</span>
+        <span class="slat__name slat__name--h" aria-hidden="true">SAMARA</span>
+        <span class="slat__hint" aria-hidden="true">Prohlédnout →</span>
       </a>
     </div>
 
-    <div class="text-center mt-lg">
+    <div class="text-center mt-lg reveal">
       <a class="btn btn--ghost" href="/galerie">Celá galerie <span class="arrow">→</span></a>
     </div>
   </div>
@@ -155,8 +290,8 @@
 <section class="section section--pad section--panel" id="kvalita">
   <div class="wrap">
     <div class="split">
-      <div class="split__media" style="background: linear-gradient(135deg, #8a7965, #4d4135);"></div>
-      <div class="split__text">
+      <div class="split__media reveal" style="background: linear-gradient(135deg, #8a7965, #4d4135);"></div>
+      <div class="split__text reveal" style="--d:.15s">
         <p class="eyebrow">02 · Řemeslo</p>
         <h2 class="h2">Manufaktura, ne sériová výroba<span class="dot">.</span></h2>
         <p class="lead mt-md">Každá kuchyně vzniká na zakázku v rodinné manufaktuře v Saské Hartě. Žádné meziproduktové sklady, žádné kompromisy.</p>
@@ -172,13 +307,13 @@
 <section class="section section--pad" id="saku">
   <div class="wrap">
     <div class="split split--reverse">
-      <div class="split__media" style="background: linear-gradient(135deg, #c4b89a, #8a7c60); display: flex; align-items: center; justify-content: center;">
+      <div class="split__media reveal" style="background: linear-gradient(135deg, #c4b89a, #8a7c60); display: flex; align-items: center; justify-content: center;">
         <div style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); color: rgba(245,243,238,0.85); letter-spacing: 0.05em; text-align: center;">
           SACHSEN<br>KÜCHEN
           <div style="font: 500 11px/1 var(--font-mono); letter-spacing: 0.3em; margin-top: 12px; color: rgba(245,243,238,0.7);">EST. 1992 · DEUTSCHLAND</div>
         </div>
       </div>
-      <div class="split__text">
+      <div class="split__text reveal" style="--d:.15s">
         <p class="eyebrow">03 · Značka</p>
         <h2 class="h2">Výhradní zastoupení SACHSENKÜCHEN v&nbsp;Česku<span class="dot">.</span></h2>
         <p class="lead mt-md">German Design Award 2025 za <strong>Faceline Koncept</strong> — proporční systém, který přepisuje pravidla současného kuchyňského designu.</p>
@@ -193,7 +328,7 @@
 <!-- =============================== KOMPONENTY (TEKA / Küppersbusch / AKP) =============================== -->
 <section class="section section--pad section--panel" id="komponenty">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <p class="eyebrow">04 · Komponenty</p>
         <h2 class="h2 mt-sm">Prémiové součásti<span class="dot">.</span></h2>
@@ -202,19 +337,19 @@
     </div>
 
     <div class="grid">
-      <div class="pcard">
+      <div class="pcard reveal">
         <div class="pcard__role">Pracovní desky</div>
         <div class="pcard__logo">AKP</div>
         <p class="pcard__text">Desky z keramiky, kompaktního laminátu a přírodního kamene. Odolnost vůči teplotě, kyselinám a každodennímu opotřebení.</p>
         <a class="pcard__link" href="/kvalita#akp">Více o AKP <span class="arrow">→</span></a>
       </div>
-      <div class="pcard">
+      <div class="pcard reveal" style="--d:.12s">
         <div class="pcard__role">Spotřebiče</div>
         <div class="pcard__logo">TEKA</div>
         <p class="pcard__text">Španělský výrobce s 95 letou tradicí. Indukční desky, vestavné trouby, digestoře — spolehlivá technologie pro denní vaření.</p>
         <a class="pcard__link" href="/kvalita#teka">Více o TEKA <span class="arrow">→</span></a>
       </div>
-      <div class="pcard">
+      <div class="pcard reveal" style="--d:.24s">
         <div class="pcard__role">Prémiové spotřebiče</div>
         <div class="pcard__logo">Küppersbusch</div>
         <p class="pcard__text">Německá značka založená 1875. Designové trouby, parní pečicí systémy a vinotéky. Pro kuchyně, kde detail dělá rozdíl.</p>
@@ -228,8 +363,8 @@
 <section class="section section--pad" id="atelier">
   <div class="wrap">
     <div class="split">
-      <div class="split__media split__media--wide" style="background: linear-gradient(135deg, #d8d2c2, #a89a82);"></div>
-      <div class="split__text">
+      <div class="split__media split__media--wide reveal" style="background: linear-gradient(135deg, #d8d2c2, #a89a82);"></div>
+      <div class="split__text reveal" style="--d:.15s">
         <p class="eyebrow">05 · Atelier</p>
         <h2 class="h2">Praha&nbsp;10 — Vršovice<span class="dot">.</span></h2>
         <p class="lead mt-md">Kamenný showroom s vystavenými kuchyněmi, vzorky materiálů a místem pro klidnou konzultaci nad vaším projektem.</p>
@@ -256,7 +391,7 @@
 <!-- =============================== RECENZE =============================== -->
 <section class="section section--pad section--panel" id="recenze">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <p class="eyebrow">06 · Recenze</p>
         <h2 class="h2 mt-sm">Co o nás říkají<span class="dot">.</span></h2>
@@ -265,19 +400,19 @@
     </div>
 
     <div class="grid grid--two">
-      <blockquote class="quote">
+      <blockquote class="quote reveal">
         Prvotřídní materiály i zákaznický servis. Vše šlo bez komplikací — od prvního setkání v atelieru až po předání hotové kuchyně.
         <cite class="quote__author">Helena Osyková · realizace 2024</cite>
       </blockquote>
-      <blockquote class="quote">
+      <blockquote class="quote reveal" style="--d:.12s">
         Dokázali z velmi malých a úzkých prostor vykouzlit místo, kde se mi vaří radost. Cit pro detail a maximální využití každého centimetru.
         <cite class="quote__author">Renáta T. · byt 3+kk, Praha</cite>
       </blockquote>
-      <blockquote class="quote">
+      <blockquote class="quote reveal" style="--d:.2s">
         Trpělivý přístup při projektování, dodržení termínů a péče po předání. Doporučuji každému, kdo hledá kuchyni na desítky let, ne na pět.
         <cite class="quote__author">Martin K. · rodinný dům</cite>
       </blockquote>
-      <blockquote class="quote">
+      <blockquote class="quote reveal" style="--d:.3s">
         Tým, který rozumí materiálům i světlu v prostoru. Nezískala jsem jen kuchyni, ale srdce našeho bytu.
         <cite class="quote__author">Klára S. · loft Karlín</cite>
       </blockquote>
@@ -288,7 +423,7 @@
 <!-- =============================== BLOG PREVIEW =============================== -->
 <section class="section section--pad" id="blog-preview">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <p class="eyebrow">07 · Blog</p>
         <h2 class="h2 mt-sm">Z atelieru<span class="dot">.</span></h2>
@@ -296,7 +431,7 @@
       <p class="section-head__lead">Týdně píšeme o materiálech, návrhových principech a o tom, co dělá kuchyni opravdu prémiovou.</p>
     </div>
 
-    <div class="grid" id="blogPreview">
+    <div class="grid reveal" id="blogPreview" style="--d:.12s">
       <!-- JS naplní z /blog/posts.js. Fallback níže pro JS-off a botů. -->
       <noscript>
         <a class="bcard" href="/blog">
@@ -310,7 +445,7 @@
       </noscript>
     </div>
 
-    <div class="text-center mt-lg">
+    <div class="text-center mt-lg reveal">
       <a class="btn btn--ghost" href="/blog">Všechny články <span class="arrow">→</span></a>
     </div>
   </div>
@@ -319,12 +454,14 @@
 <!-- =============================== CTA =============================== -->
 <section class="section section--pad section--deep" id="cta">
   <div class="wrap text-center">
-    <p class="eyebrow">Pojďte do atelieru</p>
-    <h2 class="h2 mt-md" style="max-width: 18ch; margin-left: auto; margin-right: auto;">Pojďme navrhnout vaši kuchyni<span class="dot">.</span></h2>
-    <p class="lead mt-md" style="margin-left: auto; margin-right: auto;">Konzultace v atelieru je nezávazná. Přineste si půdorys, my máme materiály, vzorky a kávu.</p>
-    <div class="mt-lg" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-      <a class="btn" href="/kontakt">Napsat poptávku <span class="arrow">→</span></a>
-      <a class="btn btn--ghost" href="tel:+420272681854">+420 272 681 854</a>
+    <div class="reveal">
+      <p class="eyebrow">Pojďte do atelieru</p>
+      <h2 class="h2 mt-md" style="max-width: 18ch; margin-left: auto; margin-right: auto;">Pojďme navrhnout vaši kuchyni<span class="dot">.</span></h2>
+      <p class="lead mt-md" style="margin-left: auto; margin-right: auto;">Konzultace v atelieru je nezávazná. Přineste si půdorys, my máme materiály, vzorky a kávu.</p>
+      <div class="mt-lg" style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a class="btn" href="/kontakt">Napsat poptávku <span class="arrow">→</span></a>
+        <a class="btn btn--ghost" href="tel:+420272681854">+420 272 681 854</a>
+      </div>
     </div>
   </div>
 </section>
@@ -353,7 +490,7 @@
       <div>
         <div class="footer__heading">Atelier</div>
         <div class="footer__list">
-          <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener">Nám. Sv. Čecha 1350/5<br>Praha 10 — Vršovice</a>
+          <a href="/atelier">Nám. Sv. Čecha 1350/5<br>Praha 10 — Vršovice</a>
           <a href="tel:+420272681854">+420 272 681 854</a>
           <a href="mailto:marketing@rennymarx.com">marketing@rennymarx.com</a>
         </div>
@@ -382,31 +519,67 @@
 
 <script src="js/main.js" defer></script>
 <script src="/blog/posts.js" defer></script>
-<script defer>
-  // Aktuální rok do patičky
+<script>
+  // Aktuální rok do patičky + blog preview (DOMContentLoaded se odpálí
+  // až po deferovaných main.js a posts.js, takže BLOG_POSTS už existuje)
   document.addEventListener('DOMContentLoaded', function () {
     var y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();
 
-    // Blog preview render z /blog/posts.js (3 nejnovější)
+    // Blog preview render z /blog/posts.js (3 nejnovější).
+    // Stavěno přes createElement + textContent — obsah plní AI agent,
+    // takže se nesmí spoléhat na to, že texty neobsahují < nebo &.
     var holder = document.getElementById('blogPreview');
     if (!holder || !window.BLOG_POSTS || !Array.isArray(window.BLOG_POSTS)) return;
     try {
       var posts = window.BLOG_POSTS.slice(0, 3);
-      var html = posts.map(function (p) {
+      if (!posts.length) return;
+      holder.textContent = '';
+      posts.forEach(function (p) {
         var d = new Date(p.date);
         var dStr = isNaN(d) ? p.date : d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
-        return '<a class="bcard" href="/blog/' + p.slug + '">' +
-          '<div class="bcard__media" style="background-image:url(' + (p.image || '') + ')"></div>' +
-          '<div class="bcard__body">' +
-          '<div class="bcard__meta"><span class="accent">' + dStr + '</span>' +
-          (p.tags && p.tags[0] ? '<span>·</span><span>' + p.tags[0] + '</span>' : '') +
-          '</div>' +
-          '<div class="bcard__title">' + p.title + '</div>' +
-          '<p class="bcard__excerpt">' + (p.excerpt || '') + '</p>' +
-          '</div></a>';
-      }).join('');
-      holder.innerHTML = html || holder.innerHTML;
+
+        var a = document.createElement('a');
+        a.className = 'bcard';
+        a.href = '/blog/' + encodeURIComponent(p.slug);
+
+        var media = document.createElement('div');
+        media.className = 'bcard__media';
+        if (p.image) media.style.backgroundImage = "url('" + encodeURI(p.image) + "')";
+        a.appendChild(media);
+
+        var body = document.createElement('div');
+        body.className = 'bcard__body';
+
+        var meta = document.createElement('div');
+        meta.className = 'bcard__meta';
+        var date = document.createElement('span');
+        date.className = 'accent';
+        date.textContent = dStr;
+        meta.appendChild(date);
+        if (p.tags && p.tags[0]) {
+          var sep = document.createElement('span');
+          sep.textContent = '·';
+          var tag = document.createElement('span');
+          tag.textContent = p.tags[0];
+          meta.appendChild(sep);
+          meta.appendChild(tag);
+        }
+        body.appendChild(meta);
+
+        var title = document.createElement('div');
+        title.className = 'bcard__title';
+        title.textContent = p.title;
+        body.appendChild(title);
+
+        var excerpt = document.createElement('p');
+        excerpt.className = 'bcard__excerpt';
+        excerpt.textContent = p.excerpt || '';
+        body.appendChild(excerpt);
+
+        a.appendChild(body);
+        holder.appendChild(a);
+      });
     } catch (e) {
       console.warn('Blog preview render selhal:', e);
     }
