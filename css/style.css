@@ -20,6 +20,7 @@
   --accent-deep: #5e4824;
   --green:     #006938;   /* SACHSENKÜCHEN zelená — přesný odstín z loga výrobce */
   --green-soft:#4f9d72;   /* světlejší tón zelené pro tmavá pozadí */
+  --green-hover:#0a7f46;  /* hover zelených tlačítek (kontrast ≥ 5:1 s bílým textem) */
   --panel:     #ebe7df;   /* sekundární papírové pozadí */
   --panel-deep:#dcd6c8;
 
@@ -163,10 +164,11 @@ p:last-child { margin-bottom: 0; }
   border-color: var(--ink);
 }
 .btn--ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.section--deep .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); }
-.section--deep .btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-.section--deep .btn--ghost { background: transparent; color: var(--bg); border-color: var(--bg); }
-.section--deep .btn--ghost:hover { background: var(--bg); color: var(--ink); }
+/* Tlačítka na tmavém podkladu = SAKÜ zelená (na světlém zůstává ink/mosaz) */
+.section--deep .btn { background: var(--green); color: #f5f3ee; border-color: var(--green); }
+.section--deep .btn:hover { background: var(--green-hover); color: #fff; border-color: var(--green-hover); }
+.section--deep .btn--ghost { background: transparent; color: var(--bg); border-color: var(--green-soft); }
+.section--deep .btn--ghost:hover { background: var(--green); color: #f5f3ee; border-color: var(--green); }
 
 .arrow { font-family: var(--font-mono); transition: transform .2s var(--ease); }
 a:hover .arrow, .btn:hover .arrow { transform: translateX(3px); }
@@ -297,10 +299,11 @@ a:hover .arrow, .btn:hover .arrow { transform: translateX(3px); }
   max-width: 52ch;
 }
 .hero2__cta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: clamp(26px, 4.5vh, 44px); }
-.hero2__cta .btn { background: #f5f3ee; color: var(--ink); border-color: #f5f3ee; }
-.hero2__cta .btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-.hero2__cta .btn--ghost { background: transparent; color: #f5f3ee; border-color: rgba(245,243,238,0.55); }
-.hero2__cta .btn--ghost:hover { background: #f5f3ee; color: var(--ink); border-color: #f5f3ee; }
+/* hero = tmavý podklad → zelená tlačítka */
+.hero2__cta .btn { background: var(--green); color: #f5f3ee; border-color: var(--green); }
+.hero2__cta .btn:hover { background: var(--green-hover); border-color: var(--green-hover); color: #fff; }
+.hero2__cta .btn--ghost { background: transparent; color: #f5f3ee; border-color: var(--green-soft); }
+.hero2__cta .btn--ghost:hover { background: var(--green); color: #f5f3ee; border-color: var(--green); }
 
 .hero2__corner {
   position: absolute;
@@ -700,8 +703,8 @@ body.nav-scrolled .hero2__hint { opacity: 0; }
   background: rgba(20, 16, 12, 0.4);
 }
 .lb__close:hover, .lb__prev:hover, .lb__next:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--green); /* tmavý overlay → zelený hover */
+  border-color: var(--green);
 }
 .lb__close { top: 4vw; right: 4vw; }
 .lb__prev { left: 4vw; top: 50%; transform: translateY(-50%); }
@@ -949,8 +952,8 @@ html.js body.home:not(.nav-scrolled) .nav__logo small { color: rgba(245,243,238,
   html.js body.home:not(.nav-scrolled) .nav__links a:hover,
   html.js body.home:not(.nav-scrolled) .nav__links a[aria-current="page"] { color: var(--green-soft); }
 }
-html.js body.home:not(.nav-scrolled) .nav__cta { background: transparent; color: #f5f3ee; border-color: rgba(245,243,238,0.55); }
-html.js body.home:not(.nav-scrolled) .nav__cta:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+html.js body.home:not(.nav-scrolled) .nav__cta { background: transparent; color: #f5f3ee; border-color: var(--green-soft); }
+html.js body.home:not(.nav-scrolled) .nav__cta:hover { background: var(--green); border-color: var(--green); color: #f5f3ee; }
 html.js body.home:not(.nav-scrolled) .nav__burger span,
 html.js body.home:not(.nav-scrolled) .nav__burger span::before,
 html.js body.home:not(.nav-scrolled) .nav__burger span::after { background: #f5f3ee; }
