@@ -256,31 +256,17 @@ a:hover .arrow, .btn:hover .arrow { transform: translateX(3px); }
   body.nav-open { overflow: hidden; }
 }
 
-/* ---------- HERO 3 — světlé galerijní (V2): titulek nad velkou fotkou ---------- */
+/* ---------- HERO 3 — světlé galerijní (V2): texty na panelu V fotce ---------- */
 .hero3 {
   background: var(--bg);
-  padding-top: clamp(56px, 9vh, 110px);
+  padding-top: clamp(20px, 3.5vh, 44px);
   padding-bottom: clamp(28px, 4vh, 48px);
 }
-.hero3__head { margin-bottom: clamp(32px, 5vh, 56px); }
-.hero3__eyebrow { margin-bottom: clamp(16px, 2.5vh, 26px); }
-.hero3 h1 {
-  font-size: var(--fs-hero);
-  font-weight: 200;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  max-width: 16ch;
-}
-.hero3__lead {
-  margin-top: clamp(18px, 3vh, 28px);
-  max-width: 52ch;
-}
-.hero3__cta { display: flex; flex-wrap: wrap; gap: 16px; margin-top: clamp(24px, 4vh, 40px); }
+.hero3__stage { position: relative; }
 
 .hero3__media {
   position: relative;
-  height: clamp(440px, 62vh, 720px);
+  height: clamp(560px, 82vh, 900px);
   overflow: hidden;
   border: 1px solid var(--rule);
   box-shadow: var(--shadow-soft);
@@ -289,9 +275,37 @@ a:hover .arrow, .btn:hover .arrow { transform: translateX(3px); }
 .hero3__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 35% 50%; /* fokus na nože a misky */
+  object-position: 72% 45%; /* panel kryje levou část — fokus na zlaté příbory vpravo */
   display: block;
 }
+
+/* světlý panel s textem a CTA — částečně zabudovaný do fotky */
+.hero3__panel {
+  position: absolute;
+  left: 0;
+  bottom: clamp(32px, 6vh, 72px);
+  z-index: 2;
+  max-width: min(620px, 54%);
+  background: rgba(245, 243, 238, 0.96);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-card);
+  padding: clamp(26px, 3.2vw, 52px);
+}
+.hero3__eyebrow { margin-bottom: clamp(12px, 2vh, 20px); }
+.hero3__panel h1 {
+  font-size: clamp(2.1rem, 4.2vw, 4.25rem);
+  font-weight: 200;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.hero3__lead {
+  margin-top: clamp(14px, 2vh, 22px);
+  max-width: 44ch;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+}
+.hero3__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(20px, 3vh, 32px); }
+
 .hero3__caption {
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
   padding-top: 14px;
@@ -302,8 +316,17 @@ a:hover .arrow, .btn:hover .arrow { transform: translateX(3px); }
 .hero3__caption .brand { color: var(--green); }
 .hero3__caption .hint::after { content: " ↓"; }
 
-@media (max-width: 760px) {
+@media (max-width: 860px) {
+  /* mobil: fotka nahoře, panel se vytahuje přes její spodní hranu */
   .hero3__media { height: auto; aspect-ratio: 4 / 5; }
+  .hero3__media img { object-position: 45% 50%; }
+  .hero3__panel {
+    position: relative;
+    bottom: auto; left: auto;
+    max-width: none;
+    margin: -64px 16px 0 0;
+  }
+  .hero3__caption { padding-top: 20px; }
 }
 
 /* ---------- Výkres kuchyně — tmavý panel v sekci Řemeslo (V2) ----------
