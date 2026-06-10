@@ -60,6 +60,17 @@ try {
             $fp = Join-Path $root $path.TrimStart('/').Replace('/','\')
             Write-Host "$method $($req.Url.LocalPath) -> $fp" -ForegroundColor DarkGray
 
+            # CORS preflight (Chrome Private Network Access pro https->localhost)
+            if ($method -eq 'OPTIONS') {
+                $res.StatusCode = 204
+                $res.Headers.Add('Access-Control-Allow-Origin', '*')
+                $res.Headers.Add('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS')
+                $res.Headers.Add('Access-Control-Allow-Headers', '*')
+                $res.Headers.Add('Access-Control-Allow-Private-Network', 'true')
+                $res.OutputStream.Close()
+                continue
+            }
+
             if (Test-Path $fp -PathType Leaf) {
                 $ext = [System.IO.Path]::GetExtension($fp).ToLower()
                 $ct  = if ($mime.ContainsKey($ext)) { $mime[$ext] } else { 'application/octet-stream' }
@@ -67,6 +78,8 @@ try {
                 $res.ContentType = $ct
                 $res.ContentLength64 = $bytes.Length
                 $res.Headers.Add('Cache-Control', 'no-store')
+                $res.Headers.Add('Access-Control-Allow-Origin', '*')
+                $res.Headers.Add('Access-Control-Allow-Private-Network', 'true')
                 if ($method -ne 'HEAD') {
                     $res.OutputStream.Write($bytes, 0, $bytes.Length)
                 }
