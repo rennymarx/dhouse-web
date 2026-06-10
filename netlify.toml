@@ -1,60 +1,49 @@
 # Netlify konfigurace — statický web, žádný build.
+# Publikuje se verzovaná struktura z _deploy/site (rozcestník + /1/, /2/, ...).
+# Novou verzi vygeneruje: powershell -File _deploy.ps1 -Version <N>  → commit → push.
 [build]
-  publish = "."
+  publish = "_deploy/site"
   command = ""
 
-# Hezké URL bez .html
+# Hezké URL bez .html uvnitř verzovaných složek (/1/galerie → /1/galerie.html)
 [[redirects]]
-  from = "/galerie"
-  to = "/galerie.html"
+  from = "/:v/galerie"
+  to = "/:v/galerie.html"
   status = 200
 [[redirects]]
-  from = "/kvalita"
-  to = "/kvalita.html"
+  from = "/:v/kvalita"
+  to = "/:v/kvalita.html"
   status = 200
 [[redirects]]
-  from = "/atelier"
-  to = "/atelier.html"
+  from = "/:v/atelier"
+  to = "/:v/atelier.html"
   status = 200
 [[redirects]]
-  from = "/kontakt"
-  to = "/kontakt.html"
+  from = "/:v/kontakt"
+  to = "/:v/kontakt.html"
   status = 200
 [[redirects]]
-  from = "/dekujeme"
-  to = "/dekujeme.html"
+  from = "/:v/dekujeme"
+  to = "/:v/dekujeme.html"
   status = 200
 [[redirects]]
-  from = "/impressum"
-  to = "/impressum.html"
+  from = "/:v/impressum"
+  to = "/:v/impressum.html"
   status = 200
 [[redirects]]
-  from = "/obchodni-podminky"
-  to = "/obchodni-podminky.html"
+  from = "/:v/obchodni-podminky"
+  to = "/:v/obchodni-podminky.html"
   status = 200
 [[redirects]]
-  from = "/ochrana-osobnich-udaju"
-  to = "/ochrana-osobnich-udaju.html"
-  status = 200
-
-# Blog — hezké URL bez .html
-[[redirects]]
-  from = "/blog"
-  to = "/blog/index.html"
+  from = "/:v/ochrana-osobnich-udaju"
+  to = "/:v/ochrana-osobnich-udaju.html"
   status = 200
 [[redirects]]
-  from = "/blog/:slug"
-  to = "/blog/:slug.html"
+  from = "/:v/blog/:slug"
+  to = "/:v/blog/:slug.html"
   status = 200
 
-# Skryté soubory blogu (šablona, validátor) — nechceme indexovat
-[[redirects]]
-  from = "/blog/_template"
-  to = "/404.html"
-  status = 404
-  force = true
-
-# Bezpečnostní hlavičky (všude)
+# Bezpečnostní hlavičky + noindex (staging — před ostrým spuštěním odstranit X-Robots-Tag)
 [[headers]]
   for = "/*"
   [headers.values]
@@ -62,31 +51,4 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
-
-# Assets — dlouhá cache (nemění se často)
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Blog obrázky — dlouhá cache
-[[headers]]
-  for = "/blog/img/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# HTML — vždy ověřit čerstvost
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-# Blog manifest a feed — vždy čerstvé
-[[headers]]
-  for = "/blog/posts.js"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-[[headers]]
-  for = "/blog/rss.xml"
-  [headers.values]
-    Cache-Control = "public, max-age=300"
+    X-Robots-Tag = "noindex, nofollow"

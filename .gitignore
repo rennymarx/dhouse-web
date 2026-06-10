@@ -5,4 +5,5 @@ node_modules/
 .netlify/
 .vscode/
 .idea/
-_deploy/
+# _deploy/site se commituje (Netlify publish dir s verzemi /1 /2...), zip ne
+_deploy/*.zip
