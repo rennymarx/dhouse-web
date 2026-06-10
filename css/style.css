@@ -18,6 +18,8 @@
   --accent:    #8a6a3b;   /* tlumená mosaz (manufaktura) */
   --accent-soft: #b48a52;
   --accent-deep: #5e4824;
+  --green:     #006938;   /* SACHSENKÜCHEN zelená — přesný odstín z loga výrobce */
+  --green-soft:#4f9d72;   /* světlejší tón zelené pro tmavá pozadí */
   --panel:     #ebe7df;   /* sekundární papírové pozadí */
   --panel-deep:#dcd6c8;
 
@@ -81,19 +83,21 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .section--pad-sm { padding-top: clamp(36px, 5vw, 64px); padding-bottom: clamp(36px, 5vw, 64px); }
 .section--panel { background: var(--panel); }
 .section--deep { background: var(--bg-deep); color: var(--bg); }
-.section--deep .eyebrow { color: var(--accent-soft); }
+.section--deep .eyebrow { color: var(--green-soft); }
 .section--deep .ink-muted { color: rgba(245,243,238,0.6); }
 
 #top { scroll-margin-top: 96px; }
 [id] { scroll-margin-top: 96px; }
 
 /* ---------- Typografie ---------- */
+/* Pravidlo barev: zelená (SAKÜ) = mono mikrotypografie a značkové prvky;
+   mosaz = serif, tečky, linky, hovery tlačítek. */
 .eyebrow {
   display: inline-block;
   font: 500 11px/1 var(--font-mono);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--green);
   margin: 0;
 }
 .eyebrow--muted { color: var(--ink-faint); }
@@ -208,7 +212,7 @@ a:hover .arrow, .btn:hover .arrow { transform: translateX(3px); }
   transition: color .2s var(--ease);
   padding: 8px 0;
 }
-.nav__links a:hover, .nav__links a[aria-current="page"] { color: var(--accent); }
+.nav__links a:hover, .nav__links a[aria-current="page"] { color: var(--green); }
 .nav__cta { margin-left: auto; }
 .nav__burger {
   display: none;
@@ -279,7 +283,7 @@ a:hover .arrow, .btn:hover .arrow { transform: translateX(3px); }
   padding-top: clamp(96px, 12vh, 150px);
   padding-bottom: clamp(150px, 22vh, 250px);
 }
-.hero2__eyebrow { color: var(--accent-soft); margin-bottom: clamp(18px, 3vh, 30px); }
+.hero2__eyebrow { color: var(--green-soft); margin-bottom: clamp(18px, 3vh, 30px); }
 .hero2 h1 {
   /* min 1.9rem: „Prémiové kuchyně pro ženy." se na mobilu musí vejít na jeden řádek */
   font-size: clamp(1.9rem, 7.6vw, 6.5rem);
@@ -305,10 +309,10 @@ a:hover .arrow, .btn:hover .arrow { transform: translateX(3px); }
   display: flex; align-items: center; gap: 10px;
   font: 500 10px/1 var(--font-mono);
   letter-spacing: 0.3em; text-transform: uppercase;
-  color: rgba(245, 243, 238, 0.55);
+  color: var(--green-soft);
   z-index: 2;
 }
-.hero2__corner::before { content: ""; width: 40px; height: 1px; background: rgba(245,243,238,0.35); }
+.hero2__corner::before { content: ""; width: 40px; height: 1px; background: rgba(79, 157, 114, 0.5); }
 
 .hero2__hint {
   position: absolute;
@@ -342,6 +346,9 @@ body.nav-scrolled .hero2__hint { opacity: 0; }
   stroke: rgba(199, 164, 110, 0.92);
 }
 .hero2__draw .dim line { stroke: rgba(244, 236, 215, 0.35); stroke-width: 1.25; }
+/* zelené detaily výkresu (rostlina) + značkový popisek — SAKÜ zelená */
+.hero2__draw .green path, .hero2__draw .green line { stroke: rgba(79, 157, 114, 0.95); }
+.hero2__draw .lbl text.green { fill: var(--green-soft); }
 .hero2__draw .lbl text {
   fill: rgba(244, 236, 215, 0.55);
   font-family: var(--font-mono);
@@ -525,7 +532,7 @@ body.nav-scrolled .hero2__hint { opacity: 0; }
   font: 500 10px/1 var(--font-mono);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--green);
 }
 .pcard__text { color: var(--ink-muted); flex: 1; font-size: 0.95rem; }
 .pcard__link {
@@ -580,7 +587,7 @@ body.nav-scrolled .hero2__hint { opacity: 0; }
   color: var(--ink-faint);
   margin-bottom: 14px;
 }
-.bcard__meta .accent { color: var(--accent); }
+.bcard__meta .accent { color: var(--green); }
 .bcard__title {
   font-family: var(--font-display);
   font-size: 1.35rem;
@@ -738,7 +745,7 @@ body.nav-scrolled .hero2__hint { opacity: 0; }
   font: 500 10px/1.4 var(--font-mono);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent-soft);
+  color: var(--green-soft);
   margin-bottom: 24px;
 }
 .footer__heading {
@@ -821,7 +828,7 @@ body.nav-scrolled .hero2__hint { opacity: 0; }
   text-transform: uppercase;
   color: var(--ink-faint);
 }
-.article-hero__meta .accent { color: var(--accent); }
+.article-hero__meta .accent { color: var(--green); }
 .article-hero h1 {
   max-width: 22ch;
   margin-bottom: 28px;
@@ -940,7 +947,7 @@ html.js body.home:not(.nav-scrolled) .nav__logo small { color: rgba(245,243,238,
 @media (min-width: 880.02px) {
   html.js body.home:not(.nav-scrolled) .nav__links a { color: rgba(245,243,238,0.82); }
   html.js body.home:not(.nav-scrolled) .nav__links a:hover,
-  html.js body.home:not(.nav-scrolled) .nav__links a[aria-current="page"] { color: var(--accent-soft); }
+  html.js body.home:not(.nav-scrolled) .nav__links a[aria-current="page"] { color: var(--green-soft); }
 }
 html.js body.home:not(.nav-scrolled) .nav__cta { background: transparent; color: #f5f3ee; border-color: rgba(245,243,238,0.55); }
 html.js body.home:not(.nav-scrolled) .nav__cta:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -1065,7 +1072,7 @@ html.js body.home.nav-open .nav__burger span::after { background: var(--ink); }
   position: absolute; left: 24px; bottom: 24px; z-index: 1;
   font: 500 11px/1 var(--font-mono);
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--accent-soft);
+  color: var(--green-soft);
   opacity: 0;
   transition: opacity .4s var(--ease) .25s;
 }
@@ -1142,7 +1149,7 @@ body.has-cursor input, body.has-cursor textarea, body.has-cursor select { cursor
 .progress {
   position: fixed; top: 0; left: 0;
   height: 2px; width: 0;
-  background: var(--accent);
+  background: var(--green); /* SAKÜ zelená nit celým webem */
   z-index: 60; /* nad nav (50), pod lightboxem (100) */
   transition: opacity .2s;
 }
