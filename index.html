@@ -68,8 +68,35 @@ window.addEventListener('load', function () {
     <div class="hero3__stage">
       <div class="hero3__media">
         <img src="assets/hero-zasuvka.jpg" alt="Detail prémiové zásuvky SACHSENKÜCHEN — dubové přihrádky, zlaté příbory a mramorová dvířka" width="1680" height="1121" fetchpriority="high" />
+        <div class="hero3__scrim" aria-hidden="true"></div>
+        <!-- technické anotace od architekta — kryjí fotku 1:1 (slice = stejný crop jako cover) -->
+        <svg class="hero3__annot" viewBox="0 0 1680 1121" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- zlaté příbory: kroužek + popisek vpravo (vlevo by kolidoval s nadpisem) -->
+          <g style="--i:0">
+            <circle cx="1140" cy="240" r="62" pathLength="1" />
+            <line x1="1208" y1="246" x2="1226" y2="246" pathLength="1" />
+            <text class="albl" x="1238" y="252">ZLATÉ PŘÍBORY · MOSAZ</text>
+          </g>
+          <!-- dubové výlisky -->
+          <g style="--i:1">
+            <line x1="1405" y1="655" x2="1432" y2="508" pathLength="1" />
+            <text class="albl" x="1395" y="678" text-anchor="end">MASIVNÍ DUB · NA MÍRU</text>
+          </g>
+          <!-- mramorová dvířka -->
+          <g style="--i:2">
+            <line x1="1410" y1="940" x2="1472" y2="892" pathLength="1" />
+            <text class="albl" x="1130" y="958">CARRARA MRAMOR · ZLATÁ ŽÍLA</text>
+          </g>
+          <!-- kóta šířky -->
+          <g style="--i:3">
+            <line x1="1150" y1="160" x2="1600" y2="160" pathLength="1" />
+            <line x1="1150" y1="148" x2="1150" y2="172" pathLength="1" />
+            <line x1="1600" y1="148" x2="1600" y2="172" pathLength="1" />
+            <text class="albl" x="1375" y="138" text-anchor="middle">ŠÍŘKA 1 200</text>
+          </g>
+        </svg>
       </div>
-      <div class="hero3__panel">
+      <div class="hero3__copy">
         <p class="eyebrow hero3__eyebrow line-mask" style="--d:.3s"><span>Atelier prémiových kuchyní · Praha</span></p>
         <h1>
           <span class="line-mask" style="--d:.45s"><span>Prémiové kuchyně pro&nbsp;ženy.</span></span>

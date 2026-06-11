@@ -250,6 +250,33 @@
     });
   }
 
+  /* ---------- 9b) Hero paralaxa — fotka a anotace v různé hloubce ---------- */
+  var heroMedia = document.querySelector('.hero3__media');
+  if (heroMedia && finePointer) {
+    var hImg = heroMedia.querySelector('img');
+    var hAnnot = heroMedia.querySelector('.hero3__annot');
+    var htx = 0, hty = 0, hcx = 0, hcy = 0;
+    heroMedia.addEventListener('pointermove', function (e) {
+      var r = heroMedia.getBoundingClientRect();
+      htx = (e.clientX - r.left) / r.width - 0.5;
+      hty = (e.clientY - r.top) / r.height - 0.5;
+    }, { passive: true });
+    heroMedia.addEventListener('pointerleave', function () { htx = 0; hty = 0; });
+    (function heroLoop() {
+      hcx += (htx - hcx) * 0.08;
+      hcy += (hty - hcy) * 0.08;
+      if (hImg) {
+        hImg.style.setProperty('--px', (hcx * -14).toFixed(1) + 'px');
+        hImg.style.setProperty('--py', (hcy * -10).toFixed(1) + 'px');
+      }
+      if (hAnnot) {
+        hAnnot.style.setProperty('--ax', (hcx * -24).toFixed(1) + 'px');
+        hAnnot.style.setProperty('--ay', (hcy * -16).toFixed(1) + 'px');
+      }
+      window.requestAnimationFrame(heroLoop);
+    })();
+  }
+
   /* ---------- 9) Custom kurzor (běží i při reduced-motion — brand) ---------- */
   if (finePointer) {
     var dot = document.createElement('div');
