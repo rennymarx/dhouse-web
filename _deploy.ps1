@@ -46,6 +46,10 @@ if (Test-Path $postsJs) {
 }
 
 # --- root soubory: rozcestnik verzi + robots + netlify.toml ---
+# Staging deindex: NEpouzivame robots.txt Disallow (blokoval by i legitimni
+# nastroje, napr. designeruv web_fetch, a indexaci stejne nezabrani). Google
+# drzime venku pres <meta name=robots noindex> v kazde strance. robots.txt
+# proto Allow, X-Robots-Tag header pryc -> web je prochazitelny, ale nezaindexuje se.
 $versions = Get-ChildItem $out -Directory | Where-Object { $_.Name -match '^\d+$' } | Sort-Object { [int]$_.Name }
 $links = ($versions | ForEach-Object { "      <li><a href=`"/$($_.Name)/`">Verze $($_.Name)</a></li>" }) -join "`n"
 $rootIndex = @"
@@ -82,7 +86,7 @@ $links
 "@
 [IO.File]::WriteAllText((Join-Path $out 'index.html'), $rootIndex, (New-Object System.Text.UTF8Encoding $false))
 
-$robots = "User-agent: *`nDisallow: /`n"
+$robots = "User-agent: *`nAllow: /`n"
 [IO.File]::WriteAllText((Join-Path $out 'robots.txt'), $robots, (New-Object System.Text.UTF8Encoding $false))
 
 $toml = @"
@@ -96,7 +100,6 @@ $toml = @"
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    X-Robots-Tag = "noindex, nofollow"
 "@
 [IO.File]::WriteAllText((Join-Path $out 'netlify.toml'), $toml, (New-Object System.Text.UTF8Encoding $false))
 

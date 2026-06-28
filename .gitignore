@@ -7,3 +7,7 @@ node_modules/
 .idea/
 # _deploy/site se commituje (Netlify publish dir s verzemi /1 /2...), zip ne
 _deploy/*.zip
+
+# pracovní round-trip soubory (revize textů od Marka) — nepatří do veřejného repa
+TEXTY-K-REVIZI.md
+*-REVIZE.md
