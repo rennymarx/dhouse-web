@@ -1203,5 +1203,85 @@ body.has-cursor input, body.has-cursor textarea, body.has-cursor select { cursor
 }
 body.nav-open .progress { opacity: 0; } /* nekreslit přes otevřené mobilní menu */
 
+/* ---------- Deskriptor modelu v lamele (homepage galerie) ---------- */
+.slat__desc {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(245, 243, 238, 0.78);
+}
+
+/* ---------- Karty realizací (homepage 03 · Realizace, placeholder) ---------- */
+.rcard {
+  background: var(--bg-soft);
+  border: 1px solid var(--rule-soft);
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.rcard:hover { border-color: var(--ink); transform: translateY(-2px); }
+.rcard__media {
+  aspect-ratio: 4 / 3;
+  background: var(--panel);
+  background-size: cover;
+  background-position: center;
+}
+.rcard__body { padding: 24px; }
+.rcard__meta {
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.rcard__title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 1.35rem;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.rcard__text { color: var(--ink-muted); font-size: 0.95rem; }
+
+/* ---------- Deskriptor modelu na stránce galerie ---------- */
+.gcard__desc {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: rgba(245, 243, 238, 0.82);
+  margin-top: 6px;
+}
+
+/* ---------- Alternativa pod formulářem (Calendly odkazy) ---------- */
+.form__alt {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 6px; padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.form__alt-label {
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 2px;
+}
+
+/* ---------- Jemný sekundární odkaz (měkčí druhý schod CTA) ---------- */
+.soft-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 500 12px/1.4 var(--font-mono);
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.soft-link:hover { color: var(--green); border-color: var(--green); }
+.soft-link--light { color: rgba(245, 243, 238, 0.7); border-color: rgba(245, 243, 238, 0.25); }
+.soft-link--light:hover { color: var(--green-soft); border-color: var(--green-soft); }
+
 /* ---------- Drobné opravy ---------- */
 .article-hero h1 { font-size: clamp(2.2rem, 5vw, 3.9rem); }
+/* delší ženský headline na 3 řádky — menší stupeň, ať se vejde do fotky */
+.hero3__copy h1 { font-size: clamp(1.6rem, 3.6vw, 3.5rem); }

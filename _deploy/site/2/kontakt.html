@@ -25,7 +25,7 @@
     <nav class="nav__links" id="navLinks" aria-label="Hlavní navigace">
       <a href="/2/galerie">Galerie</a><a href="/2/kvalita">Kvalita</a><a href="/2/atelier">Atelier</a><a href="/2/blog">Blog</a><a href="/2/kontakt">Kontakt</a>
     </nav>
-    <a class="btn btn--sm nav__cta" href="/2/atelier">Navštívit atelier →</a>
+    <a class="btn btn--sm nav__cta" href="https://calendly.com/radek-dhouse/konzultace-pk26" target="_blank" rel="noopener">Navštívit atelier →</a>
     <button class="nav__burger" id="navBurger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="navLinks"><span></span></button>
   </div>
 </header>
@@ -55,8 +55,8 @@
               <input id="jmeno" name="jmeno" type="text" required autocomplete="name" />
             </div>
             <div class="form__row">
-              <label for="telefon">Telefon</label>
-              <input id="telefon" name="telefon" type="tel" autocomplete="tel" />
+              <label for="telefon">Telefon *</label>
+              <input id="telefon" name="telefon" type="tel" required autocomplete="tel" />
             </div>
           </div>
 
@@ -66,8 +66,8 @@
           </div>
 
           <div class="form__row">
-            <label for="zprava">Vaše zpráva *</label>
-            <textarea id="zprava" name="zprava" required placeholder="Stručně co plánujete — rekonstrukce, novostavba, rozměry prostoru, představa o stylu, časový plán..."></textarea>
+            <label for="zprava">Vaše zpráva</label>
+            <textarea id="zprava" name="zprava" placeholder="Stručně co plánujete — rekonstrukce, novostavba, rozměry prostoru, představa o stylu, časový plán..."></textarea>
           </div>
 
           <p class="form__consent">
@@ -76,6 +76,12 @@
 
           <div>
             <button type="submit" class="btn">Odeslat poptávku <span class="arrow">→</span></button>
+          </div>
+
+          <div class="form__alt">
+            <span class="form__alt-label">Raději rovnou termín?</span>
+            <a class="soft-link" href="https://calendly.com/radek-dhouse/konzultace-pk26" target="_blank" rel="noopener">Vyberte si návštěvu atelieru <span class="arrow">→</span></a>
+            <a class="soft-link" href="https://calendly.com/radek-dhouse/online-konzultace-dhouse" target="_blank" rel="noopener">…nebo online konzultaci <span class="arrow">→</span></a>
           </div>
         </form>
       </div>
@@ -98,7 +104,7 @@
           <span class="contact-row__label">Atelier</span>
           <span class="contact-row__value">Nám. Svatopluka Čecha 1350/5<br>101 00 Praha 10 — Vršovice</span>
         </div>
-        <p class="muted small" style="margin-top: 16px;">Můžete také rovnou přijít do atelieru — Po–Pá 10:00–18:00. Ideálně si ale domluvte čas, ať vás nikdo nepřevezme.</p>
+        <p class="muted small" style="margin-top: 16px;">Můžete také rovnou přijít do atelieru — Po–Pá 10:00–18:00. Ideálně si ale dopředu domluvte čas, ať se vám můžeme naplno věnovat.</p>
         <a class="btn btn--ghost" href="/2/atelier">Více o atelieru <span class="arrow">→</span></a>
       </div>
     </div>
@@ -113,7 +119,7 @@
       <div>
         <div class="footer__brand">dhouse<span class="dot">.</span></div>
         <div class="footer__tag">Atelier prémiových kuchyní · Praha</div>
-        <p style="color: rgba(245,243,238,0.6); font-size: 0.95rem; max-width: 36ch;">Výhradní zastoupení SACHSENKÜCHEN v Česku.</p>
+        <p style="color: rgba(245,243,238,0.6); font-size: 0.95rem; max-width: 36ch;">Autorizované zastoupení SACHSENKÜCHEN v Česku.</p>
       </div>
       <div>
         <div class="footer__heading">Web</div>
