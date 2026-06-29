@@ -77,6 +77,17 @@
   /* ---------- 4) Lightbox pro galerii ---------- */
   var lbCards = document.querySelectorAll('[data-lb]');
   if (lbCards.length > 0) {
+    // Galerijní karty: pozadí z data-lb (reálné foto místo gradientu placeholderu)
+    Array.prototype.forEach.call(lbCards, function (el) {
+      var media = el.querySelector('.gcard__media');
+      var src = el.getAttribute('data-lb-src') || el.getAttribute('data-lb');
+      if (media && src) {
+        media.style.backgroundImage = "url('" + src + "')";
+        media.style.backgroundSize = 'cover';
+        media.style.backgroundPosition = 'center';
+      }
+    });
+
     var items = Array.prototype.map.call(lbCards, function (el) {
       return {
         src: el.getAttribute('data-lb-src') || el.getAttribute('data-lb'),
