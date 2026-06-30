@@ -1,0 +1,42 @@
+{
+    "slug":  "harmonie-aus-natur-und-design",
+    "title":  "Harmonie přírody a designu: LEONA Macadamia s vídeňským výpletem a dub FABIOLA",
+    "meta":  "Světlá kuchyně LEONA Macadamia s ručně působícím vídeňským výpletem (Wiener Geflecht), dubem FABIOLA Asteiche natur a deskou z přírodního kamene Strasser Edelweiß. Japandi klid v přírodních materiálech.",
+    "hero":  "assets/img/realizace/harmonie-aus-natur-und-design/hero.jpg",
+    "intro":  "<p>Přírodní materiály v dokonalém souznění. Fronty LEONA v odstínu Macadamia s jemnou strukturou vídeňského výpletu (Wiener Geflecht) dodávají kuchyni ruční, řemeslný charakter, zatímco dub FABIOLA Asteiche natur vnáší teplo a přirozenou kresbu dřeva.</p><p>Pracovní deska a obklad z přírodního kamene Strasser Edelweiß rozjasňují prostor jemnou kamennou kresbou. Vzniká tak vyvážená, japandi laděná kompozice — tichá, světlá a nadčasová, kde každý materiál vynikne svou přirozenou texturou.</p>",
+    "categories":  [
+                       {
+                           "slug":  "massivholz-furnier",
+                           "label":  "Masiv a dýha"
+                       },
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/harmonie-aus-natur-und-design/01.jpg",
+                    "assets/img/realizace/harmonie-aus-natur-und-design/02.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "LEONA – Macadamia, vídeňský výplet (Wiener Geflecht)",
+                          "img":  "assets/img/realizace/harmonie-aus-natur-und-design/mat-01.jpg"
+                      },
+                      {
+                          "name":  "FABIOLA – Asteiche natur (dub)",
+                          "img":  "assets/img/realizace/harmonie-aus-natur-und-design/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K75 – Asteiche natur",
+                          "img":  "assets/img/realizace/harmonie-aus-natur-und-design/mat-03.png"
+                      },
+                      {
+                          "name":  "Pracovní deska Strasser – přírodní kámen Edelweiß",
+                          "img":  "assets/img/realizace/harmonie-aus-natur-und-design/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}
