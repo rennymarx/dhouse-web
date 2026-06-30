@@ -35,16 +35,16 @@ foreach ($slug in $order) {
   $hero = FixPath $d.hero
   $intro = [string]$d.intro
 
-  # galerie = siroke zabery + detailni close-upy (materialove fotky) vse velke v lightboxu
+  # galerie = siroke zabery + detailni close-upy, REALNE <img> (jako sachsenkuechen.cz)
   $gal = ''
   foreach ($g in $d.gallery) {
     $gp = FixPath $g
-    $gal += '<a class="gcard gcard--photo" data-lb="' + $gp + '" data-lb-caption="' + $titleEsc + '"><span class="gcard__media"></span></a>' + "`n"
+    $gal += '<a class="gphoto" data-lb="' + $gp + '" data-lb-caption="' + $titleEsc + '"><img src="' + $gp + '" alt="' + $titleEsc + '" loading="lazy" /></a>' + "`n"
   }
   foreach ($m in $d.materials) {
     $mp = FixPath $m.img
     $mn = Esc $m.name
-    $gal += '<a class="gcard gcard--photo gcard--detail" data-lb="' + $mp + '" data-lb-caption="' + $mn + '"><span class="gcard__media"></span><span class="gcard__tag">Detail</span></a>' + "`n"
+    $gal += '<a class="gphoto gphoto--detail" data-lb="' + $mp + '" data-lb-caption="' + $mn + '"><img src="' + $mp + '" alt="' + $mn + '" loading="lazy" /><span class="gphoto__tag">Detail</span></a>' + "`n"
   }
 
   # materialy = seznam pouzitych dekoru (textove cipy)
