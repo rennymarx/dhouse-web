@@ -42,7 +42,7 @@ foreach ($slug in $order) {
   $gal = ''
   foreach ($g in $d.gallery) {
     $gp = FixPath $g
-    $gal += '<a class="gphoto" data-lb="' + $gp + '" data-lb-caption="' + $titleEsc + '"><img src="' + $gp + '" alt="' + $titleEsc + '" loading="lazy" /></a>' + "`n"
+    $gal += '<a class="gphoto" data-lb="' + $gp + '" data-lb-group="galerie" data-lb-caption="' + $titleEsc + '"><img src="' + $gp + '" alt="' + $titleEsc + '" loading="lazy" /></a>' + "`n"
   }
 
   # pouzite dekory = samostatna sekce: fotka dekoru + nazev (jako sachsenkuechen.cz)
@@ -50,7 +50,7 @@ foreach ($slug in $order) {
   foreach ($m in $d.materials) {
     $mp = FixPath $m.img
     $mn = Esc $m.name
-    $mat += '<a class="matcard" data-lb="' + $mp + '" data-lb-caption="' + $mn + '"><span class="matcard__media"><img src="' + $mp + '" alt="' + $mn + '" loading="lazy" /></span><span class="matcard__name">' + $mn + '</span></a>' + "`n"
+    $mat += '<a class="matcard" data-lb="' + $mp + '" data-lb-group="dekory" data-lb-caption="' + $mn + '"><span class="matcard__media"><img src="' + $mp + '" alt="' + $mn + '" loading="lazy" /></span><span class="matcard__name">' + $mn + '</span></a>' + "`n"
   }
 
   $rel = ''

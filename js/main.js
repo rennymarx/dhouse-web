@@ -91,7 +91,8 @@
     var items = Array.prototype.map.call(lbCards, function (el) {
       return {
         src: el.getAttribute('data-lb-src') || el.getAttribute('data-lb'),
-        caption: el.getAttribute('data-lb-caption') || ''
+        caption: el.getAttribute('data-lb-caption') || '',
+        group: el.getAttribute('data-lb-group') || 'default'
       };
     });
 
@@ -157,15 +158,25 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(i); }
       });
     });
+    // Listovani jen v ramci stejne skupiny (galerie vs. dekory se neprolínají)
+    var step = function (dir) {
+      var g = items[idx].group;
+      var inGroup = [];
+      for (var k = 0; k < items.length; k++) { if (items[k].group === g) inGroup.push(k); }
+      var pos = inGroup.indexOf(idx);
+      pos = (pos + dir + inGroup.length) % inGroup.length;
+      show(inGroup[pos]);
+    };
+
     lbClose.addEventListener('click', closeLb);
-    lbPrev.addEventListener('click', function () { show(idx - 1); });
-    lbNext.addEventListener('click', function () { show(idx + 1); });
+    lbPrev.addEventListener('click', function () { step(-1); });
+    lbNext.addEventListener('click', function () { step(1); });
     lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
     document.addEventListener('keydown', function (e) {
       if (!lb.classList.contains('is-open')) return;
       if (e.key === 'Escape') closeLb();
-      if (e.key === 'ArrowLeft') show(idx - 1);
-      if (e.key === 'ArrowRight') show(idx + 1);
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
       // focus trap — Tab cykluje mezi tlačítky dialogu
       if (e.key === 'Tab') {
         var focusables = [lbClose, lbPrev, lbNext];
