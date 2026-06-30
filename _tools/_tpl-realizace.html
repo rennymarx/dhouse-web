@@ -52,24 +52,31 @@
   </div>
 </section>
 
-<!-- GALERIE (lightbox) -->
-<section class="section" style="padding-bottom: clamp(56px, 8vw, 110px);">
+<!-- GALERIE (lightbox) — široké záběry + detailní close-upy -->
+<section class="section section--pad" style="padding-top: clamp(36px, 5vw, 64px);">
   <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Galerie</p>
+        <h2 class="h2 mt-sm">Podívejte se zblízka<span class="dot">.</span></h2>
+      </div>
+      <p class="section-head__lead">Celkové záběry i detaily materiálů, hran a řešení. Klikněte pro zvětšení.</p>
+    </div>
     <div class="grid reveal">{{GALLERY}}</div>
   </div>
 </section>
 
-<!-- MATERIÁLY -->
+<!-- MATERIÁLY (použité dekory) -->
 <section class="section section--pad section--panel">
   <div class="wrap">
     <div class="section-head reveal">
       <div>
         <p class="eyebrow">Materiály</p>
-        <h2 class="h2 mt-sm">V této realizaci<span class="dot">.</span></h2>
+        <h2 class="h2 mt-sm">Použité dekory<span class="dot">.</span></h2>
       </div>
-      <p class="section-head__lead">Dekory a povrchy odpovídají sortimentu manufaktury SACHSENKÜCHEN. Naživo si je prohlédnete v našem atelieru.</p>
+      <p class="section-head__lead">Názvy dekorů a povrchů odpovídají sortimentu manufaktury SACHSENKÜCHEN. Naživo si na ně sáhnete v našem atelieru.</p>
     </div>
-    <div class="swatch-grid">{{MATERIALS}}</div>
+    <ul class="mat-chips reveal">{{MATERIALS}}</ul>
   </div>
 </section>
 
