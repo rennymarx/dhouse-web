@@ -1358,15 +1358,29 @@ body.nav-open .progress { opacity: 0; } /* nekreslit přes otevřené mobilní m
   padding: 6px 10px;
 }
 
-/* ---------- Použité dekory (textové čipy) ---------- */
-.mat-chips { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
-.mat-chip {
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-  background: var(--bg-soft);
-  border: 1px solid var(--rule);
-  padding: 10px 16px;
-  border-radius: 2px;
+/* ---------- Použité dekory (fotka dekoru + název, jako sachsenkuechen.cz) ---------- */
+.matgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+}
+@media (max-width: 900px) { .matgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .matgrid { grid-template-columns: 1fr; } }
+.matcard {
+  display: block; background: var(--bg-soft);
+  border: 1px solid var(--rule-soft); cursor: pointer;
+  transition: border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.matcard:hover { border-color: var(--ink); transform: translateY(-3px); box-shadow: var(--shadow-card); }
+.matcard__media { display: block; overflow: hidden; }
+.matcard__media img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  transition: transform .5s var(--ease);
+}
+.matcard:hover .matcard__media img { transform: scale(1.04); }
+.matcard__name {
+  display: block; padding: 14px 16px 18px;
+  font-size: 0.9rem; line-height: 1.45; color: var(--ink-soft);
 }
 
 /* ---------- Drobné opravy ---------- */
