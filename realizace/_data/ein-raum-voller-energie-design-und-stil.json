@@ -1,0 +1,50 @@
+{
+    "slug":  "ein-raum-voller-energie-design-und-stil",
+    "title":  "Prostor plný energie, designu a stylu",
+    "meta":  "Výrazná kuchyně, kde se temné fronty FENIX potkávají s kovově černým korpusem a pracovní deskou Warm Steel. Energie a styl v každém detailu.",
+    "hero":  "assets/img/realizace/ein-raum-voller-energie-design-und-stil/hero.jpg",
+    "intro":  "\u003cp\u003eProstor, který přímo sálá energií. Sytě tónované supermatné fronty SENTA v odstínech blízkých FENIX Castoro Ottawa a FENIX Verde Brac dávají kuchyni sebevědomý, moderní výraz.\u003c/p\u003e\u003cp\u003eKovově černý korpus K139 a pracovní deska v dekoru Warm Steel celou kompozici svazují do elegantního, industriálně laděného celku. Kuchyně se stává srdcem domova, kde se design potkává s každodenní funkčností.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       },
+                       {
+                           "slug":  "helle-unifarben",
+                           "label":  "Světlé jednobarevné"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       },
+                       {
+                           "slug":  "massivholz-furnier",
+                           "label":  "Masiv a dýha"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/ein-raum-voller-energie-design-und-stil/01.jpg",
+                    "assets/img/realizace/ein-raum-voller-energie-design-und-stil/02.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "SENTA – Farbton ähnlich FENIX Castoro Ottawa",
+                          "img":  "assets/img/realizace/ein-raum-voller-energie-design-und-stil/mat-01.jpg"
+                      },
+                      {
+                          "name":  "SENTA – Farbton ähnlich FENIX Verde Brac",
+                          "img":  "assets/img/realizace/ein-raum-voller-energie-design-und-stil/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K139 – Metallschwarz",
+                          "img":  "assets/img/realizace/ein-raum-voller-energie-design-und-stil/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Arbeitsplatte 8005 – Warm Steel",
+                          "img":  "assets/img/realizace/ein-raum-voller-energie-design-und-stil/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

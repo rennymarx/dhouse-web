@@ -71,6 +71,9 @@ try {
                 continue
             }
 
+            # slozka -> index.html (napr. /realizace/<slug>/)
+            if (Test-Path $fp -PathType Container) { $fp = Join-Path $fp 'index.html' }
+
             if (Test-Path $fp -PathType Leaf) {
                 $ext = [System.IO.Path]::GetExtension($fp).ToLower()
                 $ct  = if ($mime.ContainsKey($ext)) { $mime[$ext] } else { 'application/octet-stream' }

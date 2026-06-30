@@ -1,0 +1,51 @@
+{
+    "slug":  "dunkel-verlockend-natuerlich",
+    "title":  "Temná, svůdná, přírodní: PATRIZIA a SAMARA v souhře dubu a kovové černé",
+    "meta":  "Broušený dub PATRIZIA v dialogu s kovově černou SAMARA. Kompaktní deska Hamilton-Stahl supermatná dotváří temně elegantní, přírodně laděnou kuchyni.",
+    "hero":  "assets/img/realizace/dunkel-verlockend-natuerlich/hero.jpg",
+    "intro":  "\u003cp\u003eTato realizace spojuje temnou eleganci s přírodní opravdovostí. Fronty PATRIZIA z broušeného dubu s povrchem v odstínu blízkém K75 přinášejí do prostoru živou kresbu a hmatatelnou strukturu pravého dřeva.\u003c/p\u003e\u003cp\u003eProtiváhou je kovově černá SAMARA, jejíž hluboký matný povrch dodává kuchyni svůdnou, sofistikovanou atmosféru. Kovově černý korpus K139 a kompaktní pracovní deska v dekoru Hamilton-Stahl v supermatném provedení celek scelují do temně ušlechtilého, a přesto vřelého interiéru.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       },
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       },
+                       {
+                           "slug":  "massivholz-furnier",
+                           "label":  "Masiv a dýha"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/dunkel-verlockend-natuerlich/01.jpg",
+                    "assets/img/realizace/dunkel-verlockend-natuerlich/02.jpg",
+                    "assets/img/realizace/dunkel-verlockend-natuerlich/03.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "PATRIZIA – Eiche geschliffen (Farbton ähnlich K75)",
+                          "img":  "assets/img/realizace/dunkel-verlockend-natuerlich/mat-01.jpg"
+                      },
+                      {
+                          "name":  "SAMARA – metallschwarz",
+                          "img":  "assets/img/realizace/dunkel-verlockend-natuerlich/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K139 – metallschwarz",
+                          "img":  "assets/img/realizace/dunkel-verlockend-natuerlich/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Kompaktplatte 12 mm – Hamilton-Stahl supermatt",
+                          "img":  "assets/img/realizace/dunkel-verlockend-natuerlich/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

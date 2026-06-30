@@ -1,0 +1,46 @@
+{
+    "slug":  "die-kunst-des-wohnens",
+    "title":  "Umění bydlet",
+    "meta":  "Kuchyně jako umělecké dílo: dekor Castoro Ottawa, mramor Empero a dub Arco natur v souznění betonu, kamene a přírodního dřeva.",
+    "hero":  "assets/img/realizace/die-kunst-des-wohnens/hero.jpg",
+    "intro":  "\u003cp\u003eBydlení povýšené na umění. Tato kuchyně spojuje teplý dekor FIORA Castoro Ottawa, ušlechtilou kresbu mramoru STANA Marmor Empero a přírodní dub EDDA Arco Eiche natur do vyvážené, smyslné kompozice.\u003c/p\u003e\u003cp\u003eKombinace kamenných a betonových povrchů s živým dřevem dává prostoru hloubku i klid. Pracovní deska v dekoru Marmor Empero a korpus K143 v dubu Arco celý výjev scelují do interiéru, který se stává tichým vyznáním kultivovaného bydlení.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "beton-stein",
+                           "label":  "Beton a kámen"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/die-kunst-des-wohnens/01.jpg",
+                    "assets/img/realizace/die-kunst-des-wohnens/02.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "FIORA – Castoro Ottawa",
+                          "img":  "assets/img/realizace/die-kunst-des-wohnens/mat-01.jpg"
+                      },
+                      {
+                          "name":  "STANA – Marmor Empero",
+                          "img":  "assets/img/realizace/die-kunst-des-wohnens/mat-02.jpg"
+                      },
+                      {
+                          "name":  "EDDA – Arco Eiche natur",
+                          "img":  "assets/img/realizace/die-kunst-des-wohnens/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Korpus K143 – Arco Eiche natur",
+                          "img":  "assets/img/realizace/die-kunst-des-wohnens/mat-04.png"
+                      },
+                      {
+                          "name":  "Arbeitsplatte 1580 – Marmor Empero",
+                          "img":  "assets/img/realizace/die-kunst-des-wohnens/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

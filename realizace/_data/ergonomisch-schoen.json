@@ -1,0 +1,61 @@
+{
+    "slug":  "ergonomisch-schoen",
+    "title":  "Ergonomicky krásná",
+    "meta":  "Kuchyně ADINA Titan matt, RITA Patrese a FIORA schwarz supermatt s keramickou deskou – dokonalá souhra ergonomie a designu.",
+    "hero":  "assets/img/realizace/ergonomisch-schoen/hero.jpg",
+    "intro":  "\u003cp\u003eCo dobře vypadá, musí také dobře fungovat. Tato realizace dovádí myšlenku ergonomie k dokonalosti – každá výška, každý úchop i každý pracovní postup jsou promyšlené tak, aby vám práce v kuchyni přinášela radost. Matná čela ADINA v odstínu Titan se setkávají s elegantní RITA Patrese a hlubokou černí FIORA v provedení supermatt.\u003c/p\u003e\u003cp\u003eKompaktní keramická pracovní deska v antracitu dodává celku robustní, sofistikovaný charakter a mimořádnou odolnost. Výsledkem je kuchyně, v níž se krása a funkce nevylučují, ale vzájemně posilují – přesně podle filozofie značky SACHSENKÜCHEN.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       },
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       },
+                       {
+                           "slug":  "fenix-ntm",
+                           "label":  "FENIX NTM"
+                       },
+                       {
+                           "slug":  "glaslaminat",
+                           "label":  "Sklolaminát"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/ergonomisch-schoen/01.jpg",
+                    "assets/img/realizace/ergonomisch-schoen/02.jpg",
+                    "assets/img/realizace/ergonomisch-schoen/03.jpg",
+                    "assets/img/realizace/ergonomisch-schoen/04.jpg",
+                    "assets/img/realizace/ergonomisch-schoen/05.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "ADINA Titan matt",
+                          "img":  "assets/img/realizace/ergonomisch-schoen/mat-01.jpg"
+                      },
+                      {
+                          "name":  "RITA Patrese",
+                          "img":  "assets/img/realizace/ergonomisch-schoen/mat-02.jpg"
+                      },
+                      {
+                          "name":  "FIORA schwarz supermatt",
+                          "img":  "assets/img/realizace/ergonomisch-schoen/mat-03.jpg"
+                      },
+                      {
+                          "name":  "K105 cobaltgrau",
+                          "img":  "assets/img/realizace/ergonomisch-schoen/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Kompakt 12mm Keramik anthrazit",
+                          "img":  "assets/img/realizace/ergonomisch-schoen/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

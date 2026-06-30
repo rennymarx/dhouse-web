@@ -1,0 +1,50 @@
+{
+    "slug":  "schlichte-eleganz-designkueche-mit-leichtigkeit",
+    "title":  "Elegantní lehkost designové kuchyně",
+    "meta":  "Designová kuchyně, kde se nenápadná elegance snoubí s výrazným charakterem. Fronty FENIX, dub a kovový dekor v dokonalé souhře.",
+    "hero":  "assets/img/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/hero.jpg",
+    "intro":  "\u003cp\u003eČistá elegance s vlastním charakterem. Tato designová kuchyně ukazuje, jak lehce může působit promyšlená kompozice materiálů, když se sejde dokonalé plánování, krásný design a citlivé sladění techniky s řemeslem.\u003c/p\u003e\u003cp\u003eSupermatné fronty SENTA v odstínu blízkém FENIX Arizona Beige se potkávají s teplou kresbou dubu a kovovým akcentem dekoru FERRA. Výsledkem je nadčasový prostor, který vypadá skvěle a stejně dobře i funguje.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/01.jpg",
+                    "assets/img/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/02.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "SENTA – Farbton ähnlich FENIX Arizona Beige supermatt",
+                          "img":  "assets/img/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/mat-01.jpg"
+                      },
+                      {
+                          "name":  "LANA – Eiche Baysen sand",
+                          "img":  "assets/img/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/mat-02.jpg"
+                      },
+                      {
+                          "name":  "FERRA – Metallic aurum",
+                          "img":  "assets/img/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Korpus K147 – Eiche Baysen sand",
+                          "img":  "assets/img/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Arbeitsplatte 1585 – Formello Marmor Terra",
+                          "img":  "assets/img/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

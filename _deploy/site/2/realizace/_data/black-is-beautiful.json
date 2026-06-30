@@ -1,0 +1,50 @@
+{
+    "slug":  "black-is-beautiful",
+    "title":  "Black is beautiful: dramatická kuchyně v hlubokých černých tónech",
+    "meta":  "Elegantní černá kuchyně PATRIZIA a LANA v dubu, doplněná dekorem ADINA Galassia a černou kompaktní pracovní deskou. Sytá, výrazná a nadčasová.",
+    "hero":  "assets/img/realizace/black-is-beautiful/hero.jpg",
+    "intro":  "\u003cp\u003eČerná není jen barva, je to postoj. Tato kuchyně staví na síle tmavých tónů a ukazuje, jak elegantně dokáže působit promyšlená kombinace povrchů ve stejné barevné rodině. Broušený dub PATRIZIA v černohnědém odstínu se potkává s černým dubem LANA a matným dekorem ADINA Galassia, čímž vzniká hra struktur, která interiéru dodává hloubku i charakter.\u003c/p\u003e\u003cp\u003eČerný korpus K140 vulkanschwarz a kompaktní pracovní deska s černou strukturou celý koncept dotahují do důsledné, monochromatické dokonalosti. Výsledkem je prostor, který působí noblesně, sebevědomě a zároveň nadčasově.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       },
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/black-is-beautiful/01.jpg",
+                    "assets/img/realizace/black-is-beautiful/02.jpg",
+                    "assets/img/realizace/black-is-beautiful/03.jpg",
+                    "assets/img/realizace/black-is-beautiful/04.jpg",
+                    "assets/img/realizace/black-is-beautiful/05.jpg",
+                    "assets/img/realizace/black-is-beautiful/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "PATRIZIA – dub broušený, černohnědý",
+                          "img":  "assets/img/realizace/black-is-beautiful/mat-01.jpg"
+                      },
+                      {
+                          "name":  "LANA – dub černý",
+                          "img":  "assets/img/realizace/black-is-beautiful/mat-02.jpg"
+                      },
+                      {
+                          "name":  "ADINA – Galassia matt",
+                          "img":  "assets/img/realizace/black-is-beautiful/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Korpus K140 – vulkanschwarz",
+                          "img":  "assets/img/realizace/black-is-beautiful/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Pracovní deska Kompakt – schwarz Struktur",
+                          "img":  "assets/img/realizace/black-is-beautiful/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

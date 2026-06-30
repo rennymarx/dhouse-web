@@ -1,0 +1,43 @@
+{
+    "slug":  "fun-follows-function",
+    "title":  "Fun follows function: chytrá hospodářská místnost v kobaltové šedi",
+    "meta":  "Promyšlená hospodářská místnost LISA v odstínu cobaltgrau. Důmyslné úložné systémy, skříně na spotřebiče i botník v elegantním laminovém provedení.",
+    "hero":  "assets/img/realizace/fun-follows-function/hero.jpg",
+    "intro":  "\u003cp\u003eFunkce na prvním místě, ale bez kompromisů ve vzhledu. Hospodářská místnost v provedení LISA cobaltgrau dokazuje, že i ryze praktický prostor může působit elegantně a promyšleně. Sytě kobaltová šeď s černou hranou front dává místnosti čistý, soudržný výraz.\u003c/p\u003e\u003cp\u003eZa fronty se ukrývá precizně vyřešená logistika domácnosti: botníky s výklopnými systémy, skříně pro pračku a sušičku, otevřené police s tyčemi na oděvy, zásobníky i výsuvy na úklidové potřeby. Vše má své místo, vše je po ruce. Sladěný korpus K105 cobaltgrau celý koncept sjednocuje do funkčního, ale příjemného celku.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       },
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/fun-follows-function/01.jpg",
+                    "assets/img/realizace/fun-follows-function/02.jpg",
+                    "assets/img/realizace/fun-follows-function/03.jpg",
+                    "assets/img/realizace/fun-follows-function/04.jpg",
+                    "assets/img/realizace/fun-follows-function/05.jpg",
+                    "assets/img/realizace/fun-follows-function/06.jpg",
+                    "assets/img/realizace/fun-follows-function/07.jpg",
+                    "assets/img/realizace/fun-follows-function/08.jpg",
+                    "assets/img/realizace/fun-follows-function/09.jpg",
+                    "assets/img/realizace/fun-follows-function/10.jpg",
+                    "assets/img/realizace/fun-follows-function/11.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "LISA – cobaltgrau, hrana fronty černá",
+                          "img":  "assets/img/realizace/fun-follows-function/mat-01.jpg"
+                      },
+                      {
+                          "name":  "Korpus K105 – cobaltgrau",
+                          "img":  "assets/img/realizace/fun-follows-function/mat-02.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

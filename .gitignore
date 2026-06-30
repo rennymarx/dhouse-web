@@ -11,3 +11,7 @@ _deploy/*.zip
 # pracovní round-trip soubory (revize textů od Marka) — nepatří do veřejného repa
 TEXTY-K-REVIZI.md
 *-REVIZE.md
+
+# velké zdrojové fotky realizací (76 MB) — do gitu jde jen kopie v _deploy/site (kvůli Netlify),
+# pracovní složku necommitujeme dvakrát; na disku zůstává pro generátor a preview
+/assets/realizace/

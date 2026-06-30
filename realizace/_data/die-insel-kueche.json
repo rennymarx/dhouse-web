@@ -1,0 +1,58 @@
+{
+    "slug":  "die-insel-kueche",
+    "title":  "Ostrovní kuchyně",
+    "meta":  "Kuchyně ADINA weiß matt v kombinaci s dýhou FABIOLA a kompaktní deskou Hamilton-Stahl supermatt – ostrov jako srdce otevřeného prostoru.",
+    "hero":  "assets/img/realizace/die-insel-kueche/hero.jpg",
+    "intro":  "\u003cp\u003eOstrov jako přirozené srdce otevřeného obytného prostoru. Matná bílá čela ADINA dávají kuchyni vzdušnou lehkost a čistotu, kterou tepleji vyvažuje dýha FABIOLA. Prosvětlené skříně a barový pult fungují jako elegantní předěl mezi vařením a posezením, aniž by prostor opticky uzavíraly.\u003c/p\u003e\u003cp\u003eKompaktní pracovní deska v provedení Hamilton-Stahl supermatt dodává celku moderní, industriálně laděný akcent a vysokou odolnost. Tato realizace ukazuje, jak ostrovní uspořádání spojuje obytné a kuchyňské funkce do jednoho harmonického celku v prémiové kvalitě SACHSENKÜCHEN.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "helle-unifarben",
+                           "label":  "Světlé jednobarevné"
+                       },
+                       {
+                           "slug":  "glaslaminat",
+                           "label":  "Sklolaminát"
+                       },
+                       {
+                           "slug":  "massivholz-furnier",
+                           "label":  "Masiv a dýha"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/die-insel-kueche/01.jpg",
+                    "assets/img/realizace/die-insel-kueche/02.jpg",
+                    "assets/img/realizace/die-insel-kueche/03.jpg",
+                    "assets/img/realizace/die-insel-kueche/04.jpg",
+                    "assets/img/realizace/die-insel-kueche/05.jpg",
+                    "assets/img/realizace/die-insel-kueche/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "ADINA weiß matt",
+                          "img":  "assets/img/realizace/die-insel-kueche/mat-01.jpg"
+                      },
+                      {
+                          "name":  "FABIOLA Kernbuche astig natur",
+                          "img":  "assets/img/realizace/die-insel-kueche/mat-02.jpg"
+                      },
+                      {
+                          "name":  "K02 weiß",
+                          "img":  "assets/img/realizace/die-insel-kueche/mat-03.jpg"
+                      },
+                      {
+                          "name":  "K105 cobaltgrau",
+                          "img":  "assets/img/realizace/die-insel-kueche/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Kompakt 12mm Hamilton-Stahl supermatt",
+                          "img":  "assets/img/realizace/die-insel-kueche/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

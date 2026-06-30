@@ -1,0 +1,50 @@
+{
+    "slug":  "natuerliche-farbtherapie",
+    "title":  "Přírodní barevná terapie: divoký dub FABIA a světlý cement SHILA",
+    "meta":  "Uklidňující kuchyně FABIA z kartáčovaného divokého dubu a SHILA Cement hell. Přírodní materiály a světlé tóny pro harmonický domov.",
+    "hero":  "assets/img/realizace/natuerliche-farbtherapie/hero.jpg",
+    "intro":  "\u003cp\u003eKuchyně, která působí jako léčivá kúra pro smysly. Fronty FABIA z kartáčovaného divokého dubu (Wildeiche gebürstet) ukazují dřevo v jeho nejautentičtější podobě, s živou kresbou a hmatatelnou strukturou povrchu.\u003c/p\u003e\u003cp\u003eDoplňuje je SHILA v jemném odstínu Cement hell, který vnáší do prostoru světlou, betonově laděnou plochu a vyvažuje teplo dřeva. Vzniká tak vyvážená, přirozeně působící kompozice, ve které barvy a materiály pracují ve prospěch klidu a pohody.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "helle-unifarben",
+                           "label":  "Světlé jednobarevné"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/natuerliche-farbtherapie/01.jpg",
+                    "assets/img/realizace/natuerliche-farbtherapie/02.jpg",
+                    "assets/img/realizace/natuerliche-farbtherapie/03.jpg",
+                    "assets/img/realizace/natuerliche-farbtherapie/04.jpg",
+                    "assets/img/realizace/natuerliche-farbtherapie/05.jpg",
+                    "assets/img/realizace/natuerliche-farbtherapie/06.jpg",
+                    "assets/img/realizace/natuerliche-farbtherapie/07.jpg",
+                    "assets/img/realizace/natuerliche-farbtherapie/08.jpg",
+                    "assets/img/realizace/natuerliche-farbtherapie/09.jpg",
+                    "assets/img/realizace/natuerliche-farbtherapie/10.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "FABIA – Wildeiche gebürstet",
+                          "img":  "assets/img/realizace/natuerliche-farbtherapie/mat-01.jpg"
+                      },
+                      {
+                          "name":  "SHILA – Cement hell",
+                          "img":  "assets/img/realizace/natuerliche-farbtherapie/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K133 – Eiche Cordoba Crema",
+                          "img":  "assets/img/realizace/natuerliche-farbtherapie/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Schichtstoff 1480 – Cement hell",
+                          "img":  "assets/img/realizace/natuerliche-farbtherapie/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

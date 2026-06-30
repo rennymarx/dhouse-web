@@ -1,0 +1,47 @@
+{
+    "slug":  "keine-kompromisse-2025",
+    "title":  "Bez kompromisů - FABIOLA / LEONA / ADINA",
+    "meta":  "Světlá kuchyně FABIOLA, LEONA a ADINA v tónech jasanu, mlhy a matné ambry s deskou v dekoru travertinu - čistý design bez kompromisů.",
+    "hero":  "assets/img/realizace/keine-kompromisse-2025/hero.jpg",
+    "intro":  "\u003cp\u003eBez kompromisů - tak zní krédo této realizace. Světlá fronta FABIOLA v dekoru jasanu Esche angora weiß se pojí s jemným tónem Nebel modelu LEONA a sametově matnou frontou ADINA Ambra matt do mimořádně vzdušné, elegantní kompozice.\u003c/p\u003e\u003cp\u003ePracovní deska v dekoru travertinu Travertin Alcamo dodává prostoru přírodní hloubku a charakter. Výsledkem je kuchyně, která spojuje čistotu světlých povrchů s dokonalou funkčností - prostor, kde si nemusíte vybírat mezi krásou a praktičností.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "helle-unifarben",
+                           "label":  "Světlé jednobarevné"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/keine-kompromisse-2025/01.jpg",
+                    "assets/img/realizace/keine-kompromisse-2025/02.jpg",
+                    "assets/img/realizace/keine-kompromisse-2025/03.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "FABIOLA - Esche angora weiß",
+                          "img":  "assets/img/realizace/keine-kompromisse-2025/mat-01.jpg"
+                      },
+                      {
+                          "name":  "LEONA - Nebel",
+                          "img":  "assets/img/realizace/keine-kompromisse-2025/mat-02.jpg"
+                      },
+                      {
+                          "name":  "ADINA - Ambra matt",
+                          "img":  "assets/img/realizace/keine-kompromisse-2025/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Korpus K98 - Kaschmir",
+                          "img":  "assets/img/realizace/keine-kompromisse-2025/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Travertin Alcamo",
+                          "img":  "assets/img/realizace/keine-kompromisse-2025/mat-05.png"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

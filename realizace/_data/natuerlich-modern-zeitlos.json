@@ -1,0 +1,42 @@
+{
+    "slug":  "natuerlich-modern-zeitlos",
+    "title":  "Přírodně. Moderně. Nadčasově.",
+    "meta":  "Kuchyně, kde ořech a jemný dekor Makoto vytvářejí přirozeně moderní a nadčasový prostor s pracovní deskou Formello Marmor Terra.",
+    "hero":  "assets/img/realizace/natuerlich-modern-zeitlos/hero.jpg",
+    "intro":  "\u003cp\u003ePřírodní, moderní a nadčasová – přesně taková je tato kuchyně. Teplá kresba ořechu ve frontě EDDA v dekoru Nussbaum Calum grau dává prostoru přirozenou hloubku a klid.\u003c/p\u003e\u003cp\u003eJemný dekor Makoto na frontě KIARA a graubeige korpus K77 doplňují kompozici o tlumenou eleganci, zatímco pracovní deska Formello Marmor Terra přidává ušlechtilý kamenný akcent. Vzniká interiér, který nepodléhá módě a zůstává krásný roky.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "massivholz-furnier",
+                           "label":  "Masiv a dýha"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/natuerlich-modern-zeitlos/01.jpg",
+                    "assets/img/realizace/natuerlich-modern-zeitlos/02.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "EDDA – Nussbaum Calum grau",
+                          "img":  "assets/img/realizace/natuerlich-modern-zeitlos/mat-01.jpg"
+                      },
+                      {
+                          "name":  "KIARA – Makoto",
+                          "img":  "assets/img/realizace/natuerlich-modern-zeitlos/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K77 – Graubeige",
+                          "img":  "assets/img/realizace/natuerlich-modern-zeitlos/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Arbeitsplatte 1585 – Formello Marmor Terra",
+                          "img":  "assets/img/realizace/natuerlich-modern-zeitlos/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

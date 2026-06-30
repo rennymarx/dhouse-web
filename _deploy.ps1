@@ -18,7 +18,7 @@ New-Item -ItemType Directory -Force $verDir | Out-Null
 # --- kopie webu do /<N>/ (jen produkce, zadne dev soubory) ---
 $items = @('index.html','galerie.html','kvalita.html','atelier.html','kontakt.html',
            'dekujeme.html','impressum.html','obchodni-podminky.html','ochrana-osobnich-udaju.html',
-           'robots.txt','sitemap.xml','css','js','blog','assets')
+           'robots.txt','sitemap.xml','css','js','blog','assets','realizace')
 foreach ($i in $items) {
     $p = Join-Path $src $i
     if (Test-Path $p) { Copy-Item $p -Destination $verDir -Recurse }
@@ -33,6 +33,8 @@ foreach ($f in $htmlFiles) {
     $t = $t.Replace('src="/',    "src=`"/$V/")
     $t = $t.Replace('action="/', "action=`"/$V/")
     $t = $t.Replace("url('/",    "url('/$V/")
+    $t = $t.Replace("url(/",     "url(/$V/")
+    $t = $t.Replace('data-lb="/', "data-lb=`"/$V/")
     $t = $t.Replace("'/blog/",   "'/$V/blog/")
     # OG/Twitter meta s relativni cestou (sablona blogu)
     $t = $t.Replace('content="/', "content=`"/$V/")

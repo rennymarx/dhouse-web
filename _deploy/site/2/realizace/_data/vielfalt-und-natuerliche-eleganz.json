@@ -1,0 +1,38 @@
+{
+    "slug":  "vielfalt-und-natuerliche-eleganz",
+    "title":  "Rozmanitost a přirozená elegance: dýhové fronty LEONA a PATRIZIA",
+    "meta":  "Kuchyně v teplých přírodních tónech: dýha LEONA Thymian a ořech PATRIZIA terrabraun. Souhra dřevěných struktur s přirozenou, nadčasovou elegancí.",
+    "hero":  "assets/img/realizace/vielfalt-und-natuerliche-eleganz/hero.jpg",
+    "intro":  "\u003cp\u003ePřírodní dřevo má svou vlastní řeč a tato kuchyně jí nechává plně zaznít. Dýhované fronty LEONA v odstínu Thymian se snoubí s ořechovými frontami PATRIZIA v teplém tónu terrabraun, čímž vzniká bohatá, přesto harmonická hra struktur a barev.\u003c/p\u003e\u003cp\u003eOlejovaná furýrová hrana umocňuje přirozený dojem materiálu a podtrhuje jeho ušlechtilost. Výsledkem je interiér, který spojuje rozmanitost dřevěných povrchů s tichou, nadčasovou elegancí, jež nepodléhá módním vlnám.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "massivholz-furnier",
+                           "label":  "Masiv a dýha"
+                       },
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/vielfalt-und-natuerliche-eleganz/01.jpg",
+                    "assets/img/realizace/vielfalt-und-natuerliche-eleganz/02.jpg",
+                    "assets/img/realizace/vielfalt-und-natuerliche-eleganz/03.jpg",
+                    "assets/img/realizace/vielfalt-und-natuerliche-eleganz/04.jpg",
+                    "assets/img/realizace/vielfalt-und-natuerliche-eleganz/05.jpg",
+                    "assets/img/realizace/vielfalt-und-natuerliche-eleganz/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "LEONA – Thymian, furýrová hrana olejovaná, terrabraun",
+                          "img":  "assets/img/realizace/vielfalt-und-natuerliche-eleganz/mat-01.jpg"
+                      },
+                      {
+                          "name":  "PATRIZIA – Nussbaum terrabraun",
+                          "img":  "assets/img/realizace/vielfalt-und-natuerliche-eleganz/mat-02.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

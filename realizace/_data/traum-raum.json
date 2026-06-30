@@ -1,0 +1,61 @@
+{
+    "slug":  "traum-raum",
+    "title":  "Vysněný prostor",
+    "meta":  "Kuchyně EDDA v dekoru Eiche Cordoba Crema v kombinaci s matnou ADINA – přirozená dřevěná struktura a jemná světle šedá.",
+    "hero":  "assets/img/realizace/traum-raum/hero.jpg",
+    "intro":  "\u003cp\u003eTato realizace spojuje teplo přírodního dřeva s nadčasovou zdrženlivostí. Čela EDDA v dekoru Eiche Cordoba Crema vnášejí do prostoru výraznou kresbu dubu, kterou doplňuje matná ADINA ve světle šedém tónu. Výsledkem je kuchyně, která působí současně útulně i mimořádně elegantně.\u003c/p\u003e\u003cp\u003ePečlivě sladěné materiály a promyšlené proporce vytvářejí vyvážený celek, v němž má každý detail své místo. Prémiové zpracování od výrobce SACHSENKÜCHEN se snoubí s nadčasovým designem, který obstojí po mnoho let.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "helle-unifarben",
+                           "label":  "Světlé jednobarevné"
+                       },
+                       {
+                           "slug":  "glaslaminat",
+                           "label":  "Sklolaminát"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/traum-raum/01.jpg",
+                    "assets/img/realizace/traum-raum/02.jpg",
+                    "assets/img/realizace/traum-raum/03.jpg",
+                    "assets/img/realizace/traum-raum/04.jpg",
+                    "assets/img/realizace/traum-raum/05.jpg",
+                    "assets/img/realizace/traum-raum/06.jpg",
+                    "assets/img/realizace/traum-raum/07.jpg",
+                    "assets/img/realizace/traum-raum/08.jpg",
+                    "assets/img/realizace/traum-raum/09.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "EDDA Eiche Cordoba Crema",
+                          "img":  "assets/img/realizace/traum-raum/mat-01.jpg"
+                      },
+                      {
+                          "name":  "ADINA hellgrau matt",
+                          "img":  "assets/img/realizace/traum-raum/mat-02.jpg"
+                      },
+                      {
+                          "name":  "K133 Eiche Cordoba Crema",
+                          "img":  "assets/img/realizace/traum-raum/mat-03.jpg"
+                      },
+                      {
+                          "name":  "K32 hellgrau",
+                          "img":  "assets/img/realizace/traum-raum/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Schichtstoff Eiche Cordoba Crema",
+                          "img":  "assets/img/realizace/traum-raum/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

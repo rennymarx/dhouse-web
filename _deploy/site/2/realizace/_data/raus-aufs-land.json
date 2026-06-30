@@ -1,0 +1,62 @@
+{
+    "slug":  "raus-aufs-land",
+    "title":  "Ven na venkov: RAJA, EDDA a LARA v přírodní hře dřeva a achátové šedi",
+    "meta":  "Jalovcový odstín RAJA, teplý dub EDDA Cordoba Crema a achátově šedá LARA tvoří útulnou venkovskou kuchyni s cementovou pracovní deskou.",
+    "hero":  "assets/img/realizace/raus-aufs-land/hero.jpg",
+    "intro":  "\u003cp\u003eTato realizace přináší vůni venkova do moderního domova. Rámové fronty RAJA v jemném jalovcovém odstínu Wacholder evokují klid přírody, zatímco dubové fronty EDDA v dekoru Eiche Cordoba Crema dodávají prostoru hřejivost a poctivý venkovský charakter.\u003c/p\u003e\u003cp\u003eDoplňující matné fronty LARA v achátové šedi vnášejí do celku eleganci a klid. Korpusy v achátové šedi a v dubu Cordoba Crema spolu s pracovní deskou v dekoru Cement hell dotvářejí útulnou, a přitom nadčasovou kuchyni, v níž se snoubí venkovská pohoda s čistým designem.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       },
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/raus-aufs-land/01.jpg",
+                    "assets/img/realizace/raus-aufs-land/02.jpg",
+                    "assets/img/realizace/raus-aufs-land/03.jpg",
+                    "assets/img/realizace/raus-aufs-land/04.jpg",
+                    "assets/img/realizace/raus-aufs-land/05.jpg",
+                    "assets/img/realizace/raus-aufs-land/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "RAJA – Wacholder (1107)",
+                          "img":  "assets/img/realizace/raus-aufs-land/mat-01.jpg"
+                      },
+                      {
+                          "name":  "EDDA – Eiche Cordoba Crema",
+                          "img":  "assets/img/realizace/raus-aufs-land/mat-02.jpg"
+                      },
+                      {
+                          "name":  "LARA – achatgrau",
+                          "img":  "assets/img/realizace/raus-aufs-land/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Korpus K126 – achatgrau",
+                          "img":  "assets/img/realizace/raus-aufs-land/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Korpus K133 – Eiche Cordoba Crema",
+                          "img":  "assets/img/realizace/raus-aufs-land/mat-05.jpg"
+                      },
+                      {
+                          "name":  "Schichtstoff-Arbeitsplatte – Cement hell (1480)",
+                          "img":  "assets/img/realizace/raus-aufs-land/mat-06.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

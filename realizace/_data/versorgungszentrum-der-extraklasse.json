@@ -1,0 +1,46 @@
+{
+    "slug":  "versorgungszentrum-der-extraklasse",
+    "title":  "Zásobovací centrum extra třídy: dub Cordoba Moderno a ADINA Luminoso",
+    "meta":  "Promyšlená kuchyně EDDA z dubu Cordoba Moderno se světlými laky ADINA Luminoso. Důmyslné úložné prostory a precizní řemeslné detaily.",
+    "hero":  "assets/img/realizace/versorgungszentrum-der-extraklasse/hero.jpg",
+    "intro":  "\u003cp\u003eKuchyně, ve které se vyplatí dívat pozorně. Fronty EDDA v dekoru dub Eiche Cordoba Moderno vnášejí do prostoru teplou dřevěnou kresbu, kterou doplňují světlé lakované plochy ADINA Luminoso matt s jemně matným, sametovým povrchem.\u003c/p\u003e\u003cp\u003eSkutečná hodnota se ukrývá v detailech a promyšlených úložných řešeních: od důmyslných výsuvů na utěrky až po vestavnou troubu v dokonale začleněné skříni. Vzniká tak zásobovací centrum extra třídy, kde se prémiové materiály snoubí s funkčností domácnosti do posledního puntíku.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/versorgungszentrum-der-extraklasse/01.jpg",
+                    "assets/img/realizace/versorgungszentrum-der-extraklasse/02.jpg",
+                    "assets/img/realizace/versorgungszentrum-der-extraklasse/03.jpg",
+                    "assets/img/realizace/versorgungszentrum-der-extraklasse/04.jpg",
+                    "assets/img/realizace/versorgungszentrum-der-extraklasse/05.jpg",
+                    "assets/img/realizace/versorgungszentrum-der-extraklasse/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "EDDA – Eiche Cordoba Moderno",
+                          "img":  "assets/img/realizace/versorgungszentrum-der-extraklasse/mat-01.jpg"
+                      },
+                      {
+                          "name":  "ADINA – Luminoso matt",
+                          "img":  "assets/img/realizace/versorgungszentrum-der-extraklasse/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K136 – Eiche Cordoba Moderno",
+                          "img":  "assets/img/realizace/versorgungszentrum-der-extraklasse/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Schichtstoff 1495 – Eiche Cordoba Moderno",
+                          "img":  "assets/img/realizace/versorgungszentrum-der-extraklasse/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

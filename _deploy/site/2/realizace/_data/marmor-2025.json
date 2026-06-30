@@ -1,0 +1,44 @@
+{
+    "slug":  "marmor-2025",
+    "title":  "Mramor v hlavní roli - STANA / LANA",
+    "meta":  "Kuchyně STANA a LANA v dekoru bílého mramoru a kaštanového dubu Casella s ostrůvkem - ušlechtilá hra mramoru a teplého dřeva.",
+    "hero":  "assets/img/realizace/marmor-2025/hero.jpg",
+    "intro":  "\u003cp\u003eMramor v hlavní roli. Bílý mramorový dekor Marmor weiß fronty STANA propůjčuje kuchyni nadčasovou eleganci a vznešený lesk, který se line celým prostorem až po pracovní desku v shodném mramorovém provedení.\u003c/p\u003e\u003cp\u003eProtihráčem chladné krásy mramoru je teplé dřevo - kaštanový dub Casella Eiche marone modelu LANA i korpus ve stejném dekoru vnášejí do kuchyně útulnost a přirozenou rovnováhu. Velkorysý kuchyňský ostrůvek se stává srdcem celé místnosti.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "beton-stein",
+                           "label":  "Beton a kámen"
+                       },
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/marmor-2025/01.jpg",
+                    "assets/img/realizace/marmor-2025/02.jpg",
+                    "assets/img/realizace/marmor-2025/03.jpg",
+                    "assets/img/realizace/marmor-2025/04.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "STANA - Marmor weiß",
+                          "img":  "assets/img/realizace/marmor-2025/mat-01.jpg"
+                      },
+                      {
+                          "name":  "LANA - Casella Eiche marone",
+                          "img":  "assets/img/realizace/marmor-2025/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K142 - Casella Eiche marone",
+                          "img":  "assets/img/realizace/marmor-2025/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Marmor weiß",
+                          "img":  "assets/img/realizace/marmor-2025/mat-04.png"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

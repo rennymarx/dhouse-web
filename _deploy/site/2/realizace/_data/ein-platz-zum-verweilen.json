@@ -1,0 +1,36 @@
+{
+    "slug":  "ein-platz-zum-verweilen",
+    "title":  "Místo, kde se rádi zdržíte - TESSA",
+    "meta":  "Kuchyně TESSA v pískově světlém tónu s barovým koutem z dubu FABIOLA Asteiche natur a kuchyňským ostrůvkem - místo, kde se rádi zdržíte.",
+    "hero":  "assets/img/realizace/ein-platz-zum-verweilen/hero.jpg",
+    "intro":  "\u003cp\u003eMísto, kde se rádi zdržíte. Kuchyně TESSA v jemném pískově světlém tónu sandhell vytváří klidnou, přívětivou atmosféru, ve které se snadno tráví čas - ať už při vaření, nebo v družném posezení.\u003c/p\u003e\u003cp\u003eVelkorysý kuchyňský ostrůvek a barový kout z teplého dubu FABIOLA Asteiche natur zvou k zastavení a setkávání. Přirozená souhra světlých povrchů a živého dřeva dělá z této kuchyně skutečné srdce domova.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-unifarben",
+                           "label":  "Světlé jednobarevné"
+                       },
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/ein-platz-zum-verweilen/01.jpg",
+                    "assets/img/realizace/ein-platz-zum-verweilen/02.jpg",
+                    "assets/img/realizace/ein-platz-zum-verweilen/03.jpg",
+                    "assets/img/realizace/ein-platz-zum-verweilen/04.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "TESSA - sandhell",
+                          "img":  "assets/img/realizace/ein-platz-zum-verweilen/mat-01.jpg"
+                      },
+                      {
+                          "name":  "FABIOLA - Asteiche natur",
+                          "img":  "assets/img/realizace/ein-platz-zum-verweilen/mat-02.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

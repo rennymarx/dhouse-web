@@ -1,0 +1,58 @@
+{
+    "slug":  "mehr-als-nur-kueche",
+    "title":  "Víc než jen kuchyně: LARA v achátové šedi a EDDA Nussbaum terrabraun",
+    "meta":  "Obytná kuchyně LARA achatgrau matt v kombinaci s frontou EDDA Nussbaum terrabraun. Sladění tlumené šedi a teplého ořechu pro otevřený prostor.",
+    "hero":  "assets/img/realizace/mehr-als-nur-kueche/hero.jpg",
+    "intro":  "\u003cp\u003eVíc než jen kuchyně – obytný prostor, který plynule propojuje vaření a život. Matné fronty LARA v odstínu achatgrau vnášejí tlumený, vyrovnaný základ, na kterém vynikne vše ostatní.\u003c/p\u003e\u003cp\u003eTeplo a charakter dodává fronta EDDA v dekoru Nussbaum terrabraun, podpořená korpusy K126 achatgrau a K127 Nussbaum terrabraun i pracovní deskou ze stratifikátu ve stejném ořechovém tónu. Souhra jemné šedi a sytého dřeva vytváří elegantní celek, ve kterém se snadno žije.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       },
+                       {
+                           "slug":  "helle-unifarben",
+                           "label":  "Světlé jednobarevné"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/mehr-als-nur-kueche/01.jpg",
+                    "assets/img/realizace/mehr-als-nur-kueche/02.jpg",
+                    "assets/img/realizace/mehr-als-nur-kueche/03.jpg",
+                    "assets/img/realizace/mehr-als-nur-kueche/04.jpg",
+                    "assets/img/realizace/mehr-als-nur-kueche/05.jpg",
+                    "assets/img/realizace/mehr-als-nur-kueche/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "LARA – achatgrau matt",
+                          "img":  "assets/img/realizace/mehr-als-nur-kueche/mat-01.jpg"
+                      },
+                      {
+                          "name":  "EDDA – Nussbaum terrabraun",
+                          "img":  "assets/img/realizace/mehr-als-nur-kueche/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K126 – achatgrau",
+                          "img":  "assets/img/realizace/mehr-als-nur-kueche/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Korpus K127 – Nussbaum terrabraun",
+                          "img":  "assets/img/realizace/mehr-als-nur-kueche/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Pracovní deska Schichtstoff – Nussbaum terrabraun (Dekor 1445)",
+                          "img":  "assets/img/realizace/mehr-als-nur-kueche/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

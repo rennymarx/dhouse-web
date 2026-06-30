@@ -1,0 +1,46 @@
+{
+    "slug":  "reduktion-in-vollendung",
+    "title":  "Redukce dovedená k dokonalosti",
+    "meta":  "Minimalistická kuchyně, kde fronty FENIX Grigio Zante a dub Casella natur vytvářejí čistou, dokonale redukovanou kompozici.",
+    "hero":  "assets/img/realizace/reduktion-in-vollendung/hero.jpg",
+    "intro":  "\u003cp\u003eMéně je více – a tady je toho méně dovedeno k dokonalosti. Supermatné fronty FIORA v odstínu Grigio Zante dávají kuchyni klidný, sebevědomý výraz bez jediného zbytečného prvku.\u003c/p\u003e\u003cp\u003eTeplá kresba dubu LANA Casella Eiche natur a souznějící korpus K141 vnášejí do redukované kompozice přirozenou hřejivost, zatímco pracovní deska Linear Steel přidává jemný technický akcent. Výsledkem je prostor, kde každý detail má svůj smysl.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "fenix-ntm",
+                           "label":  "FENIX NTM"
+                       },
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/reduktion-in-vollendung/01.jpg",
+                    "assets/img/realizace/reduktion-in-vollendung/02.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "FIORA – Grigio Zante",
+                          "img":  "assets/img/realizace/reduktion-in-vollendung/mat-01.jpg"
+                      },
+                      {
+                          "name":  "LANA – Casella Eiche natur",
+                          "img":  "assets/img/realizace/reduktion-in-vollendung/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K141 – Casella Eiche natur",
+                          "img":  "assets/img/realizace/reduktion-in-vollendung/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Arbeitsplatte 8000 – Linear Steel",
+                          "img":  "assets/img/realizace/reduktion-in-vollendung/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

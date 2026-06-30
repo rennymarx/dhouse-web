@@ -1,0 +1,42 @@
+{
+    "slug":  "raffinierte-eleganz",
+    "title":  "Rafinovaná elegance - KARA / FLAVIA",
+    "meta":  "Kuchyně KARA a FLAVIA v dekoru Reverie a Eiche natur s pracovní deskou DEKTON - rafinovaná elegance přírodního dřeva a sklolaminátu.",
+    "hero":  "assets/img/realizace/raffinierte-eleganz/hero.jpg",
+    "intro":  "\u003cp\u003eRafinovaná elegance se rodí ze souhry kontrastů. Sytý sklolaminátový dekor Reverie modelu KARA se setkává s teplým přírodním dubem fronty FLAVIA a vytváří kompozici, která působí zároveň noblesně i přívětivě.\u003c/p\u003e\u003cp\u003ePracovní deska DEKTON Reverie celý koncept povyšuje do prémiové roviny - precizní detaily, sladěné povrchy a promyšlená ergonomie zde tvoří kuchyni, ve které se snoubí krása s dokonalou funkčností.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "glaslaminat",
+                           "label":  "Sklolaminát"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/raffinierte-eleganz/01.jpg",
+                    "assets/img/realizace/raffinierte-eleganz/02.jpg",
+                    "assets/img/realizace/raffinierte-eleganz/03.jpg",
+                    "assets/img/realizace/raffinierte-eleganz/04.jpg",
+                    "assets/img/realizace/raffinierte-eleganz/05.jpg",
+                    "assets/img/realizace/raffinierte-eleganz/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "KARA - Reverie",
+                          "img":  "assets/img/realizace/raffinierte-eleganz/mat-01.jpg"
+                      },
+                      {
+                          "name":  "FLAVIA - Eiche natur",
+                          "img":  "assets/img/realizace/raffinierte-eleganz/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K139 - metallschwarz",
+                          "img":  "assets/img/realizace/raffinierte-eleganz/mat-03.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}
