@@ -1,0 +1,5 @@
+# Netlify redirects — produkce dhouse.cz
+# Staré HubSpot asset URL (po přepnutí DNS zaniknou) -> homepage
+/hubfs/*    /    301
+/hs-fs/*    /    301
+# Neexistující URL obslouží /404.html automaticky (Netlify), není třeba catch-all.

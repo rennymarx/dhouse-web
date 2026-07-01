@@ -364,9 +364,8 @@
   'use strict';
   var KEY = 'dhouse_consent'; // 'granted' | 'denied'
 
-  // TODO Radek: doplňte Facebook Pixel ID (např. '123456789012345').
-  // Prázdné = pixel se nenačte. Vyplněné = načte se AŽ po souhlasu.
-  var FB_PIXEL_ID = '';
+  var FB_PIXEL_ID = '818976925290103';   // Meta (Facebook) Pixel — dhouse
+  var HUBSPOT_PORTAL_ID = '2996399';     // HubSpot tracking (návštěvy -> CRM)
 
   function loadFacebookPixel() {
     if (!FB_PIXEL_ID || window.fbq) return;
@@ -380,7 +379,15 @@
     window.fbq('init', FB_PIXEL_ID);
     window.fbq('track', 'PageView');
   }
-  function grantMarketing() { loadFacebookPixel(); }
+  function loadHubSpot() {
+    if (!HUBSPOT_PORTAL_ID || document.getElementById('hs-script-loader')) return;
+    var s = document.createElement('script');
+    s.type = 'text/javascript'; s.id = 'hs-script-loader';
+    s.async = true; s.defer = true;
+    s.src = '//js.hs-scripts.com/' + HUBSPOT_PORTAL_ID + '.js';
+    document.head.appendChild(s);
+  }
+  function grantMarketing() { loadFacebookPixel(); loadHubSpot(); }
 
   var stored = null;
   try { stored = localStorage.getItem(KEY); } catch (e) {}

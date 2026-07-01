@@ -11,14 +11,14 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/kvalita</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://dhouse.cz/atelier</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/kvalita</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dhouse.cz/kontakt</loc>
@@ -26,9 +26,179 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://dhouse.cz/realizace/black-is-beautiful/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/da-ist-alles-drin/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/die-coole/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/die-insel-kueche/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/die-kunst-des-wohnens/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/dunkel-verlockend-natuerlich/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/ein-platz-zum-verweilen/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/ein-raum-voller-energie-design-und-stil/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/einzigartig-aufregend/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/ergonomisch-schoen/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/fugenspiel/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/fun-follows-function/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/harmonie-aus-natur-und-design/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/hochkultur-des-wohlfuehlens/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/charakterkueche/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/im-schwebezustand/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/keine-kompromisse-2025/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/klare-linien-moderne-sprache-viel-komfort/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/landpartie/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/leona-fabiola/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/linoleum-genussvoll-klug/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/marmor-2025/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/mehr-als-nur-kueche/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/modern-und-stilsicher/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/mut-zur-farbe/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/natuerliche-farbtherapie/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/natuerlich-modern-zeitlos/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/raffinierte-eleganz/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/raus-aufs-land/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/reduktion-in-vollendung/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/traum-raum/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/versorgungszentrum-der-extraklasse/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/realizace/vielfalt-und-natuerliche-eleganz/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://dhouse.cz/impressum</loc>
@@ -45,7 +215,4 @@
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
-  <!-- BLOG:POSTS_START -->
-  <!-- Robert přidává <url> bloky sem (nejnovější článek první) -->
-  <!-- BLOG:POSTS_END -->
 </urlset>
