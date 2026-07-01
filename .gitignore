@@ -9,6 +9,8 @@ node_modules/
 _deploy/*.zip
 # _deploy/prod = produkcni launch build (_launch.ps1) — generuje se az pri ostrem spusteni, necommitovat prubezne
 _deploy/prod/
+# zaloha screenshotu recenzi ze stareho webu (soukrome, necommitovat do public repa)
+_zaloha/
 
 # pracovní round-trip soubory (revize textů od Marka) — nepatří do veřejného repa
 TEXTY-K-REVIZI.md
