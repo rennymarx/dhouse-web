@@ -356,3 +356,65 @@
     });
   }
 })();
+
+/* ---------- 9) Cookie consent + řízené marketingové cookies (Facebook Pixel) ----------
+   Nezbytné cookies běží vždy. Marketingové/analytické (FB pixel) se spustí VÝHRADNĚ
+   po kliknutí na „Přijmout vše". Volba se pamatuje v localStorage. */
+(function () {
+  'use strict';
+  var KEY = 'dhouse_consent'; // 'granted' | 'denied'
+
+  // TODO Radek: doplňte Facebook Pixel ID (např. '123456789012345').
+  // Prázdné = pixel se nenačte. Vyplněné = načte se AŽ po souhlasu.
+  var FB_PIXEL_ID = '';
+
+  function loadFacebookPixel() {
+    if (!FB_PIXEL_ID || window.fbq) return;
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+      t = b.createElement(e); t.async = !0; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('init', FB_PIXEL_ID);
+    window.fbq('track', 'PageView');
+  }
+  function grantMarketing() { loadFacebookPixel(); }
+
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (e) {}
+  if (stored === 'granted') { grantMarketing(); return; }
+  if (stored === 'denied') { return; }
+  if (!document.body) return;
+
+  var bar = document.createElement('div');
+  bar.className = 'cookie';
+  bar.setAttribute('role', 'dialog');
+  bar.setAttribute('aria-live', 'polite');
+  bar.setAttribute('aria-label', 'Souhlas s cookies');
+  bar.innerHTML =
+    '<div class="cookie__inner wrap">' +
+      '<div class="cookie__text">' +
+        '<strong>Cookies a soukromí</strong>' +
+        '<p>Nezbytné cookies používáme pro chod webu. S vaším souhlasem i marketingové a analytické cookies (např. Facebook pixel) pro měření a reklamu. Více v <a href="/ochrana-osobnich-udaju">Ochraně osobních údajů</a>.</p>' +
+      '</div>' +
+      '<div class="cookie__actions">' +
+        '<button type="button" class="btn btn--ghost cookie__btn" data-consent="denied">Odmítnout</button>' +
+        '<button type="button" class="btn cookie__btn" data-consent="granted">Přijmout vše</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(bar);
+  window.requestAnimationFrame(function () { bar.classList.add('is-in'); });
+
+  function decide(v) {
+    try { localStorage.setItem(KEY, v); } catch (e) {}
+    bar.classList.remove('is-in');
+    setTimeout(function () { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 450);
+    if (v === 'granted') grantMarketing();
+  }
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-consent]') : null;
+    if (b) decide(b.getAttribute('data-consent'));
+  });
+})();
