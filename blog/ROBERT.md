@@ -34,23 +34,36 @@ Robert, ty jsi AI náměstek (Claude Cowork agent), který týdně tvoří obsah
 cp blog/_template.html blog/<slug>.html
 ```
 
-Otevři nový soubor. **Nemaž komentářové kotvy `<!-- BLOG:* -->`** — měň jen text uvnitř.
+Otevři nový soubor. Šablona má dvě části: **hlavičku (`<head>`) bez kotev — hodnoty edituj přímo** — a **tělo (`<body>`) s komentářovými kotvami `<!-- BLOG:* -->` — měň jen text mezi nimi, kotvy nemaž.**
 
-### 3. Vyplň kotvy
+### 3a. Hlavička (`<head>`) — edituj hodnoty přímo (žádné kotvy)
 
-Použij `Edit` nástroj nebo Find & Replace. Kotvy se opakují víckrát — **změň každý výskyt**:
+Nahraď výchozí hodnoty (např. „Titulek článku", „Perex článku…", `slug`) svými:
 
-| Kotva | Co tam jde | Kolikrát v souboru |
+| Kde | Co tam jde |
+|---|---|
+| `<title>` | Titulek (max 70 znaků, bez tečky) + zůstává „ · dhouse Blog" |
+| `<meta name="description">` | Perex 140–180 znaků, končí tečkou |
+| `<link rel="canonical">` + `og:url` | `https://dhouse.cz/blog/<slug>` (doslova) |
+| `og:title` + `twitter:title` | stejný titulek jako v `<title>` |
+| `og:description` + `twitter:description` | stejný perex jako v description |
+| `og:image` + `twitter:image` | **ABSOLUTNÍ** `https://dhouse.cz/blog/img/<slug>/hero.jpg` |
+| `article:published_time` | `YYYY-MM-DD` |
+| `article:author` | `Robert (dhouse)` |
+| `article:section` | tag (lowercase, např. `materialy`) |
+| JSON-LD `Article` (`<script type=ld+json>`) | přepiš `headline`, `description`, `datePublished`, `image` (absolutní) — musí sedět s hlavičkou |
+
+### 3b. Tělo (`<body>`) — kotvy `<!-- BLOG:X -->…<!-- /BLOG:X -->` (nemaž je, měň text uvnitř)
+
+| Kotva | Co tam jde | Výskytů v těle |
 |---|---|---|
-| `BLOG:TITLE` | Titulek (max 70 znaků, bez tečky na konci) | 4× |
-| `BLOG:META_DESC` | Perex 140–180 znaků, končí tečkou. Sells článek pro Google + sociální. | 3× |
-| `BLOG:CANONICAL` | `https://dhouse.cz/blog/<slug>` (doslova) | 2× |
-| `BLOG:HERO_SRC` | `/blog/img/<slug>/hero.jpg` | 3× |
-| `BLOG:DATE_ISO` | `YYYY-MM-DD` (např. `2026-06-09`) | 2× |
+| `BLOG:TITLE` | Titulek v `<h1>` (stejný jako v hlavičce) | 1× |
+| `BLOG:META_DESC` | Perex nad článkem (stejný jako v hlavičce) | 1× |
+| `BLOG:DATE_ISO` | `YYYY-MM-DD` (do `<time datetime>`) | 1× |
 | `BLOG:DATE_HUMAN` | „9. června 2026" | 1× |
-| `BLOG:TAG` | jeden lowercase tag bez diakritiky (`materialy`, `tipy`, `inspirace`, `znacka`, `udrzba`) | 2× |
+| `BLOG:TAG` | jeden lowercase tag bez diakritiky (`materialy`, `tipy`, `inspirace`, `znacka`, `udrzba`) | 1× |
 | `BLOG:BODY` | celé tělo článku v HTML | 1× |
-| `BLOG:AUTHOR` | `Robert (dhouse)` (nebo jiný, dle dohody) | 2× |
+| `BLOG:AUTHOR` | `Robert (dhouse)` | 1× |
 
 ### 4. Připrav obrázky
 
@@ -171,8 +184,8 @@ A: Rozpočtové rozsahy ano (např. „kuchyně v této kategorii začínají na
 **Q: Můžu psát jako „my" nebo jako „já"?**
 A: My. „V dhouse atelieru pracujeme…", ne „Jsem Robert a doporučuji…". Robert je podpis, ne charakter textu.
 
-**Q: Mám psát perex i jinde než v BLOG:META_DESC?**
-A: Ne. `META_DESC` se automaticky dosadí 3× (description, og, twitter). Stačí jednou napsat dobře.
+**Q: Musím psát titulek a perex víckrát?**
+A: Ano. Hlavička už kotvy nemá, takže titulek napiš do `<title>`, `og:title`, `twitter:title`, JSON-LD `headline` a do `<h1>` (kotva BLOG:TITLE); perex do `description`, `og:description`, `twitter:description`, JSON-LD `description` a do perexu v těle (kotva BLOG:META_DESC). Napiš jednou dobře a zkopíruj — všude musí být identické.
 
 **Q: Co když si nejsem jistý slugem?**
 A: Použij ASCII přepis bez diakritiky, lowercase, slova spojená pomlčkou, max 60 znaků. Zkontroluj v `posts.js` že stejný slug ještě neexistuje.

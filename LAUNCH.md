@@ -1,78 +1,94 @@
 # dhouse.cz — Launch runbook (ostré spuštění)
 
 Web běží jako staging na `https://papaya-genie-f481ff.netlify.app/2/`. Doména `dhouse.cz`
-teď běží na **HubSpot CMS**. Launch = přepnutí DNS z HubSpotu na Netlify + nasazení produkčního buildu.
+teď běží na **HubSpot CMS**. Launch = nasazení produkčního buildu na Netlify + přepnutí DNS z HubSpotu.
 
-## Co je připravené (hotovo, netřeba řešit při launchi)
-- Produkční build: `_launch.ps1` → vytvoří `_deploy/prod/` (root, BEZ noindex, s prod robots/sitemap/redirects/headers vč. CSP).
-- Meta Pixel `818976925290103` + HubSpot portal `2996399` — v `js/main.js`, spouští se AŽ po souhlasu v cookie liště (HubSpotí vlastní banner vypnut v portálu — jen jedna lišta).
-- Detaily inspirací na `/galerie/<český-slug>/` (jmenný prostor `/realizace/` rezervován pro budoucí skutečné realizace klientek); `_redirects` má 1:1 přesměrování starých cest + catch-all.
-- LocalBusiness JSON-LD na všech stránkách, Article na blogu, sitemap.xml (45 URL vč. blogu), 404.html, apple-touch-icon, OG image.
-- Bezpečnostní hlavičky (CSP, Permissions-Policy, nosniff, Referrer-Policy, frame-ancestors) na stagingu i v produkčním buildu; HSTS připraven zakomentovaný.
+## Architektura: DVĚ Netlify sites (doporučeno)
 
-## Sekvence v den spuštění
+- **Staging site** = stávající `papaya-genie-f481ff` (publish `_deploy/site`, verze /1 /2). Po launchi ji zaheslujeme.
+- **Production site** = NOVÁ site (publish `_deploy/prod`, doména `dhouse.cz`).
 
-**1. Netlify — custom doména**
-- Site settings → Domain management → Add custom domain: `dhouse.cz` (+ `www.dhouse.cz`).
-- Netlify vystaví Let's Encrypt SSL (po správném DNS proběhne automaticky).
+Proč dvě: Password protection / robots blok se v Netlify nastavuje **per-site**. Kdyby staging i produkce
+byla jedna site, zaheslování stagingu by zamklo i produkci. Dvě sites = nezávislé.
 
-**2. DNS (dělá správce domény — přepnout z HubSpotu na Netlify)**
-⚠️ **MĚNIT JEN WEBOVÉ ZÁZNAMY (A/CNAME).** Na doméně běží e-mailové schránky (mj. radek@dhouse.cz) —
-**MX, SPF (TXT), DKIM a DMARC záznamy NECHAT NETKNUTÉ.** Po přepnutí ověřit poštu testem odeslání I příjmu.
-Použij PŘESNÉ hodnoty, které Netlify ukáže v *Domain settings → DNS configuration*. Standardně:
-- Apex `dhouse.cz`: **A** záznam → `75.2.60.5` (Netlify load balancer; ověř v UI)
-- `www.dhouse.cz`: **CNAME** → `papaya-genie-f481ff.netlify.app`
-- Odstranit staré HubSpot **A/CNAME** záznamy (a jen ty).
-- TTL nízké (300 s), ať se přepnutí projeví rychle.
+## Co je připravené (hotovo)
+- Produkční build: `_launch.ps1` → `_deploy/prod/` (root, BEZ noindex, prod robots/sitemap/`_redirects`/`_headers` vč. CSP).
+- Meta Pixel `818976925290103` + HubSpot portal `2996399` v `js/main.js`, spouští se AŽ po souhlasu (HubSpotí vlastní banner v portálu vypnut).
+- Detaily inspirací na `/galerie/<český-slug>/`; `_redirects` má 1:1 301 ze starých `/realizace/<de-slug>/` + catch-all.
+- LocalBusiness + Article JSON-LD, sitemap.xml (45 URL), 404, apple-touch-icon, OG image.
+- Bezpečnostní hlavičky (CSP, Permissions-Policy, nosniff, Referrer-Policy, frame-ancestors); HSTS připraven zakomentovaný.
 
-**3. TLS + kanonická doména**
-- Po propsání DNS: v Netlify ověřit vydání certifikátu pro `dhouse.cz` + `www.dhouse.cz`.
-- Zapnout **Force HTTPS**.
-- Primary domain = **apex `dhouse.cz`** (sedí s canonical tagy v HTML); `www` → 301 na apex (Netlify dělá automaticky dle primary).
+## Sekvence v den spuštění (pořadí ZACHOVAT)
 
-**4. Produkční build + publish**
+**1. Produkční build**
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File _launch.ps1   # vytvori _deploy/prod
+powershell -NoProfile -ExecutionPolicy Bypass -File _launch.ps1   # -> _deploy/prod
 git add -f _deploy/prod ; git commit -m "Launch: produkcni build" ; git push
 ```
-- V Netlify: Build & deploy → Publish directory → přepnout z `_deploy/site` na **`_deploy/prod`** → Deploy.
-- (`_deploy/prod` je v .gitignore kvůli velikosti — při launchi se přidá přes `git add -f`.)
 
-**5. Ověření po nasazení**
-- Všechny stránky 200: `/`, `/galerie`, `/galerie/<slug>/`, `/kvalita`, `/atelier`, `/kontakt`, `/blog`, právní stránky.
-- `robots.txt` = `Allow: /` + `Sitemap:`; `sitemap.xml` = 200.
-- Redirecty: `/hubfs/x` → 301 `/`; `/realizace/leona-fabiola/` → 301 `/galerie/leona-fabiola/`; neexistující URL → 404 stránka.
-- Zdroj homepage NEobsahuje `noindex` (produkce), 404 noindex ANO.
+**2. Vytvořit PRODUCTION site na Netlify**
+- Add new site → Import from Git → repo `rennymarx/dhouse-web`.
+- **Publish directory = `_deploy/prod`**, build command prázdný.
+- Deploy. Site dostane dočasnou adresu `nazev-xxxx.netlify.app`.
+
+**3. Ověřit produkci na dočasné `*.netlify.app` adrese — JEŠTĚ PŘED DNS**
+- Otevřít `https://<nova-site>.netlify.app/` — web se vykresluje, žádné rozbité cesty.
+- Zdroj homepage **NEobsahuje** `noindex`; 404 stránka noindex ANO.
+- `/robots.txt` = `Allow: /` + `Sitemap:`; `/sitemap.xml` = 200.
+- Redirecty: `/hubfs/x` → 301 `/`; **`/realizace/harmonie-aus-natur-und-design/` → 301 `/galerie/harmonie-prirody-a-designu/`**; neexistující URL → 404.
+- securityheaders.com na dočasnou adresu → Grade A.
+- Cookie lišta + po „Přijmout vše" pixel (Meta Pixel Helper) i HubSpot.
+- **Až tady je vše OK, pokračuj na DNS.** (Publish je hotový PŘED přepnutím DNS = žádné okno výpadku.)
+
+**4. Custom doména na PRODUCTION site**
+- Domain management → Add custom domain: `dhouse.cz` + `www.dhouse.cz`.
+- Primary domain = **apex `dhouse.cz`** (sedí s canonical tagy); `www` → 301 na apex.
+
+**5. DNS (dělá správce domény — přepnout z HubSpotu na Netlify)**
+⚠️ **MĚNIT JEN WEBOVÉ ZÁZNAMY (A/CNAME).** Na doméně běží e-mailové schránky (mj. radek@dhouse.cz) —
+**MX, SPF (TXT), DKIM a DMARC záznamy NECHAT NETKNUTÉ.**
+Použij PŘESNÉ hodnoty z Netlify *Domain settings → DNS configuration*. Standardně:
+- Apex `dhouse.cz`: **A** → `75.2.60.5` (ověř v UI)
+- `www.dhouse.cz`: **CNAME** → `<nova-site>.netlify.app`
+- Odstranit staré HubSpot **A/CNAME** (a jen ty). TTL 300 s.
+
+**6. TLS**
+- Po propsání DNS: Netlify vydá Let's Encrypt cert pro `dhouse.cz` + `www`. Zapnout **Force HTTPS**.
+
+**7. Ověření na ostré doméně**
+- Všechny stránky 200: `/`, `/galerie`, `/galerie/<slug>/`, `/kvalita`, `/atelier`, `/kontakt`, `/blog`, právní.
+- Redirecty (na `dhouse.cz`): `/hubfs/x` → 301; `/realizace/harmonie-aus-natur-und-design/` → 301 `/galerie/harmonie-prirody-a-designu/`; 404 stránka.
 - **Pošta:** poslat + přijmout testovací mail na radek@dhouse.cz (MX nedotčeny).
-- Meta Pixel: rozšíření **Meta Pixel Helper** → po „Přijmout vše" hlásí pixel `818976925290103` + PageView.
-- HubSpot: Reports → Analytics tools → přijdou návštěvy.
-- Formulář: testovací poptávka → dorazí na `team@rennymarx.com`.
-- OG náhled: `developers.facebook.com/tools/debug` → obrázek + titulek.
-- Hlavičky: securityheaders.com na https://dhouse.cz → cíl A.
+- Meta Pixel Helper: pixel `818976925290103` + PageView po souhlasu. HubSpot: přicházejí návštěvy.
+- Formulář: testovací poptávka → `team@rennymarx.com`. OG: FB debugger.
 
-**6. HSTS (až po pár dnech stabilního https)**
+**8. HSTS (až po pár dnech stabilního https)**
 - V `_deploy/prod/_headers` odkomentovat `Strict-Transport-Security: max-age=31536000` (bez `includeSubDomains`!
-  `online.dhouse.cz` běží na Konverzky — includeSubDomains přidat až po ověření, že subdoména jede čistě https;
-  `preload` až po týdnech klidu). Re-deploy.
+  `online.dhouse.cz` běží na Konverzky — includeSubDomains přidat až po ověření čistého https subdomény; `preload` později). Re-deploy.
 
-**7. Google Search Console (nespěchá, jde i den po launchi)**
-- Radek založí GSC property pro `dhouse.cz` → dostane ověřovací `googleXXXXXXXX.html`.
-- Soubor do rootu webu (repo root + znovu `_launch.ps1`) → commit → ověřit v GSC → Submit sitemap `https://dhouse.cz/sitemap.xml`.
+**9. Zaheslovat STAGING site** (nezávisle na produkci)
+- Na staging site `papaya-genie-f481ff`: Site settings → Access & security → **Password protection** (Site protection).
+  Tím po launchi neveřejní duplicitní kopie. (Meta noindex tam zůstává jako druhá pojistka.)
 
-**8. Znovu zablokovat staging**
-- Staging `papaya-genie-f481ff.netlify.app` má stále `noindex` v každé stránce — ponechat.
-- Navíc: v Netlify pro staging site zapnout **Password protection** (nebo aspoň robots.txt `Disallow: /`),
-  aby po launchi nevisela veřejná kopie webu (duplicitní obsah).
+**10. Google Search Console** (jde i den po launchi)
+- Radek založí GSC property `dhouse.cz` → `googleXXXX.html` do rootu (repo root + `_launch.ps1` znovu) → commit → ověřit → Submit sitemap.
 
-**9. Uptime monitoring**
-- Zapnout Netlify deploy/uptime notifikace, nebo založit **UptimeRobot** monitor na `https://dhouse.cz` (5min interval, alert na team@).
+**11. Uptime monitoring**
+- Netlify notifikace, nebo UptimeRobot na `https://dhouse.cz` (5 min, alert na team@).
 
 ## Akce mimo kód (dashboardy — dělá Radek)
-- **Netlify → Forms → Notifications:** e-mail notifikace kontaktního formuláře na `team@rennymarx.com`. *(Jediný zbývající pre-launch krok v dashboardu.)*
-- **2FA:** zapnout dvoufaktor na Netlify účtu i GitHub účtu (repo je public — chránit hlavně push přístup).
-- **HubSpot ↔ Calendly / plné napojení formuláře na CRM** — později (Make scénář / nativní integrace).
-- ~~Google Business Profil~~ — HOTOVO (přejmenován na „Atelier dhouse", web dhouse.cz; zbývá doplnit otevírací dobu).
+- **Netlify → (production site) Forms → Notifications:** e-mail poptávek na `team@rennymarx.com`. *(Jediný zbývající pre-launch krok.)*
+- **Repo → Private** (viz níže) + **2FA** na Netlify i GitHub účtu.
+- HubSpot ↔ Calendly / plné napojení formuláře na CRM — později.
+- Google Business Profil — HOTOVO (zbývá jen otevírací doba).
+
+### Repo → Private
+GitHub visibility je access-control změna — udělej ji ty (jedním z):
+```bash
+gh repo edit rennymarx/dhouse-web --visibility private --accept-visibility-change-consequences
+```
+nebo v GitHub UI: repo → Settings → General → Danger Zone → Change visibility → Private.
+(Netlify má repo připojené přes autorizovaný GitHub App/deploy key, po zprivátnění deploy funguje dál.)
 
 ## Sekce Realizace (03) — stále SKRYTÁ
-Zůstává `hidden` do doby, než budou vlastní fotky realizací (rozhodnutí: počkat na focení).
-Jmenný prostor `/realizace/` je pro ni rezervovaný — katalogové inspirace žijí pod `/galerie/`.
+Zůstává `hidden` do vlastního focení. Jmenný prostor `/realizace/` je pro ni rezervovaný — katalogové inspirace žijí pod `/galerie/`.
