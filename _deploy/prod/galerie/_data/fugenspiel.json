@@ -1,0 +1,50 @@
+{
+    "slug":  "fugenspiel",
+    "title":  "Hra spár: dub Evoke Sunset v dialogu s černou supermatnou",
+    "meta":  "Teplý dub LANA Evoke Sunset v kontrastu s černou supermatnou FIORA. Precizní spáry a kompaktní deska tvoří moderní kuchyni s charakterem.",
+    "hero":  "assets/img/realizace/fugenspiel/hero.jpg",
+    "intro":  "\u003cp\u003eTato realizace staví na napětí mezi teplem přírodního dřeva a hloubkou sytě černého povrchu. Dubové fronty LANA v dekoru Evoke Sunset vnášejí do prostoru měkkou, slunečně laděnou kresbu, zatímco černá supermatná FIORA dodává celku eleganci a řád.\u003c/p\u003e\u003cp\u003eHlavní roli zde hraje práce se spárami a precizně vedenými liniemi. Kompaktní pracovní deska o síle 12 mm v černém supermatném provedení podtrhuje minimalistický výraz a propojuje obě materiálové polohy do jednoho promyšleného celku.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/fugenspiel/01.jpg",
+                    "assets/img/realizace/fugenspiel/02.jpg",
+                    "assets/img/realizace/fugenspiel/03.jpg",
+                    "assets/img/realizace/fugenspiel/04.jpg",
+                    "assets/img/realizace/fugenspiel/05.jpg",
+                    "assets/img/realizace/fugenspiel/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "LANA – Eiche Evoke Sunset",
+                          "img":  "assets/img/realizace/fugenspiel/mat-01.jpg"
+                      },
+                      {
+                          "name":  "FIORA – schwarz supermatt",
+                          "img":  "assets/img/realizace/fugenspiel/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K125 – Evoke Sunset",
+                          "img":  "assets/img/realizace/fugenspiel/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Korpus K140 – vulkanschwarz",
+                          "img":  "assets/img/realizace/fugenspiel/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Kompaktplatte 12 mm – schwarz supermatt",
+                          "img":  "assets/img/realizace/fugenspiel/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

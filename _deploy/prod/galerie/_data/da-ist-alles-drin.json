@@ -1,0 +1,55 @@
+{
+    "slug":  "da-ist-alles-drin",
+    "title":  "Všechno, co potřebujete: LARA v černém matu a LANA Halifax Eiche natur",
+    "meta":  "Promyšlená kuchyně LARA schwarz matt s frontou LANA Halifax Eiche natur a pracovní deskou FENIX schwarz supermatt. Kontrast dřeva a hloubkové černé.",
+    "hero":  "assets/img/realizace/da-ist-alles-drin/hero.jpg",
+    "intro":  "\u003cp\u003eKuchyně, ve které je opravdu všechno. Matně černé fronty LARA udávají suverénní tón, korpus K140 ve vulkanschwarz je doplňuje do uceleného, klidného celku, který nepotřebuje nic navíc.\u003c/p\u003e\u003cp\u003ePřirozenost vnáší fronta LANA v dekoru Halifax Eiche natur se světlejší kresbou dřeva. Vrcholem je pracovní deska FENIX schwarz supermatt – povrch s mimořádnou hloubkou, sametovým dotykem a odolností vůči otiskům prstů. Funkce i estetika tu jdou ruku v ruce.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       },
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/da-ist-alles-drin/01.jpg",
+                    "assets/img/realizace/da-ist-alles-drin/02.jpg",
+                    "assets/img/realizace/da-ist-alles-drin/03.jpg",
+                    "assets/img/realizace/da-ist-alles-drin/04.jpg",
+                    "assets/img/realizace/da-ist-alles-drin/05.jpg",
+                    "assets/img/realizace/da-ist-alles-drin/06.jpg",
+                    "assets/img/realizace/da-ist-alles-drin/07.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "LARA – schwarz matt",
+                          "img":  "assets/img/realizace/da-ist-alles-drin/mat-01.jpg"
+                      },
+                      {
+                          "name":  "LANA – Halifax Eiche natur",
+                          "img":  "assets/img/realizace/da-ist-alles-drin/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K140 – vulkanschwarz",
+                          "img":  "assets/img/realizace/da-ist-alles-drin/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Pracovní deska FENIX – schwarz supermatt",
+                          "img":  "assets/img/realizace/da-ist-alles-drin/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

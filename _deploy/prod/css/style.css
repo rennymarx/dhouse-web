@@ -1,0 +1,1432 @@
+/* ============================================================
+   dhouse.cz — Atelier prémiových kuchyní v Praze
+   Plain CSS, no build step. Inspirováno sachsenkuechen.de.
+   ============================================================ */
+
+/* ---------- Design tokeny ---------- */
+:root {
+  /* Paleta — světlá výloha, tlumený teplý akcent */
+  --bg:        #f5f3ee;   /* off-white papír */
+  --bg-soft:   #ffffff;
+  --bg-deep:   #1a1714;   /* tmavá sekce (kontaktní CTA) */
+  --ink:       #161512;   /* hluboká grafitová */
+  --ink-soft:  #2c2925;
+  --ink-muted: rgba(22, 21, 18, 0.62);
+  --ink-faint: rgba(22, 21, 18, 0.42);
+  --rule:      rgba(22, 21, 18, 0.12);
+  --rule-soft: rgba(22, 21, 18, 0.07);
+  --accent:    #8a6a3b;   /* tlumená mosaz (manufaktura) */
+  --accent-soft: #b48a52;
+  --accent-deep: #5e4824;
+  --green:     #006938;   /* SACHSENKÜCHEN zelená — přesný odstín z loga výrobce */
+  --green-soft:#4f9d72;   /* světlejší tón zelené pro tmavá pozadí */
+  --green-hover:#0a7f46;  /* hover zelených tlačítek (kontrast ≥ 5:1 s bílým textem) */
+  --panel:     #ebe7df;   /* sekundární papírové pozadí */
+  --panel-deep:#dcd6c8;
+
+  /* V2: jediný font na vše — Urbanist (nejbližší volný ekvivalent
+     mr-eaves-modern, který používá SACHSENKÜCHEN). --font-mono zůstává
+     jako název tokenu pro mikro-labels, ale je to také Urbanist. */
+  --font-display: "Urbanist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body:    "Urbanist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "Urbanist", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Fluidní typografie — lehké váhy potřebují větší stupně */
+  --fs-hero:  clamp(2.5rem, 7.5vw, 7rem);
+  --fs-h2:    clamp(2rem, 4.5vw, 3.75rem);
+  --fs-h3:    clamp(1.4rem, 2.6vw, 2rem);
+  --fs-lead:  clamp(1.15rem, 1.9vw, 1.45rem);
+  --fs-stat:  clamp(2.4rem, 4vw, 3.25rem);
+
+  --pad-x: clamp(20px, 5vw, 48px);
+  --maxw:  1320px;
+  --maxw-readable: 720px;
+
+  --shadow-soft: 0 1px 2px rgba(22,21,18,0.04), 0 8px 24px rgba(22,21,18,0.06);
+  --shadow-card: 0 1px 2px rgba(22,21,18,0.06), 0 16px 40px rgba(22,21,18,0.08);
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+img, svg, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- Layout primitives ---------- */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--pad-x);
+  padding-right: var(--pad-x);
+}
+.wrap--narrow { max-width: 960px; }
+.wrap--readable { max-width: var(--maxw-readable); }
+
+.section { position: relative; }
+.section + .section { border-top: 1px solid var(--rule); }
+.section--pad { padding-top: clamp(56px, 8vw, 110px); padding-bottom: clamp(56px, 8vw, 110px); }
+.section--pad-sm { padding-top: clamp(36px, 5vw, 64px); padding-bottom: clamp(36px, 5vw, 64px); }
+.section--panel { background: var(--panel); }
+.section--deep { background: var(--bg-deep); color: var(--bg); }
+.section--deep .eyebrow { color: var(--green-soft); }
+.section--deep .ink-muted { color: rgba(245,243,238,0.6); }
+
+#top { scroll-margin-top: 96px; }
+[id] { scroll-margin-top: 96px; }
+
+/* ---------- Typografie ---------- */
+/* Pravidlo barev: zelená (SAKÜ) = mono mikrotypografie a značkové prvky;
+   mosaz = serif, tečky, linky, hovery tlačítek. */
+.eyebrow {
+  display: inline-block;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin: 0;
+}
+.eyebrow--muted { color: var(--ink-faint); }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 200; /* lehký řez à la SAKÜ */
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+h3, .h3 { font-weight: 300; }
+.section--deep h1, .section--deep h2, .section--deep h3 { color: var(--bg); }
+h1, .h1 { font-size: var(--fs-hero); }
+h2, .h2 { font-size: var(--fs-h2); }
+h3, .h3 { font-size: var(--fs-h3); }
+
+.dot { color: var(--accent); }
+
+.lead {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+.section--deep .lead { color: rgba(245,243,238,0.85); }
+
+p { margin: 0 0 1.1em; max-width: 64ch; }
+p:last-child { margin-bottom: 0; }
+
+.serif { font-family: var(--font-display); }
+.italic { font-style: italic; }
+.mono { font-family: var(--font-mono); }
+.small { font-size: 0.875rem; }
+.muted { color: var(--ink-muted); }
+
+/* ---------- Tlačítka ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font: 600 12px/1 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 18px 28px;
+  background: var(--green); /* SAKÜ zelená — primární akční barva všude */
+  color: #f5f3ee;
+  border: 1.5px solid var(--green);
+  transition: background .2s var(--ease), color .2s var(--ease), transform .25s var(--ease);
+  white-space: nowrap;
+  /* --mx/--my plní magnetický efekt v main.js; default 0 = bez posunu */
+  transform: translate(var(--mx, 0px), var(--my, 0px));
+}
+.btn:hover { background: var(--green-hover); border-color: var(--green-hover); color: #fff; }
+.btn:active { transform: translate(var(--mx, 0px), calc(var(--my, 0px) + 1px)); }
+.btn--sm { padding: 12px 18px; font-size: 11px; }
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn--ghost:hover { background: var(--green); color: #f5f3ee; border-color: var(--green); }
+/* Tlačítka na tmavém podkladu = SAKÜ zelená (na světlém zůstává ink/mosaz) */
+.section--deep .btn { background: var(--green); color: #f5f3ee; border-color: var(--green); }
+.section--deep .btn:hover { background: var(--green-hover); color: #fff; border-color: var(--green-hover); }
+.section--deep .btn--ghost { background: transparent; color: var(--bg); border-color: var(--green-soft); }
+.section--deep .btn--ghost:hover { background: var(--green); color: #f5f3ee; border-color: var(--green); }
+
+.arrow { font-family: var(--font-mono); transition: transform .2s var(--ease); }
+a:hover .arrow, .btn:hover .arrow { transform: translateX(3px); }
+
+/* ---------- Navigace ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(245, 243, 238, 0.86);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; padding: 18px 0;
+}
+.nav__logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.nav__logo .dot { color: var(--accent); }
+.nav__logo small {
+  display: block;
+  font: 500 9px/1 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 5px;
+}
+.nav__links {
+  display: flex;
+  gap: clamp(18px, 2.4vw, 32px);
+  font: 500 12px/1 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.nav__links a {
+  color: var(--ink-soft);
+  transition: color .2s var(--ease);
+  padding: 8px 0;
+}
+.nav__links a:hover, .nav__links a[aria-current="page"] { color: var(--green); }
+.nav__cta { margin-left: auto; }
+/* CTA v liště: nahoře ghost (průhledný podklad, tmavý rámeček — jako
+   „Prohlédnout galerii"), po odrolování první sekce plná zelená */
+.nav__cta { background: transparent; border-color: var(--ink); color: var(--ink); }
+body.nav-scrolled .nav__cta { background: var(--green); border-color: var(--green); color: #f5f3ee; }
+
+.nav__burger {
+  display: none;
+  width: 44px; height: 44px;
+  align-items: center; justify-content: center;
+}
+.nav__burger span, .nav__burger span::before, .nav__burger span::after {
+  display: block; width: 22px; height: 1.5px; background: var(--ink);
+  position: relative; transition: transform .25s var(--ease), top .25s var(--ease), opacity .15s;
+}
+.nav__burger span::before, .nav__burger span::after { content: ""; position: absolute; left: 0; }
+.nav__burger span::before { top: -7px; }
+.nav__burger span::after { top: 7px; }
+.nav__burger[aria-expanded="true"] span { background: transparent; }
+.nav__burger[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
+.nav__burger[aria-expanded="true"] span::after { top: 0; transform: rotate(-45deg); }
+
+@media (max-width: 880px) {
+  /* backdrop-filter dělá z .nav containing block pro position:fixed potomky —
+     vysouvací menu by se zploštilo na výšku lišty. Na mobilu solidní podklad. */
+  .nav {
+    background: rgba(245, 243, 238, 0.98);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .nav__cta { display: none; }
+  .nav__burger { display: inline-flex; }
+  .nav__links {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: min(360px, 80vw);
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 32px;
+    background: var(--bg);
+    border-left: 1px solid var(--rule);
+    transform: translateX(105%);
+    transition: transform .35s var(--ease);
+    box-shadow: var(--shadow-card);
+  }
+  .nav__links a { font-size: 14px; }
+  body.nav-open .nav__links { transform: translateX(0); }
+  body.nav-open { overflow: hidden; }
+}
+
+/* ---------- HERO 3 (V2) — „anotovaný výkres ve fotce" ----------
+   Fotka se otevírá jako zásuvka (clip reveal zleva), podklad do ní vtéká
+   gradientem (žádný panel), do fotky se rýsují technické anotace jako
+   od architekta. Jemná hloubková paralaxa na pohyb myši (main.js). */
+.hero3 {
+  background: var(--bg);
+  padding-top: clamp(20px, 3.5vh, 44px);
+  padding-bottom: clamp(28px, 4vh, 48px);
+}
+.hero3__stage { position: relative; }
+
+.hero3__media {
+  position: relative;
+  height: clamp(560px, 82vh, 880px);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background: var(--panel);
+}
+.hero3__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%; /* musí sedět s xMidYMid slice anotační vrstvy */
+  display: block;
+  transform: translate(var(--px, 0px), var(--py, 0px)) scale(1.06); /* rezerva pro paralaxu */
+  will-change: transform;
+}
+
+/* podklad vtéká do fotky — texty pak sedí v prolnutí, ne na krabici */
+.hero3__scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    96deg,
+    var(--bg) 0%,
+    rgba(245, 243, 238, 0.95) 30%,
+    rgba(245, 243, 238, 0.8) 48%,
+    rgba(245, 243, 238, 0.35) 62%,
+    transparent 76%
+  );
+  pointer-events: none;
+}
+
+/* anotační vrstva — kryje fotku 1:1 (stejný crop jako object-fit: cover) */
+.hero3__annot {
+  position: absolute; inset: 0; z-index: 2;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  transform: translate(var(--ax, 0px), var(--ay, 0px));
+  will-change: transform;
+}
+.hero3__annot line, .hero3__annot path, .hero3__annot circle {
+  fill: none;
+  stroke: rgba(138, 106, 59, 0.9);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.hero3__annot text {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 3px;
+  fill: var(--ink);
+  /* krémové halo — čitelnost na dřevě i mramoru */
+  paint-order: stroke;
+  stroke: rgba(245, 243, 238, 0.9);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+/* rýsování anotací po otevření zásuvky */
+.hero3__annot [pathLength] { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.home .hero3__annot [pathLength] {
+  animation: heroDraw 0.9s cubic-bezier(.4, 0, .2, 1) forwards;
+  animation-delay: calc(1.5s + var(--i, 0) * 0.22s);
+}
+.hero3__annot .albl { opacity: 0; }
+.home .hero3__annot .albl {
+  animation: heroFade .7s ease forwards;
+  animation-delay: calc(1.9s + var(--i, 0) * 0.22s);
+}
+
+/* texty přímo v prolnutí — žádný box */
+.hero3__copy {
+  position: absolute;
+  left: clamp(20px, 4.5vw, 72px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+.hero3__eyebrow { margin-bottom: clamp(12px, 2vh, 22px); }
+.hero3__copy h1 {
+  font-size: clamp(1.7rem, 4.3vw, 4.2rem);
+  font-weight: 200;
+  line-height: 1.08;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  /* krémové halo — konec řádku nesmí zanikat ve fotce */
+  text-shadow:
+    0 0 14px rgba(245, 243, 238, 0.9),
+    0 0 38px rgba(245, 243, 238, 0.7),
+    0 0 64px rgba(245, 243, 238, 0.5);
+}
+/* dva řádky — vždy (řádky se nesmí lámat) */
+.hero3__copy h1 .line-mask > span { white-space: nowrap; }
+.hero3__lead {
+  margin-top: clamp(14px, 2.2vh, 24px);
+  max-width: 46ch;
+  font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+  color: var(--ink-soft);
+}
+.hero3__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(20px, 3.2vh, 36px); }
+/* ghost tlačítko leží na fotce — frosted podklad kvůli čitelnosti */
+.hero3__cta .btn--ghost {
+  background: rgba(245, 243, 238, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hero3__cta .btn--ghost:hover { background: var(--green); }
+
+.hero3__caption {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding-top: 14px;
+  font: 500 10px/1.4 var(--font-mono);
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.hero3__caption .brand { color: var(--green); }
+.hero3__caption .hint::after { content: " ↓"; }
+
+@media (max-width: 860px) {
+  .hero3__media { height: auto; aspect-ratio: 4 / 5; }
+  /* nadpis se musí vejít na šířku — nowrap řádky nesmí přetéct z fotky */
+  .hero3__copy h1 { font-size: clamp(1.3rem, 6.4vw, 2.4rem); }
+  .hero3__lead { font-size: 0.875rem; max-width: 40ch; }
+  .hero3__annot { display: none; } /* anotace na malém cropu nedávají smysl */
+  .hero3__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(245, 243, 238, 0.95) 0%,
+      rgba(245, 243, 238, 0.72) 32%,
+      rgba(245, 243, 238, 0.2) 55%,
+      transparent 70%
+    );
+  }
+  .hero3__copy { top: clamp(20px, 5vw, 36px); transform: none; right: 16px; }
+}
+
+/* ---------- Výkres kuchyně — tmavý panel v sekci Řemeslo (V2) ----------
+   Kresba se rýsuje až když panel vjede do viewportu (.in-view přidává IO).
+   Pozor: bez vector-effect — non-scaling-stroke rozbíjí pathLength=1 dash
+   normalizaci. Tloušťku kompenzuje vyšší stroke-width. */
+.draw-panel {
+  position: relative;
+  background: #14110e;
+  padding: clamp(24px, 3vw, 44px) clamp(16px, 2vw, 32px);
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+.draw-panel svg { width: 100%; height: auto; display: block; }
+.draw-panel .ln line, .draw-panel .ln path, .draw-panel .ln rect, .draw-panel .ln circle {
+  fill: none;
+  stroke: rgba(180, 138, 82, 0.55);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.draw-panel .strong line, .draw-panel .strong path, .draw-panel .strong rect, .draw-panel .strong circle {
+  stroke: rgba(199, 164, 110, 0.92);
+}
+.draw-panel .dim line { stroke: rgba(244, 236, 215, 0.35); stroke-width: 1.25; }
+.draw-panel .green path, .draw-panel .green line { stroke: rgba(79, 157, 114, 0.95); }
+.draw-panel .lbl text.green { fill: var(--green-soft); }
+.draw-panel .lbl text {
+  fill: rgba(244, 236, 215, 0.55);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+/* skryté linky do doby, než IO přidá .in-view — pak se rýsuje (běží i při
+   reduced-motion, brand pohyb — viz poznámka u intro animací) */
+@media (max-width: 860px) {
+  /* na mobilu těsnější rám kolem výkresu (SVG je široké 2.5:1) */
+  .draw-panel { aspect-ratio: 16 / 10; align-items: center; }
+}
+.draw-panel [pathLength] { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.draw-panel.in-view [pathLength] {
+  animation: heroDraw 1.25s cubic-bezier(.4, 0, .2, 1) forwards;
+  animation-delay: calc(.15s + var(--i, 0) * .14s);
+}
+.draw-panel .lbl { opacity: 0; }
+.draw-panel.in-view .lbl { animation: heroFade .8s ease forwards; animation-delay: 2.2s; }
+
+/* ---------- Proof bar ---------- */
+.proof {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.proof__item {
+  padding: clamp(28px, 4vw, 44px) clamp(16px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-right: 1px solid var(--rule);
+}
+.proof__item:last-child { border-right: none; }
+.proof__n {
+  font-family: var(--font-display);
+  font-size: var(--fs-stat);
+  line-height: 1;
+  color: var(--ink);
+}
+.proof__l {
+  font: 500 11px/1.3 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+@media (max-width: 760px) {
+  .proof { grid-template-columns: repeat(2, 1fr); }
+  .proof__item:nth-child(2) { border-right: none; }
+  .proof__item:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+}
+
+/* ---------- Section header ---------- */
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: clamp(40px, 6vw, 72px);
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-head h2 { max-width: 18ch; }
+.section-head__lead {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  color: var(--ink-muted);
+  max-width: 38ch;
+  margin-top: 16px;
+}
+@media (max-width: 760px) {
+  .section-head { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* ---------- Split (obraz + text) ---------- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+}
+.split--reverse { direction: rtl; }
+.split--reverse > * { direction: ltr; }
+.split__media {
+  aspect-ratio: 4 / 5;
+  background: var(--panel);
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--shadow-soft);
+}
+.split__media--wide { aspect-ratio: 4 / 3; }
+.split__text > .eyebrow { margin-bottom: 18px; }
+.split__text h2 { margin-bottom: 24px; }
+@media (max-width: 760px) {
+  .split { grid-template-columns: 1fr; }
+  .split__media { aspect-ratio: 4 / 3; }
+}
+
+/* ---------- Grid karet (galerie) ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 2.5vw, 36px);
+}
+.grid--two { grid-template-columns: repeat(2, 1fr); }
+.grid--four { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) {
+  .grid, .grid--four { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .grid, .grid--two, .grid--four { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--bg-soft);
+  border: 1px solid var(--rule-soft);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); }
+
+/* Galerie karta */
+.gcard {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: var(--panel);
+}
+.gcard__media {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--panel-deep), var(--panel));
+  background-size: cover;
+  background-position: center;
+  transition: transform .5s var(--ease);
+}
+.gcard:hover .gcard__media { transform: scale(1.04); }
+.gcard__overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(22,21,18,0.7) 0%, rgba(22,21,18,0) 50%);
+  color: var(--bg);
+  opacity: 0;
+  transition: opacity .25s var(--ease);
+}
+.gcard:hover .gcard__overlay { opacity: 1; }
+.gcard__title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.gcard__line {
+  width: 32px; height: 1px;
+  background: var(--accent-soft);
+  margin-bottom: 12px;
+}
+
+/* Partner karta */
+.pcard {
+  padding: clamp(28px, 3vw, 40px);
+  background: var(--bg-soft);
+  border: 1px solid var(--rule-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 220px;
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.pcard:hover { border-color: var(--accent); transform: translateY(-2px); }
+.pcard__logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.pcard__role {
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.pcard__text { color: var(--ink-muted); flex: 1; font-size: 0.95rem; }
+.pcard__link {
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex; gap: 8px; align-items: center;
+  margin-top: auto;
+}
+
+/* ---------- Testimonials ---------- */
+.quote {
+  padding: 20px 0 20px 28px;
+  border-left: 1px solid var(--accent);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.quote__author {
+  display: block;
+  margin-top: 16px;
+  font: 500 11px/1 var(--font-mono);
+  font-style: normal;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---------- Blog preview karty ---------- */
+.bcard {
+  display: block;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule-soft);
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.bcard:hover { border-color: var(--ink); transform: translateY(-2px); }
+.bcard__media {
+  aspect-ratio: 16 / 9;
+  background: var(--panel);
+  background-size: cover;
+  background-position: center;
+}
+.bcard__body { padding: 24px; }
+.bcard__meta {
+  display: flex; gap: 12px; align-items: center;
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+.bcard__meta .accent { color: var(--green); }
+.bcard__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.bcard__excerpt { color: var(--ink-muted); font-size: 0.95rem; }
+
+/* ---------- Atelier blok (mapa, adresa) ---------- */
+.atelier-block {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: stretch;
+}
+.atelier-block__map {
+  aspect-ratio: 4 / 3;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.atelier-block__map iframe { width: 100%; height: 100%; border: 0; display: block; }
+.atelier-block__info {
+  display: flex; flex-direction: column; gap: 24px;
+  padding: clamp(20px, 3vw, 32px);
+  background: var(--bg-soft);
+  border: 1px solid var(--rule-soft);
+}
+.contact-row {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.contact-row__label {
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.contact-row__value {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.contact-row__value a { border-bottom: 1px solid var(--rule); transition: border-color .2s; }
+.contact-row__value a:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 860px) {
+  .atelier-block { grid-template-columns: 1fr; }
+}
+
+/* ---------- Formulář ---------- */
+.form {
+  display: grid;
+  gap: 20px;
+  max-width: 560px;
+}
+.form__row { display: flex; flex-direction: column; gap: 8px; }
+.form__row--two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 560px) { .form__row--two { grid-template-columns: 1fr; } }
+.form label {
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.form input, .form textarea {
+  font: inherit;
+  padding: 14px 16px;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  transition: border-color .2s var(--ease);
+}
+.form input:focus, .form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.form textarea { resize: vertical; min-height: 140px; }
+.form__hp { position: absolute; left: -9999px; opacity: 0; }
+.form__consent {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+.form__consent a { border-bottom: 1px solid var(--rule); }
+.form__consent a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- Lightbox ---------- */
+.lb {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(20, 16, 12, 0.94);
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 4vw;
+}
+.lb.is-open { display: flex; }
+.lb__img { max-width: 100%; max-height: 86vh; object-fit: contain; }
+.lb__close, .lb__prev, .lb__next {
+  position: absolute;
+  color: var(--bg);
+  font: 500 14px/1 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  border: 1px solid rgba(245,243,238,0.3);
+  transition: background .2s, border-color .2s;
+  background: rgba(20, 16, 12, 0.4);
+}
+.lb__close:hover, .lb__prev:hover, .lb__next:hover {
+  background: var(--green); /* tmavý overlay → zelený hover */
+  border-color: var(--green);
+}
+.lb__close { top: 4vw; right: 4vw; }
+.lb__prev { left: 4vw; top: 50%; transform: translateY(-50%); }
+.lb__next { right: 4vw; top: 50%; transform: translateY(-50%); }
+.lb__caption {
+  position: absolute;
+  bottom: 4vw; left: 50%;
+  transform: translateX(-50%);
+  color: rgba(245,243,238,0.8);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--bg-deep);
+  color: rgba(245,243,238,0.7);
+  padding: clamp(48px, 6vw, 80px) 0 32px;
+  border-top: 1px solid rgba(245,243,238,0.08);
+}
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  padding-bottom: clamp(40px, 5vw, 64px);
+  border-bottom: 1px solid rgba(245,243,238,0.08);
+}
+@media (max-width: 840px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .footer__grid { grid-template-columns: 1fr; } }
+.footer__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: var(--bg);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.footer__brand .dot { color: var(--accent); }
+.footer__tag {
+  font: 500 10px/1.4 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green-soft);
+  margin-bottom: 24px;
+}
+.footer__heading {
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bg);
+  margin-bottom: 18px;
+}
+.footer__list a {
+  display: block;
+  padding: 6px 0;
+  color: rgba(245,243,238,0.6);
+  transition: color .15s;
+  font-size: 0.95rem;
+}
+.footer__list a:hover { color: var(--accent-soft); }
+.footer__bottom {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding-top: 32px;
+  font-size: 0.85rem;
+  color: rgba(245,243,238,0.45);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+@media (max-width: 600px) { .footer__bottom { flex-direction: column; text-align: center; } }
+
+/* ---------- Legal articles (impressum, OP, GDPR) ---------- */
+.legal {
+  max-width: var(--maxw-readable);
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 80px) 0;
+  font-family: var(--font-body);
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.legal h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 12px;
+}
+.legal__meta {
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
+}
+.legal h2 {
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  margin: 48px 0 16px;
+  color: var(--ink);
+}
+.legal h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 32px 0 12px;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+.legal p { max-width: none; }
+.legal ul { padding-left: 1.2em; list-style: disc; margin-bottom: 1.1em; }
+.legal ul li { margin-bottom: 0.5em; }
+.legal a { color: var(--accent); border-bottom: 1px solid var(--rule); transition: border-color .15s; }
+.legal a:hover { border-color: var(--accent); }
+.legal strong { color: var(--ink); }
+
+/* ---------- Blog article ---------- */
+.article-hero {
+  padding: clamp(80px, 12vw, 140px) 0 clamp(40px, 5vw, 60px);
+  border-bottom: 1px solid var(--rule);
+}
+.article-hero__meta {
+  display: flex; gap: 16px; align-items: center;
+  margin-bottom: 24px;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.article-hero__meta .accent { color: var(--green); }
+.article-hero h1 {
+  max-width: 22ch;
+  margin-bottom: 28px;
+}
+.article-hero__excerpt {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+.article-hero__img {
+  margin-top: clamp(40px, 5vw, 60px);
+  aspect-ratio: 16 / 9;
+  background: var(--panel);
+  background-size: cover;
+  background-position: center;
+}
+.article-body {
+  max-width: var(--maxw-readable);
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) var(--pad-x);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+.article-body p { max-width: none; }
+.article-body h2 {
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  margin: 48px 0 16px;
+}
+.article-body h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 36px 0 12px;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+.article-body blockquote {
+  margin: 32px 0;
+  padding: 16px 0 16px 28px;
+  border-left: 2px solid var(--accent);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+.article-body img {
+  margin: 32px 0;
+  width: 100%;
+}
+.article-body ul, .article-body ol {
+  padding-left: 1.2em;
+  margin: 16px 0 24px;
+}
+.article-body ul { list-style: disc; }
+.article-body ol { list-style: decimal; }
+.article-body li { margin-bottom: 8px; }
+.article-body a { color: var(--accent); border-bottom: 1px solid var(--rule); }
+.article-body a:hover { border-color: var(--accent); }
+.article-author {
+  max-width: var(--maxw-readable);
+  margin: 0 auto;
+  padding: 32px var(--pad-x);
+  border-top: 1px solid var(--rule);
+  font: 500 11px/1.4 var(--font-mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* ---------- Utility ---------- */
+.hidden { display: none !important; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.text-center { text-align: center; }
+.mt-sm { margin-top: 16px; }
+.mt-md { margin-top: 32px; }
+.mt-lg { margin-top: 56px; }
+
+/* Pozn. k reduced-motion: intro animace hero (kresba, masky titulku) a marquee
+   běží i při systémovém „omezeném pohybu" (Windows: Efekty animací vypnuté —
+   jinak by byla titulka na takovém PC statická). Vědomé rozhodnutí — pohyb je
+   tu součást brandu, ne jen dekorace. Scroll-reveals systémové nastavení
+   respektují (viz gating níže). */
+
+/* ============================================================
+   WOW vrstva — intro animace, nav nad tmavým hero, marquee,
+   lamelová galerie, scroll reveals, custom kurzor, magnetická CTA
+   ============================================================ */
+
+/* ---------- Intro animace (řádkové masky, fade) ---------- */
+.line-mask { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.line-mask > span { display: block; }
+
+/* Intro animace běží vždy — viz poznámka k reduced-motion výše. */
+.home .line-mask > span {
+  transform: translateY(112%);
+  animation: heroRise .95s var(--ease) forwards;
+  animation-delay: var(--d, .45s);
+}
+.home .a-fade {
+  opacity: 0;
+  animation: heroFade 1s ease forwards;
+  animation-delay: var(--d, 1.2s);
+}
+@keyframes heroRise { to { transform: translateY(0); } }
+@keyframes heroFade { to { opacity: 1; } }
+
+@keyframes heroDraw { to { stroke-dashoffset: 0; } }
+
+/* fotka se otevírá jako zásuvka — zleva doprava */
+.home .hero3__media {
+  clip-path: inset(0 100% 0 0);
+  animation: drawerOpen 1.2s cubic-bezier(.65, 0, .22, 1) .2s forwards;
+}
+@keyframes drawerOpen { to { clip-path: inset(0 0 0 0); } }
+
+/* ---------- Marquee s názvy modelů ---------- */
+.marquee {
+  overflow: hidden;
+  padding: clamp(18px, 2.6vw, 30px) 0;
+  border-bottom: 1px solid var(--rule);
+  user-select: none;
+}
+.marquee__track { display: flex; width: max-content; }
+.marquee__track span {
+  display: block;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 250; /* lehký sans neunese outline — plná tlumená barva */
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.1;
+  color: rgba(138, 106, 59, 0.3);
+  padding-right: 0.6em;
+}
+.marquee__track { animation: marquee 42s linear infinite; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- Lamelová galerie (slats) ---------- */
+.slats {
+  display: flex;
+  gap: 3px;
+  height: clamp(440px, 64vh, 640px);
+}
+.slat {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  display: block;
+  transition: flex-grow .7s var(--ease);
+}
+.slat__bg {
+  position: absolute; inset: 0; display: block;
+  background-size: cover;
+  background-position: center;
+  transition: transform .7s var(--ease);
+}
+.slat::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(20,17,14,0.62), rgba(20,17,14,0.06) 55%);
+}
+.slat__num {
+  position: absolute; top: 18px; left: 18px; z-index: 1;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.2em;
+  color: rgba(245, 243, 238, 0.85);
+  /* čitelnost i na světlých fotkách — overlay tmaví jen spodek lamely */
+  text-shadow: 0 1px 8px rgba(20, 17, 14, 0.55);
+}
+.slat__name { z-index: 1; color: #f5f3ee; font-family: var(--font-display); font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; }
+.slat__name--v {
+  position: absolute; left: 50%; bottom: 24px;
+  writing-mode: vertical-rl;
+  transform: translateX(-50%) rotate(180deg);
+  font-size: 1.35rem;
+  opacity: 1;
+  transition: opacity .3s var(--ease);
+}
+.slat__name--h {
+  position: absolute; left: 24px; bottom: 54px;
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .45s var(--ease) .15s, transform .45s var(--ease) .15s;
+}
+.slat__hint {
+  position: absolute; left: 24px; bottom: 24px; z-index: 1;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--green-soft);
+  opacity: 0;
+  transition: opacity .4s var(--ease) .25s;
+}
+.slat:hover, .slat:focus-visible, .slat.is-open { flex-grow: 3.6; }
+.slat:hover .slat__bg, .slat:focus-visible .slat__bg, .slat.is-open .slat__bg { transform: scale(1.05); }
+.slat:hover .slat__name--v, .slat:focus-visible .slat__name--v, .slat.is-open .slat__name--v { opacity: 0; }
+.slat:hover .slat__name--h, .slat:focus-visible .slat__name--h, .slat.is-open .slat__name--h { opacity: 1; transform: translateY(0); }
+.slat:hover .slat__hint, .slat:focus-visible .slat__hint, .slat.is-open .slat__hint { opacity: 1; }
+
+@media (max-width: 760px) {
+  .slats { flex-direction: column; height: auto; }
+  .slat { flex: none; height: 68px; transition: height .5s var(--ease); }
+  .slat.is-open { height: 320px; }
+  .slat__name--v {
+    writing-mode: horizontal-tb;
+    transform: none;
+    left: 20px; bottom: 20px;
+    font-size: 1.2rem;
+  }
+  .slat:hover .slat__name--v, .slat.is-open .slat__name--v { opacity: 1; }
+  .slat__name--h { display: none; }
+  .slat__hint { left: auto; right: 20px; bottom: 22px; }
+}
+
+/* ---------- Scroll reveals (jen s JS — třída .js na <html>) ---------- */
+.proof__n { overflow: hidden; }
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(34px);
+    transition: opacity .9s var(--ease), transform .9s var(--ease);
+    transition-delay: var(--d, 0s);
+  }
+  .js .reveal.in-view { opacity: 1; transform: none; }
+
+  .js .proof__n .ch {
+    display: inline-block;
+    transform: translateY(115%);
+    transition: transform .8s var(--ease);
+    transition-delay: calc(.1s + var(--ci, 0) * .06s);
+  }
+  .js .proof.in-view .proof__n .ch { transform: none; }
+}
+
+/* ---------- Custom kurzor (jen desktop, jemný brass kroužek) ---------- */
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 300;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  margin: -3px 0 0 -3px;
+}
+.cursor-ring {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(138, 106, 59, 0.55);
+  margin: -18px 0 0 -18px;
+  transition: width .25s var(--ease), height .25s var(--ease), margin .25s var(--ease),
+              border-color .25s var(--ease), background .25s var(--ease), opacity .3s;
+}
+.cursor-ring.is-active {
+  width: 64px; height: 64px;
+  margin: -32px 0 0 -32px;
+  background: rgba(180, 138, 82, 0.08);
+  border-color: rgba(180, 138, 82, 0.9);
+}
+body.has-cursor, body.has-cursor a, body.has-cursor button, body.has-cursor .slat { cursor: none; }
+body.has-cursor input, body.has-cursor textarea, body.has-cursor select { cursor: auto; }
+
+/* ---------- Scroll progress (tenká brass linka nahoře) ---------- */
+.progress {
+  position: fixed; top: 0; left: 0;
+  height: 2px; width: 0;
+  background: var(--green); /* SAKÜ zelená nit celým webem */
+  z-index: 60; /* nad nav (50), pod lightboxem (100) */
+  transition: opacity .2s;
+}
+body.nav-open .progress { opacity: 0; } /* nekreslit přes otevřené mobilní menu */
+
+/* ---------- Deskriptor modelu v lamele (homepage galerie) ---------- */
+.slat__desc {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgba(245, 243, 238, 0.78);
+}
+
+/* ---------- Karty realizací (homepage 03 · Realizace, placeholder) ---------- */
+.rcard {
+  background: var(--bg-soft);
+  border: 1px solid var(--rule-soft);
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.rcard:hover { border-color: var(--ink); transform: translateY(-2px); }
+.rcard__media {
+  aspect-ratio: 4 / 3;
+  background: var(--panel);
+  background-size: cover;
+  background-position: center;
+}
+.rcard__body { padding: 24px; }
+.rcard__meta {
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.rcard__title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 1.35rem;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.rcard__text { color: var(--ink-muted); font-size: 0.95rem; }
+
+/* ---------- Deskriptor modelu na stránce galerie ---------- */
+.gcard__desc {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: rgba(245, 243, 238, 0.82);
+  margin-top: 6px;
+}
+
+/* ---------- Alternativa pod formulářem (Calendly odkazy) ---------- */
+.form__alt {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 6px; padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+.form__alt-label {
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 2px;
+}
+
+/* ---------- Jemný sekundární odkaz (měkčí druhý schod CTA) ---------- */
+.soft-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 500 12px/1.4 var(--font-mono);
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.soft-link:hover { color: var(--green); border-color: var(--green); }
+.soft-link--light { color: rgba(245, 243, 238, 0.7); border-color: rgba(245, 243, 238, 0.25); }
+.soft-link--light:hover { color: var(--green-soft); border-color: var(--green-soft); }
+
+/* ---------- Realizace: hero s překryvem ---------- */
+.rhero {
+  position: relative;
+  height: clamp(360px, 56vh, 620px);
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+.rhero__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rhero__overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-end;
+  background: linear-gradient(to top, rgba(20,17,14,0.85), rgba(20,17,14,0.2) 52%, transparent 80%);
+}
+.rhero__overlay .wrap { padding-bottom: clamp(28px, 5vh, 60px); padding-top: 90px; }
+.rhero__kicker {
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--green-soft); margin-bottom: 16px;
+}
+.rhero__title {
+  color: #f5f3ee;
+  font-size: clamp(1.7rem, 3.8vw, 3.4rem);
+  font-weight: 200; line-height: 1.08; letter-spacing: -0.015em;
+  max-width: 26ch;
+}
+
+/* ---------- Karta realizace (mřížka galerie + související) ---------- */
+.kcard {
+  display: flex; flex-direction: column;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule-soft);
+  overflow: hidden;
+  transition: border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.kcard:hover { border-color: var(--ink); transform: translateY(-3px); box-shadow: var(--shadow-card); }
+.kcard__media {
+  display: block; aspect-ratio: 4 / 3;
+  background-size: cover; background-position: center;
+  background-color: var(--panel);
+  transition: transform .5s var(--ease);
+}
+.kcard:hover .kcard__media { transform: scale(1.04); }
+.kcard__body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.kcard__title {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: 1.18rem; line-height: 1.22; color: var(--ink);
+}
+.kcard__link {
+  margin-top: auto;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--green);
+  display: inline-flex; gap: 8px; align-items: center;
+}
+
+/* ---------- Foto v galerii realizace (reálné <img>, jako sachsenkuechen.cz) ---------- */
+.gphoto {
+  display: block; position: relative; overflow: hidden;
+  background: var(--panel); cursor: pointer;
+  border: 1px solid var(--rule-soft);
+}
+.gphoto img {
+  display: block; width: 100%; height: 100%;
+  aspect-ratio: 4 / 3; object-fit: cover;
+  transition: transform .5s var(--ease);
+}
+.gphoto:hover img { transform: scale(1.04); }
+.gphoto__tag {
+  position: absolute; top: 12px; left: 12px; z-index: 1;
+  font: 500 9px/1 var(--font-mono);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #f5f3ee;
+  background: rgba(20, 17, 14, 0.6);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  padding: 6px 10px;
+}
+
+/* ---------- Použité dekory (fotka dekoru + název, jako sachsenkuechen.cz) ---------- */
+.matgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+}
+@media (max-width: 900px) { .matgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .matgrid { grid-template-columns: 1fr; } }
+.matcard {
+  display: block; background: var(--bg-soft);
+  border: 1px solid var(--rule-soft); cursor: pointer;
+  transition: border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.matcard:hover { border-color: var(--ink); transform: translateY(-3px); box-shadow: var(--shadow-card); }
+.matcard__media { display: block; overflow: hidden; }
+.matcard__media img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  transition: transform .5s var(--ease);
+}
+.matcard:hover .matcard__media img { transform: scale(1.04); }
+.matcard__name {
+  display: block; padding: 14px 16px 18px;
+  font-size: 0.9rem; line-height: 1.45; color: var(--ink-soft);
+}
+
+/* ---------- Intro na detailu realizace — siroci + kompaktni (fotky driv videt) ---------- */
+.rintro { padding-top: clamp(28px, 3.5vw, 48px); padding-bottom: clamp(32px, 4vw, 60px); }
+.rintro__body {
+  max-width: 880px; margin: 0 auto;
+  font-size: clamp(1.08rem, 1.4vw, 1.25rem); line-height: 1.7; color: var(--ink-soft);
+}
+.rintro__body p { margin: 0 0 1em; }
+.rintro__body p:last-child { margin-bottom: 0; }
+
+/* ---------- Drobné opravy ---------- */
+.article-hero h1 { font-size: clamp(2.2rem, 5vw, 3.9rem); }
+/* hero headline 2 řádky — větší stupeň pro dopad */
+.hero3__copy h1 { font-size: clamp(1.7rem, 4.2vw, 4.1rem); }
+
+/* ---------- Skryté sekce (light launch — atribut hidden) ---------- */
+[hidden] { display: none !important; }
+
+/* ---------- Cookie consent banner ---------- */
+.cookie {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  background: var(--bg-deep); color: var(--bg);
+  border-top: 1px solid rgba(245, 243, 238, 0.12);
+  box-shadow: 0 -8px 40px rgba(20, 17, 14, 0.28);
+  transform: translateY(100%);
+  transition: transform .4s var(--ease);
+}
+.cookie.is-in { transform: translateY(0); }
+.cookie__inner {
+  display: flex; align-items: center; gap: clamp(16px, 3vw, 44px);
+  padding: 18px var(--pad-x); flex-wrap: wrap;
+}
+.cookie__text { flex: 1 1 440px; min-width: 0; }
+.cookie__text strong { display: block; font-size: 0.95rem; letter-spacing: 0.01em; margin-bottom: 4px; }
+.cookie__text p { margin: 0; font-size: 0.85rem; line-height: 1.55; color: rgba(245, 243, 238, 0.72); }
+.cookie__text a { color: var(--green-soft); border-bottom: 1px solid rgba(79, 157, 114, 0.4); }
+.cookie__text a:hover { border-color: var(--green-soft); }
+.cookie__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.cookie__btn { white-space: nowrap; }
+.cookie .btn--ghost { background: transparent; color: var(--bg); border-color: rgba(245, 243, 238, 0.32); }
+.cookie .btn--ghost:hover { border-color: var(--bg); color: var(--bg); background: transparent; }
+@media (max-width: 640px) {
+  .cookie__actions { width: 100%; }
+  .cookie__btn { flex: 1 1 auto; text-align: center; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cookie { transition: none; }
+}

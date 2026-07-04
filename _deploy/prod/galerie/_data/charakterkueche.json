@@ -1,0 +1,54 @@
+{
+    "slug":  "charakterkueche",
+    "title":  "Kuchyně s charakterem: FIORA Rosso Jaipur a kakao v supermatu",
+    "meta":  "Otevřená obytná kuchyně FIORA v sytém Rosso Jaipur a kakaovém supermatu, doplněná pracovní deskou FENIX. Výrazná barevnost s prémiovým povrchem.",
+    "hero":  "assets/img/realizace/charakterkueche/hero.jpg",
+    "intro":  "\u003cp\u003eOtevřená obytná kuchyně, která se nebojí barvy ani výrazu. Supermatné fronty FIORA v odstínu Rosso Jaipur vnášejí do interiéru sytou, teplou červeň, kterou vyvažuje tlumený kakaový tón na okolních plochách.\u003c/p\u003e\u003cp\u003ePracovní deska v provedení FENIX cacao supermatt přidává povrch s mimořádnou hloubkou a sametovým dotykem, odolný vůči otiskům prstů. Vzniká tak prostor s jasným charakterem, ve kterém se snoubí odvážná barevnost s precizností materiálů nejvyšší třídy.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "fenix-ntm",
+                           "label":  "FENIX NTM"
+                       },
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/charakterkueche/01.jpg",
+                    "assets/img/realizace/charakterkueche/02.jpg",
+                    "assets/img/realizace/charakterkueche/03.jpg",
+                    "assets/img/realizace/charakterkueche/04.jpg",
+                    "assets/img/realizace/charakterkueche/05.jpg",
+                    "assets/img/realizace/charakterkueche/06.jpg",
+                    "assets/img/realizace/charakterkueche/07.jpg",
+                    "assets/img/realizace/charakterkueche/08.jpg",
+                    "assets/img/realizace/charakterkueche/09.jpg",
+                    "assets/img/realizace/charakterkueche/10.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "FIORA – Rosso Jaipur supermatt",
+                          "img":  "assets/img/realizace/charakterkueche/mat-01.jpg"
+                      },
+                      {
+                          "name":  "FIORA – cacao supermatt",
+                          "img":  "assets/img/realizace/charakterkueche/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K130 – titan nero",
+                          "img":  "assets/img/realizace/charakterkueche/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Korpus K98 – kaschmir",
+                          "img":  "assets/img/realizace/charakterkueche/mat-04.jpg"
+                      },
+                      {
+                          "name":  "FENIX cacao supermatt",
+                          "img":  "assets/img/realizace/charakterkueche/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

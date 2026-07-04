@@ -1,0 +1,61 @@
+{
+    "slug":  "mut-zur-farbe",
+    "title":  "Odvaha k barvě: SELMA a LANA v souhře burgundské a rzi s dubem Evoke",
+    "meta":  "Sytá burgundská a rezavá Rosso Jaipur front SELMA v dialogu s dubem LANA Evoke. Bronzová patina na desce dotváří kuchyni plnou charakteru a barev.",
+    "hero":  "assets/img/realizace/mut-zur-farbe/hero.jpg",
+    "intro":  "\u003cp\u003eTato realizace je oslavou odvahy k barvě. Lakované fronty SELMA v sytém odstínu Burgund a v teplé rezavé Rosso Jaipur dodávají kuchyni výrazný, sebevědomý charakter, který se nebojí být vidět.\u003c/p\u003e\u003cp\u003eProtiváhu tvoří dubové fronty LANA v dekoru Eiche Evoke, jež vnášejí do prostoru přírodní teplo a vyvažují intenzitu barev. Kompaktní pracovní deska v dekoru Patina bronze celek sceluje ušlechtilým kovovým nádechem a propojuje vulkanicky šedý i dubový korpus do harmonického, hřejivého celku.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       },
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/mut-zur-farbe/01.jpg",
+                    "assets/img/realizace/mut-zur-farbe/02.jpg",
+                    "assets/img/realizace/mut-zur-farbe/03.jpg",
+                    "assets/img/realizace/mut-zur-farbe/04.jpg",
+                    "assets/img/realizace/mut-zur-farbe/05.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "SELMA – Burgund (1113)",
+                          "img":  "assets/img/realizace/mut-zur-farbe/mat-01.jpg"
+                      },
+                      {
+                          "name":  "SELMA – Rost / Rosso Jaipur (1114)",
+                          "img":  "assets/img/realizace/mut-zur-farbe/mat-02.jpg"
+                      },
+                      {
+                          "name":  "LANA – Eiche Evoke",
+                          "img":  "assets/img/realizace/mut-zur-farbe/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Korpus K137 – vulkangrau",
+                          "img":  "assets/img/realizace/mut-zur-farbe/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Korpus K121 – Eiche Evoke",
+                          "img":  "assets/img/realizace/mut-zur-farbe/mat-05.jpg"
+                      },
+                      {
+                          "name":  "Kompaktplatte 12 mm – Patina bronze (1297)",
+                          "img":  "assets/img/realizace/mut-zur-farbe/mat-06.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

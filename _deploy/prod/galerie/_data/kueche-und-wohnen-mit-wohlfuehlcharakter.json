@@ -1,0 +1,55 @@
+{
+    "slug":  "kueche-und-wohnen-mit-wohlfuehlcharakter",
+    "title":  "Kuchyně a bydlení s atmosférou pohody - FABIOLA / LEONA / SELMA",
+    "meta":  "Kuchyně FABIOLA, LEONA a SELMA v tónech skořicového jilmu, ořechu a břidlice - prostor, kde se design přirozeně prolíná s pohodlím domova.",
+    "hero":  "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/hero.jpg",
+    "intro":  "\u003cp\u003eTo nejdůležitější se často skrývá pod povrchem. Tato realizace propojuje kuchyni s obytným prostorem do jednoho harmonického celku, ve kterém má každý detail svůj smysl - od dokonale sladěných front až po jemně vyladěné funkce.\u003c/p\u003e\u003cp\u003eTeplý jilm ve skořicovém tónu fronty FABIOLA, ušlechtilý ořech a strukturovaný Schwarzkies modelu LEONA i břidlicový dekor SELMA společně vytvářejí prostředí s nezaměnitelnou atmosférou pohody. Co dobře vypadá, musí také dobře fungovat - a právě tady to platí beze zbytku.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       },
+                       {
+                           "slug":  "beton-stein",
+                           "label":  "Beton a kámen"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/01.jpg",
+                    "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/02.jpg",
+                    "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/03.jpg",
+                    "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/04.jpg",
+                    "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/05.jpg",
+                    "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/06.jpg",
+                    "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/07.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "FABIOLA - Rüster zimt",
+                          "img":  "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/mat-01.jpg"
+                      },
+                      {
+                          "name":  "LEONA - Walnuss",
+                          "img":  "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/mat-02.jpg"
+                      },
+                      {
+                          "name":  "LEONA - Schwarzkies",
+                          "img":  "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/mat-03.jpg"
+                      },
+                      {
+                          "name":  "SELMA - Schiefer",
+                          "img":  "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Korpus K139 - metallschwarz",
+                          "img":  "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/mat-05.jpg"
+                      },
+                      {
+                          "name":  "DEKTON Laurent",
+                          "img":  "assets/img/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/mat-06.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

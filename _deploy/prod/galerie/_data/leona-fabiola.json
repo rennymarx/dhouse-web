@@ -1,0 +1,46 @@
+{
+    "slug":  "leona-fabiola",
+    "title":  "LEONA \u0026 FABIOLA: dýha a ořech v souhře s bronzovou patinou",
+    "meta":  "Kuchyňský ostrov s dýhou LEONA Thymian a olejovaným ořechem FABIOLA terrabraun, černým korpusem K140 a pracovní deskou Patina bronze. Teplý, ušlechtilý kontrast.",
+    "hero":  "assets/img/realizace/leona-fabiola/hero.jpg",
+    "intro":  "\u003cp\u003eSouhra dvou ušlechtilých dřevěných povrchů dává této kuchyni s ostrovem výjimečný charakter. Dýhové fronty LEONA v odstínu Thymian se setkávají s olejovaným ořechem FABIOLA v teplém tónu terrabraun, čímž vzniká vyvážený kontrast světlejších a tmavších struktur.\u003c/p\u003e\u003cp\u003eČerný korpus K140 vulkanschwarz dodává kompozici hloubku a pevný rámec, zatímco kompaktní pracovní deska v provedení Patina bronze přidává jemný kovový nádech a luxusní akcent. Detailní záběry odhalují promyšlené řešení ostrova, mechanismů i posezení, kde se ušlechtilost materiálů snoubí s precizností zpracování.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "massivholz-furnier",
+                           "label":  "Masiv a dýha"
+                       },
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/leona-fabiola/01.jpg",
+                    "assets/img/realizace/leona-fabiola/02.jpg",
+                    "assets/img/realizace/leona-fabiola/03.jpg",
+                    "assets/img/realizace/leona-fabiola/04.jpg",
+                    "assets/img/realizace/leona-fabiola/05.jpg",
+                    "assets/img/realizace/leona-fabiola/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "LEONA – Thymian, furýrová hrana terrabraun",
+                          "img":  "assets/img/realizace/leona-fabiola/mat-01.jpg"
+                      },
+                      {
+                          "name":  "FABIOLA – Nussbaum geölt, terrabraun",
+                          "img":  "assets/img/realizace/leona-fabiola/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K140 – vulkanschwarz",
+                          "img":  "assets/img/realizace/leona-fabiola/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Pracovní deska Kompakt 12 mm – Patina bronze",
+                          "img":  "assets/img/realizace/leona-fabiola/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

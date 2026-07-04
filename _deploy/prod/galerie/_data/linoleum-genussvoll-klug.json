@@ -1,0 +1,41 @@
+{
+    "slug":  "linoleum-genussvoll-klug",
+    "title":  "Linoleum chytře a s požitkem: LEONA Kalkstein a ořech FABIOLA",
+    "meta":  "Otevřená kuchyně s nábytkovým linoleem LEONA Kalkstein a teplým ořechem FABIOLA terrabraun. Přírodní, matný a hřejivě elegantní materiálový koncept.",
+    "hero":  "assets/img/realizace/linoleum-genussvoll-klug/hero.jpg",
+    "intro":  "\u003cp\u003eNábytkové linoleum je materiál, který spojuje příjemný matný povrch, přirozenou hloubku barvy a praktickou odolnost. Světlé fronty LEONA v odstínu Kalkstein dávají otevřené kuchyni vzdušný, klidný základ s lehce sametovým dojmem na dotek.\u003c/p\u003e\u003cp\u003eProtihráčem světlého linolea je teplý ořech FABIOLA terrabraun, který do prostoru vnáší hloubku a útulnost. Korpus K127 v sladěném ořechovém tónu celý koncept materiálově propojuje. Vzniká tak kuchyně, která je chytrá ve volbě materiálů a zároveň smyslově bohatá.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "moebellinoleum",
+                           "label":  "Nábytkové linoleum"
+                       },
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/linoleum-genussvoll-klug/01.jpg",
+                    "assets/img/realizace/linoleum-genussvoll-klug/02.jpg",
+                    "assets/img/realizace/linoleum-genussvoll-klug/03.jpg",
+                    "assets/img/realizace/linoleum-genussvoll-klug/04.jpg",
+                    "assets/img/realizace/linoleum-genussvoll-klug/05.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "LEONA – Kalkstein",
+                          "img":  "assets/img/realizace/linoleum-genussvoll-klug/mat-01.jpg"
+                      },
+                      {
+                          "name":  "FABIOLA – Nussbaum terrabraun",
+                          "img":  "assets/img/realizace/linoleum-genussvoll-klug/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K127 – Nussbaum terrabraun",
+                          "img":  "assets/img/realizace/linoleum-genussvoll-klug/mat-03.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

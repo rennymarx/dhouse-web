@@ -1,0 +1,66 @@
+{
+    "slug":  "landpartie",
+    "title":  "Výlet na venkov",
+    "meta":  "Kuchyně DONNA v matném laku steingrau v kombinaci s kartáčovaným dubem LETIZIA – venkovská pohoda v prémiovém provedení.",
+    "hero":  "assets/img/realizace/landpartie/hero.jpg",
+    "intro":  "\u003cp\u003eVenkovská pohoda v moderním kabátě. Matný prémiový lak DONNA v odstínu steingrau dodává kuchyni klidnou, uzemněnou eleganci, kterou živě doplňuje kartáčovaný dub LETIZIA. Spojení matného povrchu a výrazné dřevěné kresby vytváří atmosféru, v níž se snoubí přírodní teplo s noblesou.\u003c/p\u003e\u003cp\u003ePracovní deska v dekoru Cement hell celý koncept zjemňuje a propojuje. Vzniká tak nadčasový prostor pro setkávání, vaření i odpočinek – realizace, která oslavuje pohodu venkovského života v prémiovém zpracování SACHSENKÜCHEN.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "helle-hoelzer",
+                           "label":  "Světlá dřeva"
+                       },
+                       {
+                           "slug":  "helle-unifarben",
+                           "label":  "Světlé jednobarevné"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       },
+                       {
+                           "slug":  "massivholz-furnier",
+                           "label":  "Masiv a dýha"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/landpartie/01.jpg",
+                    "assets/img/realizace/landpartie/02.jpg",
+                    "assets/img/realizace/landpartie/03.jpg",
+                    "assets/img/realizace/landpartie/04.jpg",
+                    "assets/img/realizace/landpartie/05.jpg",
+                    "assets/img/realizace/landpartie/06.jpg",
+                    "assets/img/realizace/landpartie/07.jpg",
+                    "assets/img/realizace/landpartie/08.jpg",
+                    "assets/img/realizace/landpartie/09.jpg",
+                    "assets/img/realizace/landpartie/10.jpg",
+                    "assets/img/realizace/landpartie/11.jpg",
+                    "assets/img/realizace/landpartie/12.jpg",
+                    "assets/img/realizace/landpartie/13.jpg",
+                    "assets/img/realizace/landpartie/14.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "DONNA Premiummattlack steingrau (1009)",
+                          "img":  "assets/img/realizace/landpartie/mat-01.jpg"
+                      },
+                      {
+                          "name":  "LETIZIA Asteiche gebürstet",
+                          "img":  "assets/img/realizace/landpartie/mat-02.jpg"
+                      },
+                      {
+                          "name":  "K120 steingrau",
+                          "img":  "assets/img/realizace/landpartie/mat-03.jpg"
+                      },
+                      {
+                          "name":  "K133 Eiche Cordoba Crema",
+                          "img":  "assets/img/realizace/landpartie/mat-04.jpg"
+                      },
+                      {
+                          "name":  "Schichtstoff Cement hell (1480)",
+                          "img":  "assets/img/realizace/landpartie/mat-05.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

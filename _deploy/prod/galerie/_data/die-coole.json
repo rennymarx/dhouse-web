@@ -1,0 +1,55 @@
+{
+    "slug":  "die-coole",
+    "title":  "Ta cool: LARA v černém matu a LANA v dekoru Halifax Eiche braun",
+    "meta":  "Sebevědomá kuchyně LARA v matné černé doplněná dřevěným teplem fronty LANA Halifax Eiche braun. Kontrastní, moderní a nadčasově elegantní.",
+    "hero":  "assets/img/realizace/die-coole/hero.jpg",
+    "intro":  "\u003cp\u003eCool, sebevědomá a bez kompromisů. Matně černé fronty LARA dávají této kuchyni jasný, moderní výraz, který umocňuje korpus K140 ve vulkanschwarz a vytváří tak monolitický, elegantní celek.\u003c/p\u003e\u003cp\u003eTeplo do kompozice vnáší fronta LANA v dekoru Halifax Eiche braun, zopakovaná i na pracovní desce ze stratifikátu (Schichtstoff). Setkání hluboké černé a přirozené kresby dřeva dává vzniknout interiéru, který působí současně i nadčasově.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       },
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       },
+                       {
+                           "slug":  "kunststoff",
+                           "label":  "Lamino"
+                       },
+                       {
+                           "slug":  "lack-lacklaminat",
+                           "label":  "Lak a lakolaminát"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/die-coole/01.jpg",
+                    "assets/img/realizace/die-coole/02.jpg",
+                    "assets/img/realizace/die-coole/03.jpg",
+                    "assets/img/realizace/die-coole/04.jpg",
+                    "assets/img/realizace/die-coole/05.jpg",
+                    "assets/img/realizace/die-coole/06.jpg",
+                    "assets/img/realizace/die-coole/07.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "LARA – schwarz matt",
+                          "img":  "assets/img/realizace/die-coole/mat-01.jpg"
+                      },
+                      {
+                          "name":  "LANA – Halifax Eiche braun",
+                          "img":  "assets/img/realizace/die-coole/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K140 – vulkanschwarz",
+                          "img":  "assets/img/realizace/die-coole/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Pracovní deska Schichtstoff – Halifax Eiche braun",
+                          "img":  "assets/img/realizace/die-coole/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}

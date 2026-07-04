@@ -1,0 +1,46 @@
+{
+    "slug":  "im-schwebezustand",
+    "title":  "Ve stavu beztíže: ořech terrabraun a zelená Verde Comodoro",
+    "meta":  "Subtilní kuchyně FIORA Verde Comodoro a ořech EDDA Nussbaum terrabraun. Tlumená zeleň a teplé dřevo v lehké, vznešené kompozici.",
+    "hero":  "assets/img/realizace/im-schwebezustand/hero.jpg",
+    "intro":  "\u003cp\u003eKompozice, která jako by se vznášela. Supermatné fronty FIORA v odstínu Verde Comodoro přinášejí do interiéru tlumenou, uklidňující zeleň, jež se jemně potkává s teplou kresbou ořechu EDDA Nussbaum terrabraun.\u003c/p\u003e\u003cp\u003eSpojení sytě zelené plochy s přírodním dřevem vytváří atmosféru lehkosti a vnitřního klidu. Pracovní deska ve stejném ořechovém dekoru sjednocuje celý prostor a podtrhuje dojem promyšlené, vzdušné architektury kuchyně.\u003c/p\u003e",
+    "categories":  [
+                       {
+                           "slug":  "dunkle-hoelzer",
+                           "label":  "Tmavá dřeva"
+                       },
+                       {
+                           "slug":  "dunkle-unifarben",
+                           "label":  "Tmavé jednobarevné"
+                       }
+                   ],
+    "gallery":  [
+                    "assets/img/realizace/im-schwebezustand/01.jpg",
+                    "assets/img/realizace/im-schwebezustand/02.jpg",
+                    "assets/img/realizace/im-schwebezustand/03.jpg",
+                    "assets/img/realizace/im-schwebezustand/04.jpg",
+                    "assets/img/realizace/im-schwebezustand/05.jpg",
+                    "assets/img/realizace/im-schwebezustand/06.jpg"
+                ],
+    "materials":  [
+                      {
+                          "name":  "FIORA – Verde Comodoro supermatt",
+                          "img":  "assets/img/realizace/im-schwebezustand/mat-01.jpg"
+                      },
+                      {
+                          "name":  "EDDA – Nussbaum terrabraun",
+                          "img":  "assets/img/realizace/im-schwebezustand/mat-02.jpg"
+                      },
+                      {
+                          "name":  "Korpus K127 – Nussbaum terrabraun",
+                          "img":  "assets/img/realizace/im-schwebezustand/mat-03.jpg"
+                      },
+                      {
+                          "name":  "Schichtstoff 1445 – Nussbaum terrabraun",
+                          "img":  "assets/img/realizace/im-schwebezustand/mat-04.jpg"
+                      }
+                  ],
+    "related":  [
+
+                ]
+}
