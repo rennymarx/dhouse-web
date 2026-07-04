@@ -1,54 +1,22 @@
-# Netlify konfigurace — statický web, žádný build.
-# Publikuje se verzovaná struktura z _deploy/site (rozcestník + /1/, /2/, ...).
-# Novou verzi vygeneruje: powershell -File _deploy.ps1 -Version <N>  → commit → push.
+# Netlify konfigurace - dhouse.cz
+# JEDEN web (papaya-genie-f481ff) slouzi jako staging i produkce (rozhodnuti 2026-07-05).
+#
+# STAGING (nyni): publikuje _deploy/site = v2 s meta noindex (staging neni verejny pro Google).
+#   Hezke URL (/galerie -> /galerie.html) resi Netlify automaticky.
+#   Bezpecnostni hlavicky + CSP a presmerovani si nese sama publish slozka:
+#   _deploy/site/netlify.toml  a  _deploy/site/_redirects.
+#
+# OSTRE SPUSTENI na dhouse.cz:
+#   1) zmen nize  publish = "_deploy/prod"
+#      (prod build je BEZ noindex; hlavicky/CSP nese _deploy/prod/_headers,
+#       presmerovani _deploy/prod/_redirects)
+#   2) commit + push  ->  Netlify nasadi prod build na tuto site
+#   Pozn.: netlify.toml ma prednost pred nastavenim v Netlify UI, proto se publish prepina ZDE.
+#
+# (Drive zde byl X-Robots-Tag=noindex a verzovane /:v/ redirecty - odstraneno 2026-07-05:
+#  noindex resi meta tag na strankach a hlavickovy noindex byl mina do launche;
+#  verzovani /1 /2 uz neexistuje.)
+
 [build]
   publish = "_deploy/site"
   command = ""
-
-# Hezké URL bez .html uvnitř verzovaných složek (/1/galerie → /1/galerie.html)
-[[redirects]]
-  from = "/:v/galerie"
-  to = "/:v/galerie.html"
-  status = 200
-[[redirects]]
-  from = "/:v/kvalita"
-  to = "/:v/kvalita.html"
-  status = 200
-[[redirects]]
-  from = "/:v/atelier"
-  to = "/:v/atelier.html"
-  status = 200
-[[redirects]]
-  from = "/:v/kontakt"
-  to = "/:v/kontakt.html"
-  status = 200
-[[redirects]]
-  from = "/:v/dekujeme"
-  to = "/:v/dekujeme.html"
-  status = 200
-[[redirects]]
-  from = "/:v/impressum"
-  to = "/:v/impressum.html"
-  status = 200
-[[redirects]]
-  from = "/:v/obchodni-podminky"
-  to = "/:v/obchodni-podminky.html"
-  status = 200
-[[redirects]]
-  from = "/:v/ochrana-osobnich-udaju"
-  to = "/:v/ochrana-osobnich-udaju.html"
-  status = 200
-[[redirects]]
-  from = "/:v/blog/:slug"
-  to = "/:v/blog/:slug.html"
-  status = 200
-
-# Bezpečnostní hlavičky + noindex (staging — před ostrým spuštěním odstranit X-Robots-Tag)
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
-    X-Robots-Tag = "noindex, nofollow"
