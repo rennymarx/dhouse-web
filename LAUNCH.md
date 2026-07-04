@@ -1,11 +1,12 @@
 # dhouse.cz — Launch runbook (ostré spuštění)
 
-Web běží jako staging na `https://papaya-genie-f481ff.netlify.app/2/`. Doména `dhouse.cz`
-teď běží na **HubSpot CMS**. Launch = nasazení produkčního buildu na Netlify + přepnutí DNS z HubSpotu.
+Web běží jako staging na `https://papaya-genie-f481ff.netlify.app/` (v2 v rootu; verzování /1 /2
+zrušeno 2026-07-04, staré cesty 301 na root). Doména `dhouse.cz` teď běží na **HubSpot CMS**.
+Launch = nasazení produkčního buildu na Netlify + přepnutí DNS z HubSpotu.
 
 ## Architektura: DVĚ Netlify sites (doporučeno)
 
-- **Staging site** = stávající `papaya-genie-f481ff` (publish `_deploy/site`, verze /1 /2). Po launchi ji zaheslujeme.
+- **Staging site** = stávající `papaya-genie-f481ff` (publish `_deploy/site`, v2 v rootu). Po launchi ji zaheslujeme.
 - **Production site** = NOVÁ site (publish `_deploy/prod`, doména `dhouse.cz`).
 
 Proč dvě: Password protection / robots blok se v Netlify nastavuje **per-site**. Kdyby staging i produkce
