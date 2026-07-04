@@ -2,46 +2,49 @@
 
 Web běží jako staging na `https://papaya-genie-f481ff.netlify.app/` (v2 v rootu; verzování /1 /2
 zrušeno 2026-07-04, staré cesty 301 na root). Doména `dhouse.cz` teď běží na **HubSpot CMS**.
-Launch = nasazení produkčního buildu na Netlify + přepnutí DNS z HubSpotu.
+Launch = přepnutí této Netlify site na produkční build + přepnutí DNS z HubSpotu.
 
-## Architektura: DVĚ Netlify sites (doporučeno)
+## Architektura: JEDEN web (rozhodnutí 2026-07-05)
 
-- **Staging site** = stávající `papaya-genie-f481ff` (publish `_deploy/site`, v2 v rootu). Po launchi ji zaheslujeme.
-- **Production site** = NOVÁ site (publish `_deploy/prod`, doména `dhouse.cz`).
+Tato Netlify site `papaya-genie-f481ff` slouží jako **staging teď i produkce po launchi**. Žádná druhá site se nezakládá.
+- **Teď (staging):** root `netlify.toml` má `publish = "_deploy/site"` → v2 s `<meta noindex>`.
+- **Po launchi (produkce):** změní se na `publish = "_deploy/prod"` → tentýž web BEZ noindex, na doméně `dhouse.cz`.
 
-Proč dvě: Password protection / robots blok se v Netlify nastavuje **per-site**. Kdyby staging i produkce
-byla jedna site, zaheslování stagingu by zamklo i produkci. Dvě sites = nezávislé.
+Přepínač je v **root `netlify.toml`** (má přednost před Netlify UI). Launch = jednořádková změna + push.
 
-## Co je připravené (hotovo)
-- Produkční build: `_launch.ps1` → `_deploy/prod/` (root, BEZ noindex, prod robots/sitemap/`_redirects`/`_headers` vč. CSP).
-- Meta Pixel `818976925290103` + HubSpot portal `2996399` v `js/main.js`, spouští se AŽ po souhlasu (HubSpotí vlastní banner v portálu vypnut).
-- Detaily inspirací na `/galerie/<český-slug>/`; `_redirects` má 1:1 301 ze starých `/realizace/<de-slug>/` + catch-all.
-- LocalBusiness + Article JSON-LD, sitemap.xml (45 URL), 404, apple-touch-icon, OG image.
-- Bezpečnostní hlavičky (CSP, Permissions-Policy, nosniff, Referrer-Policy, frame-ancestors); HSTS připraven zakomentovaný.
+## Co je HOTOVO (nemusí se dělat v den D)
+- **Produkční build v repu:** `_deploy/prod/` (root, BEZ noindex, prod `robots.txt`+`sitemap.xml`+`_redirects`+`_headers` vč. CSP). Generuje `_launch.ps1`. Ověřeno: 0 rozbitých odkazů, 45/45 sitemap URL, žádné hubfs/hs-fs hotlinky, canonical/OG → dhouse.cz.
+- **Formulářová notifikace:** Netlify Forms detekce zapnuta, formulář `kontakt` detekován, e-mail poptávek chodí na `team@rennymarx.com` (předmět „Nová poptávka z webu dhouse.cz"). — nastaveno 2026-07-05.
+- **root `netlify.toml` vyčištěn** na jedno-web přepínač (odstraněn hlavičkový `X-Robots-Tag=noindex`, který by jinak držel produkci neviditelnou, a mrtvé verzované redirecty).
+- Meta Pixel `818976925290103` + HubSpot portal `2996399` v `js/main.js`, spouští se AŽ po souhlasu.
+- Detaily inspirací na `/galerie/<český-slug>/`; `_redirects` má 1:1 301 ze starých `/realizace/<de-slug>/` + catch-all; staré `/1/ /2/ → /`.
+- LocalBusiness + Article JSON-LD, sitemap.xml (45 URL), 404 (noindex), apple-touch-icon, OG image.
+- Bezpečnostní hlavičky (CSP, Permissions-Policy, nosniff, Referrer-Policy, frame-ancestors); HSTS připraven zakomentovaný v `_deploy/prod/_headers`.
 
 ## Sekvence v den spuštění (pořadí ZACHOVAT)
 
-**1. Produkční build**
+**1. (volitelně) Čerstvý produkční build** — jen pokud se web od 2026-07-05 ještě měnil
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File _launch.ps1   # -> _deploy/prod
-git add -f _deploy/prod ; git commit -m "Launch: produkcni build" ; git push
+git add -f _deploy/prod ; git commit -m "Launch: cerstvy prod build" ; git push
 ```
 
-**2. Vytvořit PRODUCTION site na Netlify**
-- Add new site → Import from Git → repo `rennymarx/dhouse-web`.
-- **Publish directory = `_deploy/prod`**, build command prázdný.
-- Deploy. Site dostane dočasnou adresu `nazev-xxxx.netlify.app`.
+**2. Přepnout site na produkční build**
+- V `netlify.toml` (root repa) změnit `publish = "_deploy/site"` → **`publish = "_deploy/prod"`**.
+- `git commit -m "Launch: publish _deploy/prod" ; git push` → Netlify sám nasadí prod build.
+- (Tohle udělá Claude na pokyn; je to jednořádková změna + push.)
 
-**3. Ověřit produkci na dočasné `*.netlify.app` adrese — JEŠTĚ PŘED DNS**
-- Otevřít `https://<nova-site>.netlify.app/` — web se vykresluje, žádné rozbité cesty.
-- Zdroj homepage **NEobsahuje** `noindex`; 404 stránka noindex ANO.
+**3. Ověřit produkci na `papaya-genie-f481ff.netlify.app` — JEŠTĚ PŘED DNS**
+- Web se vykresluje, žádné rozbité cesty.
+- Zdroj homepage **NEobsahuje** `noindex` a hlavičky **nemají** `X-Robots-Tag`; 404 stránka noindex ANO.
 - `/robots.txt` = `Allow: /` + `Sitemap:`; `/sitemap.xml` = 200.
-- Redirecty: `/hubfs/x` → 301 `/`; **`/realizace/harmonie-aus-natur-und-design/` → 301 `/galerie/harmonie-prirody-a-designu/`**; neexistující URL → 404.
-- securityheaders.com na dočasnou adresu → Grade A.
-- Cookie lišta + po „Přijmout vše" pixel (Meta Pixel Helper) i HubSpot.
-- **Až tady je vše OK, pokračuj na DNS.** (Publish je hotový PŘED přepnutím DNS = žádné okno výpadku.)
+- Redirecty: `/hubfs/x` → 301 `/`; **`/realizace/harmonie-aus-natur-und-design/` → 301 `/galerie/harmonie-prirody-a-designu/`**; `/2/x` → 301 `/`; neexistující URL → 404.
+- securityheaders.com → Grade A. Cookie lišta + po „Přijmout vše" pixel (Meta Pixel Helper) i HubSpot.
+- **Test formuláře:** odeslat zkušební poptávku → přijde na `team@rennymarx.com`.
+- **Až tady je vše OK, pokračuj na DNS.** (Prod je live na netlify.app PŘED DNS = žádné okno výpadku.)
+- Pozn.: v tomto krátkém okně servíruje `netlify.app` indexovatelný prod build; canonical tagy míří na `dhouse.cz`, takže riziko zaindexování staging URL je zanedbatelné. Krok 2–5 udělej v jednom sezení.
 
-**4. Custom doména na PRODUCTION site**
+**4. Custom doména na tuto site**
 - Domain management → Add custom domain: `dhouse.cz` + `www.dhouse.cz`.
 - Primary domain = **apex `dhouse.cz`** (sedí s canonical tagy); `www` → 301 na apex.
 
@@ -50,7 +53,7 @@ git add -f _deploy/prod ; git commit -m "Launch: produkcni build" ; git push
 **MX, SPF (TXT), DKIM a DMARC záznamy NECHAT NETKNUTÉ.**
 Použij PŘESNÉ hodnoty z Netlify *Domain settings → DNS configuration*. Standardně:
 - Apex `dhouse.cz`: **A** → `75.2.60.5` (ověř v UI)
-- `www.dhouse.cz`: **CNAME** → `<nova-site>.netlify.app`
+- `www.dhouse.cz`: **CNAME** → `papaya-genie-f481ff.netlify.app`
 - Odstranit staré HubSpot **A/CNAME** (a jen ty). TTL 300 s.
 
 **6. TLS**
@@ -67,20 +70,17 @@ Použij PŘESNÉ hodnoty z Netlify *Domain settings → DNS configuration*. Stan
 - V `_deploy/prod/_headers` odkomentovat `Strict-Transport-Security: max-age=31536000` (bez `includeSubDomains`!
   `online.dhouse.cz` běží na Konverzky — includeSubDomains přidat až po ověření čistého https subdomény; `preload` později). Re-deploy.
 
-**9. Zaheslovat STAGING site** (nezávisle na produkci)
-- Na staging site `papaya-genie-f481ff`: Site settings → Access & security → **Password protection** (Site protection).
-  Tím po launchi neveřejní duplicitní kopie. (Meta noindex tam zůstává jako druhá pojistka.)
-
-**10. Google Search Console** (jde i den po launchi)
+**9. Google Search Console** (jde i den po launchi)
 - Radek založí GSC property `dhouse.cz` → `googleXXXX.html` do rootu (repo root + `_launch.ps1` znovu) → commit → ověřit → Submit sitemap.
 
-**11. Uptime monitoring**
+**10. Uptime monitoring**
 - Netlify notifikace, nebo UptimeRobot na `https://dhouse.cz` (5 min, alert na team@).
 
 ## Akce mimo kód (dashboardy — dělá Radek)
-- **Netlify → (production site) Forms → Notifications:** e-mail poptávek na `team@rennymarx.com`. *(Jediný pre-launch krok blokující spuštění.)*
-- **Netlify → Deploy notifications → přidat „GitHub commit status"** (na obou sites). Zjištěno 2026-07-04: Netlify teď deploy do GitHubu NEhlásí (statuses i check-runs prázdné), takže nejde tahat deploy permalink z GitHub API. Po zapnutí to půjde bez Netlify tokenu; u private repa přes fine-grained `GITHUB_TOKEN` (jen toto repo, read-only, Commit statuses + Checks).
+- ~~Netlify Forms notifikace na team@~~ **HOTOVO 2026-07-05.**
+- **Netlify → Deploy notifications → přidat „GitHub commit status"** (volitelné). Zjištěno 2026-07-04: Netlify teď deploy do GitHubu NEhlásí, takže nejde tahat deploy permalink z GitHub API. Po zapnutí to půjde bez Netlify tokenu; u private repa přes fine-grained `GITHUB_TOKEN` (jen toto repo, read-only, Commit statuses + Checks).
 - **Repo → Private** (viz níže) + **2FA** na Netlify i GitHub účtu.
+- **Staré DEPLOY notifikace na `marketing@rennymarx.com`** (Project configuration → Notifications → Deploy notifications, 6×) — technické, volitelně přesměrovat/smazat.
 - HubSpot ↔ Calendly / plné napojení formuláře na CRM — později.
 - Google Business Profil — HOTOVO (zbývá jen otevírací doba).
 
