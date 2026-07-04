@@ -10,9 +10,3 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
-
-# pojistka: stare stagingove odkazy /2/realizace/... -> /2/galerie/ (v2 = pracovni verze)
-[[redirects]]
-  from = "/2/realizace/*"
-  to = "/2/galerie/"
-  status = 301

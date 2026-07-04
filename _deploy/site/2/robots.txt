@@ -1,9 +1,0 @@
-# STAGING: do spuštění na dhouse.cz držíme web skrytý.
-# Po spuštění změnit Disallow: / na Allow: /
-User-agent: *
-Disallow: /
-
-# Po ostrém spuštění:
-# User-agent: *
-# Allow: /
-# Sitemap: https://dhouse.cz/sitemap.xml
