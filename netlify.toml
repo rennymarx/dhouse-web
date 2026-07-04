@@ -18,5 +18,5 @@
 #  verzovani /1 /2 uz neexistuje.)
 
 [build]
-  publish = "_deploy/site"
+  publish = "_deploy/prod"
   command = ""
