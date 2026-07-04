@@ -77,7 +77,8 @@ Použij PŘESNÉ hodnoty z Netlify *Domain settings → DNS configuration*. Stan
 - Netlify notifikace, nebo UptimeRobot na `https://dhouse.cz` (5 min, alert na team@).
 
 ## Akce mimo kód (dashboardy — dělá Radek)
-- **Netlify → (production site) Forms → Notifications:** e-mail poptávek na `team@rennymarx.com`. *(Jediný zbývající pre-launch krok.)*
+- **Netlify → (production site) Forms → Notifications:** e-mail poptávek na `team@rennymarx.com`. *(Jediný pre-launch krok blokující spuštění.)*
+- **Netlify → Deploy notifications → přidat „GitHub commit status"** (na obou sites). Zjištěno 2026-07-04: Netlify teď deploy do GitHubu NEhlásí (statuses i check-runs prázdné), takže nejde tahat deploy permalink z GitHub API. Po zapnutí to půjde bez Netlify tokenu; u private repa přes fine-grained `GITHUB_TOKEN` (jen toto repo, read-only, Commit statuses + Checks).
 - **Repo → Private** (viz níže) + **2FA** na Netlify i GitHub účtu.
 - HubSpot ↔ Calendly / plné napojení formuláře na CRM — později.
 - Google Business Profil — HOTOVO (zbývá jen otevírací doba).
