@@ -12,7 +12,7 @@ New-Item -ItemType Directory -Force $prod | Out-Null
 $utf8 = New-Object System.Text.UTF8Encoding $false
 $items = @('index.html','galerie.html','kvalita.html','atelier.html','kontakt.html',
            'dekujeme.html','impressum.html','obchodni-podminky.html','ochrana-osobnich-udaju.html',
-           '404.html','sitemap.xml','css','js','blog','assets','realizace')
+           '404.html','sitemap.xml','css','js','blog','assets','galerie')
 foreach ($i in $items) {
     $p = Join-Path $src $i
     if (Test-Path $p) { Copy-Item $p -Destination $prod -Recurse }
@@ -45,12 +45,20 @@ if (Test-Path $p404) {
 $robots = "User-agent: *`r`nAllow: /`r`n`r`nSitemap: https://dhouse.cz/sitemap.xml`r`n"
 [IO.File]::WriteAllText((Join-Path $prod 'robots.txt'), $robots, $utf8)
 
-# --- _redirects (stare HubSpot asset URL -> homepage) ---
-$redir = "# Netlify redirects - produkce dhouse.cz`r`n/hubfs/*    /    301`r`n/hs-fs/*    /    301`r`n"
-[IO.File]::WriteAllText((Join-Path $prod '_redirects'), $redir, $utf8)
+# --- _redirects: jediny zdroj pravdy je repo root (_redirects) ---
+Copy-Item (Join-Path $src '_redirects') -Destination $prod -Force
 
-# --- _headers (bezpecnostni hlavicky) ---
-$headers = "/*`r`n  X-Frame-Options: SAMEORIGIN`r`n  X-Content-Type-Options: nosniff`r`n  Referrer-Policy: strict-origin-when-cross-origin`r`n"
+# --- _headers (bezpecnostni hlavicky; CSP viz komentar v _deploy.ps1) ---
+$csp = "default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://js.hs-scripts.com https://js.hs-analytics.net https://js.hs-banner.com https://js.hsadspixel.net https://js.hscollectedforms.net https://js.usemessages.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://track.hubspot.com https://forms.hubspot.com https://forms.hscollectedforms.net; connect-src 'self' https://www.facebook.com https://connect.facebook.net https://track.hubspot.com https://forms.hscollectedforms.net https://forms.hubspot.com https://api.hubspot.com; frame-src https://maps.google.com https://www.google.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+$headers = "/*`r`n" +
+  "  Content-Security-Policy: $csp`r`n" +
+  "  X-Frame-Options: SAMEORIGIN`r`n" +
+  "  X-Content-Type-Options: nosniff`r`n" +
+  "  Referrer-Policy: strict-origin-when-cross-origin`r`n" +
+  "  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()`r`n" +
+  "# HSTS zapnout az po overeni stabilniho https na dhouse.cz (viz LAUNCH.md, krok E3):`r`n" +
+  "# odkomentovat nasledujici radek (presunout pod /* a odsadit 2 mezerami):`r`n" +
+  "#  Strict-Transport-Security: max-age=31536000`r`n"
 [IO.File]::WriteAllText((Join-Path $prod '_headers'), $headers, $utf8)
 
 "HOTOVO - produkcni build"

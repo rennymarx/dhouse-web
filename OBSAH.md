@@ -34,7 +34,7 @@ Velké soubory v pohodě — zmenším je pro web (kompresí na ≤300 kB každ�
 Ověřit, že tyto údaje jsou aktuální:
 
 - [ ] **Telefon** `+420 272 681 854`
-- [ ] **E-mail** `marketing@rennymarx.com` (obecný kontakt)
+- [ ] **E-mail** `team@rennymarx.com` (obecný kontakt)
 - [ ] **E-mail** `team@rennymarx.com` (poptávky)
 - [ ] **Adresa** `Nám. Svatopluka Čecha 1350/5, 101 00 Praha 10 – Vršovice`
 - [ ] **IČO / DIČ** `02462273 / CZ02462273`

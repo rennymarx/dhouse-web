@@ -92,7 +92,7 @@ Robert (Claude Cowork agent) přidává články týdně. Přesný postup je v
 
 | Co | Kde |
 |---|---|
-| Telefon / e-mail | hledej `+420 272 681 854` a `marketing@rennymarx.com` ve všech `.html` |
+| Telefon / e-mail | hledej `+420 272 681 854` a `team@rennymarx.com` ve všech `.html` |
 | Adresa atelieru | hledej `Svatopluka Čecha` ve všech `.html` |
 | Otevírací doba | `atelier.html` + footer |
 | Barvy / fonty | `css/style.css` nahoře — blok `:root` (`--accent`, `--bg`, …) |

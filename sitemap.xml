@@ -26,177 +26,187 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/black-is-beautiful/</loc>
+    <loc>https://dhouse.cz/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/blog/jak-vybrat-pracovni-desku-kuchyne</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dhouse.cz/galerie/bez-kompromisu/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/da-ist-alles-drin/</loc>
+    <loc>https://dhouse.cz/galerie/black-is-beautiful/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/die-coole/</loc>
+    <loc>https://dhouse.cz/galerie/ciste-linie-a-komfort/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/die-insel-kueche/</loc>
+    <loc>https://dhouse.cz/galerie/elegantni-lehkost-designu/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/die-kunst-des-wohnens/</loc>
+    <loc>https://dhouse.cz/galerie/ergonomicky-krasna/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/dunkel-verlockend-natuerlich/</loc>
+    <loc>https://dhouse.cz/galerie/fun-follows-function/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/ein-platz-zum-verweilen/</loc>
+    <loc>https://dhouse.cz/galerie/harmonie-prirody-a-designu/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/ein-raum-voller-energie-design-und-stil/</loc>
+    <loc>https://dhouse.cz/galerie/hra-spar/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/einzigartig-aufregend/</loc>
+    <loc>https://dhouse.cz/galerie/jedinecna-a-vzrusujici/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/ergonomisch-schoen/</loc>
+    <loc>https://dhouse.cz/galerie/kuchyne-a-bydleni-v-pohode/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/fugenspiel/</loc>
+    <loc>https://dhouse.cz/galerie/kuchyne-s-charakterem/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/fun-follows-function/</loc>
+    <loc>https://dhouse.cz/galerie/leona-fabiola/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/harmonie-aus-natur-und-design/</loc>
+    <loc>https://dhouse.cz/galerie/linoleum-chytre-s-pozitkem/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/hochkultur-des-wohlfuehlens/</loc>
+    <loc>https://dhouse.cz/galerie/misto-kde-se-radi-zdrzite/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/charakterkueche/</loc>
+    <loc>https://dhouse.cz/galerie/moderni-a-sebejista/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/im-schwebezustand/</loc>
+    <loc>https://dhouse.cz/galerie/mramor-v-hlavni-roli/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/keine-kompromisse-2025/</loc>
+    <loc>https://dhouse.cz/galerie/odvaha-k-barve/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/klare-linien-moderne-sprache-viel-komfort/</loc>
+    <loc>https://dhouse.cz/galerie/ostrovni-kuchyne/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/kueche-und-wohnen-mit-wohlfuehlcharakter/</loc>
+    <loc>https://dhouse.cz/galerie/prirodne-moderne-nadcasove/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/landpartie/</loc>
+    <loc>https://dhouse.cz/galerie/prirodni-barevna-terapie/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/leona-fabiola/</loc>
+    <loc>https://dhouse.cz/galerie/prostor-plny-energie-a-stylu/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/linoleum-genussvoll-klug/</loc>
+    <loc>https://dhouse.cz/galerie/rafinovana-elegance/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/marmor-2025/</loc>
+    <loc>https://dhouse.cz/galerie/redukce-k-dokonalosti/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/mehr-als-nur-kueche/</loc>
+    <loc>https://dhouse.cz/galerie/rozmanitost-a-elegance/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/modern-und-stilsicher/</loc>
+    <loc>https://dhouse.cz/galerie/ta-cool/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/mut-zur-farbe/</loc>
+    <loc>https://dhouse.cz/galerie/temna-svudna-prirodni/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/natuerliche-farbtherapie/</loc>
+    <loc>https://dhouse.cz/galerie/umeni-bydlet/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/natuerlich-modern-zeitlos/</loc>
+    <loc>https://dhouse.cz/galerie/ven-na-venkov/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/raffinierte-eleganz/</loc>
+    <loc>https://dhouse.cz/galerie/ve-stavu-beztize/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/raus-aufs-land/</loc>
+    <loc>https://dhouse.cz/galerie/vic-nez-jen-kuchyne/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/reduktion-in-vollendung/</loc>
+    <loc>https://dhouse.cz/galerie/vsechno-co-potrebujete/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/schlichte-eleganz-designkueche-mit-leichtigkeit/</loc>
+    <loc>https://dhouse.cz/galerie/vylet-na-venkov/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/traum-raum/</loc>
+    <loc>https://dhouse.cz/galerie/vysneny-prostor/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/versorgungszentrum-der-extraklasse/</loc>
+    <loc>https://dhouse.cz/galerie/vysoka-kultura-pohody/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dhouse.cz/realizace/vielfalt-und-natuerliche-eleganz/</loc>
+    <loc>https://dhouse.cz/galerie/zasobovaci-centrum-extra-tridy/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

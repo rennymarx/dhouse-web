@@ -18,7 +18,7 @@ New-Item -ItemType Directory -Force $verDir | Out-Null
 # --- kopie webu do /<N>/ (jen produkce, zadne dev soubory) ---
 $items = @('index.html','galerie.html','kvalita.html','atelier.html','kontakt.html',
            'dekujeme.html','impressum.html','obchodni-podminky.html','ochrana-osobnich-udaju.html',
-           '404.html','robots.txt','sitemap.xml','css','js','blog','assets','realizace')
+           '404.html','robots.txt','sitemap.xml','css','js','blog','assets','galerie')
 foreach ($i in $items) {
     $p = Join-Path $src $i
     if (Test-Path $p) { Copy-Item $p -Destination $verDir -Recurse }
@@ -91,6 +91,12 @@ $links
 $robots = "User-agent: *`nAllow: /`n"
 [IO.File]::WriteAllText((Join-Path $out 'robots.txt'), $robots, (New-Object System.Text.UTF8Encoding $false))
 
+# CSP: 'unsafe-inline' u script-src je nutny (male inline skripty: fallback revealu,
+# rok v paticce, blog preview; nonce nejde na statickem hostingu bez per-request renderu).
+# Domeny: Meta Pixel (connect.facebook.net, www.facebook.com), HubSpot (js.hs-*, track.hubspot.com,
+# forms.hscollectedforms.net), Google Fonts, Google Maps embed.
+$csp = "default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://js.hs-scripts.com https://js.hs-analytics.net https://js.hs-banner.com https://js.hsadspixel.net https://js.hscollectedforms.net https://js.usemessages.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://track.hubspot.com https://forms.hubspot.com https://forms.hscollectedforms.net; connect-src 'self' https://www.facebook.com https://connect.facebook.net https://track.hubspot.com https://forms.hscollectedforms.net https://forms.hubspot.com https://api.hubspot.com; frame-src https://maps.google.com https://www.google.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'"
+
 $toml = @"
 [build]
   publish = "."
@@ -99,9 +105,17 @@ $toml = @"
 [[headers]]
   for = "/*"
   [headers.values]
+    Content-Security-Policy = "$csp"
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
+# pojistka: stare stagingove odkazy /2/realizace/... -> /2/galerie/ (v2 = pracovni verze)
+[[redirects]]
+  from = "/2/realizace/*"
+  to = "/2/galerie/"
+  status = 301
 "@
 [IO.File]::WriteAllText((Join-Path $out 'netlify.toml'), $toml, (New-Object System.Text.UTF8Encoding $false))
 
