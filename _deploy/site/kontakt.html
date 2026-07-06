@@ -49,45 +49,27 @@
     <div class="atelier-block">
       <!-- Levá: formulář -->
       <div class="atelier-block__info" style="background: var(--bg-soft);">
-        <form class="form" name="kontakt" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/dekujeme">
-          <input type="hidden" name="form-name" value="kontakt" />
-          <p class="form__hp"><label>Nevyplňujte: <input name="bot-field" /></label></p>
+        <!-- HubSpot formulář (portal 2996399) — poptávky jdou do HubSpot CRM -->
+        <div id="hubspotForm" class="hs-embed"></div>
+        <p class="form__consent">
+          Odesláním formuláře souhlasíte se zpracováním osobních údajů za účelem odpovědi na poptávku — viz <a href="/ochrana-osobnich-udaju">Ochrana osobních údajů</a>.
+        </p>
 
-          <div class="form__row--two">
-            <div class="form__row">
-              <label for="jmeno">Jméno *</label>
-              <input id="jmeno" name="jmeno" type="text" required autocomplete="name" />
-            </div>
-            <div class="form__row">
-              <label for="telefon">Telefon *</label>
-              <input id="telefon" name="telefon" type="tel" required autocomplete="tel" />
-            </div>
-          </div>
+        <div class="form__alt">
+          <span class="form__alt-label">Raději rovnou termín?</span>
+          <a class="soft-link" href="https://calendly.com/radek-dhouse/konzultace-pk26" target="_blank" rel="noopener">Vyberte si návštěvu atelieru <span class="arrow">→</span></a>
+          <a class="soft-link" href="https://calendly.com/radek-dhouse/online-konzultace-dhouse" target="_blank" rel="noopener">…nebo online konzultaci <span class="arrow">→</span></a>
+        </div>
 
-          <div class="form__row">
-            <label for="email">E-mail *</label>
-            <input id="email" name="email" type="email" required autocomplete="email" />
-          </div>
-
-          <div class="form__row">
-            <label for="zprava">Vaše zpráva</label>
-            <textarea id="zprava" name="zprava" placeholder="Stručně co plánujete — rekonstrukce, novostavba, rozměry prostoru, představa o stylu, časový plán..."></textarea>
-          </div>
-
-          <p class="form__consent">
-            Odesláním souhlasíte se zpracováním osobních údajů za účelem odpovědi na poptávku — viz <a href="/ochrana-osobnich-udaju">Ochrana osobních údajů</a>.
-          </p>
-
-          <div>
-            <button type="submit" class="btn">Odeslat poptávku <span class="arrow">→</span></button>
-          </div>
-
-          <div class="form__alt">
-            <span class="form__alt-label">Raději rovnou termín?</span>
-            <a class="soft-link" href="https://calendly.com/radek-dhouse/konzultace-pk26" target="_blank" rel="noopener">Vyberte si návštěvu atelieru <span class="arrow">→</span></a>
-            <a class="soft-link" href="https://calendly.com/radek-dhouse/online-konzultace-dhouse" target="_blank" rel="noopener">…nebo online konzultaci <span class="arrow">→</span></a>
-          </div>
-        </form>
+        <script charset="utf-8" type="text/javascript" src="https://js.hsforms.net/forms/embed/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            portalId: "2996399",
+            formId: "787825c6-c97c-43bc-bdee-8283722834c4",
+            region: "na1",
+            target: "#hubspotForm"
+          });
+        </script>
       </div>
 
       <!-- Pravá: rychlý kontakt -->
