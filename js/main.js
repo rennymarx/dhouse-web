@@ -13,6 +13,20 @@
 (function () {
   'use strict';
 
+  // Migrace z HubSpotu (2026-07-05): odregistruj případný starý service worker a smaž
+  // jeho cache, aby prohlížeč neservíroval staré stránky (např. /kontakt) z SW cache.
+  // Nový web žádný service worker nepoužívá, takže je to bezpečné.
+  if ('serviceWorker' in navigator) {
+    try {
+      navigator.serviceWorker.getRegistrations().then(function (rs) {
+        rs.forEach(function (r) { r.unregister(); });
+      }).catch(function () {});
+      if (window.caches && caches.keys) {
+        caches.keys().then(function (ks) { ks.forEach(function (k) { caches.delete(k); }); }).catch(function () {});
+      }
+    } catch (e) {}
+  }
+
   // pojistka pro inline fallback v index.html (reveal při selhání tohoto souboru)
   window.__dhouseMain = true;
 
