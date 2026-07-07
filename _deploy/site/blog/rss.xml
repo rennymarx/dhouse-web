@@ -2,8 +2,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>dhouse — Blog</title>
-    <link>https://dhouse.cz/blog</link>
-    <atom:link href="https://dhouse.cz/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <link>https://www.dhouse.cz/blog</link>
+    <atom:link href="https://www.dhouse.cz/blog/rss.xml" rel="self" type="application/rss+xml" />
     <description>Týdně o materiálech, návrhu a řemesle prémiových kuchyní. Atelier dhouse v Praze, výhradní zastoupení SACHSENKÜCHEN.</description>
     <language>cs-CZ</language>
     <copyright>© Renny Marx s.r.o.</copyright>
@@ -11,8 +11,8 @@
     <!-- BLOG:RSS_ITEMS_START -->
     <item>
       <title>Jak vybrat pracovní desku kuchyně: keramika, kámen, nebo HPL?</title>
-      <link>https://dhouse.cz/blog/jak-vybrat-pracovni-desku-kuchyne</link>
-      <guid isPermaLink="true">https://dhouse.cz/blog/jak-vybrat-pracovni-desku-kuchyne</guid>
+      <link>https://www.dhouse.cz/blog/jak-vybrat-pracovni-desku-kuchyne</link>
+      <guid isPermaLink="true">https://www.dhouse.cz/blog/jak-vybrat-pracovni-desku-kuchyne</guid>
       <pubDate>Tue, 09 Jun 2026 09:00:00 +0200</pubDate>
       <dc:creator>Robert (dhouse)</dc:creator>
       <category>materialy</category>

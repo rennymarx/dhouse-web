@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dhouse.cz/sitemap.xml
+Sitemap: https://www.dhouse.cz/sitemap.xml

@@ -42,7 +42,7 @@ if (Test-Path $p404) {
 }
 
 # --- prod robots.txt: Allow + Sitemap ---
-$robots = "User-agent: *`r`nAllow: /`r`n`r`nSitemap: https://dhouse.cz/sitemap.xml`r`n"
+$robots = "User-agent: *`r`nAllow: /`r`n`r`nSitemap: https://www.dhouse.cz/sitemap.xml`r`n"
 [IO.File]::WriteAllText((Join-Path $prod 'robots.txt'), $robots, $utf8)
 
 # --- _redirects: jediny zdroj pravdy je repo root (_redirects) ---
