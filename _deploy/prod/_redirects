@@ -46,5 +46,119 @@
 # pojistka na zbyle /realizace/ odkazy (jmenny prostor rezervovan pro budouci skutecne realizace)
 /realizace/*  /galerie/  301
 
+# =====================================================================
+# STARY WORDPRESS WEB (do ~2023) -> nejblizsi ekvivalent na novem webu.
+# Zdroj: Wayback Machine CDX, 312 archivovanych URL (overeno 3.8.2026).
+# Koncove lomitko resi Netlify sam (/impressum/ -> /impressum), proto
+# stranky s presnym ekvivalentem (impressum, obchodni-podminky,
+# ochrana-osobnich-udaju, kontakt, galerie, blog) zde nejsou.
+# =====================================================================
+
+# -- Znacka, technologie, povrchy, materialy -> /kvalita
+/kitchen                               /kvalita  301
+/kitchen/*                             /kvalita  301
+/sachsenkuechen                        /kvalita  301
+/sachsenkuechen/*                      /kvalita  301
+/sachsenkuchen                         /kvalita  301
+/sachsenkuchen/*                       /kvalita  301
+/sachsenkuchen-produktfeatures-2023    /kvalita  301
+/sachsenkuchen-produktfeatures-2023/*  /kvalita  301
+/worktop                               /kvalita  301
+/worktop/*                             /kvalita  301
+/polyston                              /kvalita  301
+/polyston/*                            /kvalita  301
+/badjournal-2023                       /kvalita  301
+/badjournal-2023/*                     /kvalita  301
+
+# -- Vzorove/vyprodejove kuchyne a katalogy -> /galerie
+#    Stare stranky konkretnich modelu (RENA, ALINA, LARA...). Presnou
+#    shodu s dnesnimi 35 inspiracemi nelze dolozit, proto na prehled.
+/vzorova-kuchyne-rena                  /galerie  301
+/vzorova-kuchyne-rena/*                /galerie  301
+/vzorova-kuchyne-alina                 /galerie  301
+/vzorova-kuchyne-alina/*               /galerie  301
+/vzorova-kuchyne-lana                  /galerie  301
+/vzorova-kuchyne-lana/*                /galerie  301
+/vzorova-kuchyne-edda-belana           /galerie  301
+/vzorova-kuchyne-edda-belana/*         /galerie  301
+/vzorova-kuchyne-lara-edda             /galerie  301
+/vzorova-kuchyne-lara-edda/*           /galerie  301
+/vzorova-kuchyne-lara-lana             /galerie  301
+/vzorova-kuchyne-lara-lana/*           /galerie  301
+/vzorova-kuchyne-tania-belana          /galerie  301
+/vzorova-kuchyne-tania-belana/*        /galerie  301
+/vyprodej-kuchyne-alina-fabia          /galerie  301
+/vyprodej-kuchyne-alina-fabia/*        /galerie  301
+/vyprodej-kuchyne-lara                 /galerie  301
+/vyprodej-kuchyne-lara/*               /galerie  301
+/sachsenkuchen-journal                 /galerie  301
+/sachsenkuchen-journal/*               /galerie  301
+/sachsenkuchen-journal-2023            /galerie  301
+/sachsenkuchen-journal-2023/*          /galerie  301
+/neuheiten-2023                        /galerie  301
+/neuheiten-2023/*                      /galerie  301
+/360-2                                 /galerie  301
+/360-2/*                               /galerie  301
+/infini                                /galerie  301
+/infini/*                              /galerie  301
+
+# -- Showroom, vybaveni interieru, spotrebice -> /atelier
+/studio                                /atelier  301
+/studio/*                              /atelier  301
+/interiery                             /atelier  301
+/interiery/*                           /atelier  301
+/kueppersbusch                         /atelier  301
+/kueppersbusch/*                       /atelier  301
+
+# -- Poptavka, lead magnety, kampanove landing pages -> /kontakt
+#    /checklist byl online dotaznik "Objednat navrh kuchyne online";
+#    /teplice a /ceske-budejovice byly kampanove LP, NE pobocky.
+/checklist                             /kontakt  301
+/checklist/*                           /kontakt  301
+/konzultace-zdarma                     /kontakt  301
+/konzultace-zdarma/*                   /kontakt  301
+/download/*                            /kontakt  301
+/ceske-budejovice                      /kontakt  301
+/ceske-budejovice/*                    /kontakt  301
+/teplice                               /kontakt  301
+/teplice/*                             /kontakt  301
+
+# -- Blog a archivy -> /blog
+/library                               /blog     301
+/library/*                             /blog     301
+/koncim-s-kompromisy-karle             /blog     301
+/koncim-s-kompromisy-karle/*           /blog     301
+/category/*                            /blog     301
+
+# -- Jazykove mutace (nikdy nebyly prelozene, servírovaly CZ homepage)
+#    a odlozena stara homepage -> /
+/de                                    /         301
+/de/*                                  /         301
+/en                                    /         301
+/en/*                                  /         301
+/ru                                    /         301
+/ru/*                                  /         301
+/home_old                              /         301
+/home_old/*                            /         301
+
+# -- Media ze stareho WordPressu -------------------------------------
+# 26 archivovanych obrazku bylo obnoveno 1:1 do /wp-content/uploads/,
+# servíruji se primo (staticky soubor ma prednost pred pravidlem).
+# Stara PDF obnovit nelze - Wayback ma jen crawlerem oriznute 1MB
+# fragmenty bez %%EOF; ChecklistCZ.pdf neni v archivu vubec.
+/wp-content/uploads/2020/04/ChecklistCZ.pdf                            /404.html  404
+/wp-content/uploads/2018/02/Sachsenkuechen-Journal-2018.pdf            /404.html  404
+/wp-content/uploads/2018/02/Kueppersbusch_Katalog_2017_DE_26062017.pdf  /404.html  404
+/wp-content/uploads/2018/02/katalog_maly_2015_web.pdf                  /404.html  404
+/wp-content/uploads/2019/09/Sachsenkuechen-Journal-2019.pdf            /404.html  404
+/wp-content/uploads/2019/09/SK-Inner-Values-2017-EN.pdf                /404.html  404
+/wp-content/uploads/2019/10/Katalog_kuppersbusch_2019.pdf              /404.html  404
+/wp-content/uploads/2019/10/TEKA_drezy_2019_1_a4_cz.pdf                /404.html  404
+/wp-content/uploads/2019/10/TEKA_spotrebice_2019_2020.pdf              /404.html  404
+# neobnovene obrazky -> neutralni dhouse placeholder misto rozbite ikony
+/wp-content/uploads/*    /assets/placeholder.jpg  200
+
 # catch-all: neexistujici URL -> vlastni 404 (existujici soubory maji prednost)
+# Sem vedome padaji: /wp-admin/*, /wp-json/*, /wp-login.php, /wp-content/plugins/*,
+# /captcha*, /author/*, /Images/*, /ozonos/* (produkt se uz neprodava).
 /*  /404.html  404
