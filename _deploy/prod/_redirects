@@ -123,12 +123,14 @@
 /teplice                               /kontakt  301
 /teplice/*                             /kontakt  301
 
-# -- Blog a archivy -> /blog
-/library                               /blog     301
-/library/*                             /blog     301
-/koncim-s-kompromisy-karle             /blog     301
-/koncim-s-kompromisy-karle/*           /blog     301
-/category/*                            /blog     301
+# -- Blog a archivy -> /blog/
+#    Cil MUSI mit koncove lomitko: /blog je adresar, Netlify by jinak
+#    pridal druhy skok (/blog -> /blog/) a vznikl by retez 2 presmerovani.
+/library                               /blog/    301
+/library/*                             /blog/    301
+/koncim-s-kompromisy-karle             /blog/    301
+/koncim-s-kompromisy-karle/*           /blog/    301
+/category/*                            /blog/    301
 
 # -- Jazykove mutace (nikdy nebyly prelozene, servírovaly CZ homepage)
 #    a odlozena stara homepage -> /
