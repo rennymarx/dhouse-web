@@ -105,13 +105,17 @@
 /infini                                /galerie  301
 /infini/*                              /galerie  301
 
-# -- Showroom, vybaveni interieru, spotrebice -> /atelier
+# -- Showroom a vybaveni interieru -> /atelier
 /studio                                /atelier  301
 /studio/*                              /atelier  301
 /interiery                             /atelier  301
 /interiery/*                           /atelier  301
-/kueppersbusch                         /atelier  301
-/kueppersbusch/*                       /atelier  301
+
+# -- Vestavne spotrebice -> /kvalita
+#    NE na /atelier: atelier.html znacku Kueppersbusch vubec nezminuje,
+#    zatimco kvalita.html ma sekci "Spotrebice TEKA a Kueppersbusch".
+/kueppersbusch                         /kvalita  301
+/kueppersbusch/*                       /kvalita  301
 
 # -- Poptavka, lead magnety, kampanove landing pages -> /kontakt
 #    /checklist byl online dotaznik "Objednat navrh kuchyne online";
@@ -160,7 +164,26 @@
 /wp-content/uploads/2019/10/Katalog_kuppersbusch_2019.pdf              /404.html  404
 /wp-content/uploads/2019/10/TEKA_drezy_2019_1_a4_cz.pdf                /404.html  404
 /wp-content/uploads/2019/10/TEKA_spotrebice_2019_2020.pdf              /404.html  404
-# neobnovene obrazky -> neutralni dhouse placeholder misto rozbite ikony
+# Katalogy z flipbook stranek (/badjournal-2023, /neuheiten-2023, /sachsenkuchen-journal*)
+# dostavaji stejny cil jako jejich HubSpot kopie pod /hubfs/ - jsou to nejcastejsi
+# odkazy v e-mailovych kampanich, 404 by tady byla primá ztrata kliku.
+/wp-content/uploads/2023/01/SK_Journal_2023.pdf                 /galerie  301
+/wp-content/uploads/2023/01/SK_Produktfeatures_DE_EN2023.pdf    /kvalita  301
+/wp-content/uploads/2023/01/Sachsenkuechen_Badjournal2023.pdf   /kvalita  301
+/wp-content/uploads/2023/01/Sachsenkuechen_Neuheiten_D2023.pdf  /galerie  301
+/wp-content/uploads/2022/11/SK_Journal_2022.pdf                 /galerie  301
+
+# Rocniky, ve kterych NEMAME zadny obnoveny soubor (archiv z nich nic nezachytil).
+# Musi byt PRED obecnym pravidlem nize, jinak by pozadavek na .pdf v techto
+# slozkach dostal JPEG placeholder s kodem 200 - horsi signal nez poctiva 404.
+/wp-content/uploads/2015/*  /404.html  404
+/wp-content/uploads/2016/*  /404.html  404
+/wp-content/uploads/2017/*  /404.html  404
+/wp-content/uploads/2021/*  /404.html  404
+/wp-content/uploads/2022/*  /404.html  404
+/wp-content/uploads/2023/*  /404.html  404
+
+# neobnovene obrazky (rocniky 2018-2020) -> neutralni dhouse placeholder
 /wp-content/uploads/*    /assets/placeholder.jpg  200
 
 # catch-all: neexistujici URL -> vlastni 404 (existujici soubory maji prednost)
