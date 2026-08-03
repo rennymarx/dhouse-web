@@ -1,5 +1,8 @@
 # Netlify redirects — produkce dhouse.cz
-# Stare HubSpot asset URL (po prepnuti DNS zaniknou) -> homepage
+# Stare HubSpot asset URL (po prepnuti DNS zaniknou) -> homepage.
+# Dva konkretni katalogy maji blizsi cil nez pausalni homepage:
+/hubfs/2996399/SK_Journal_2023.pdf           /galerie  301
+/hubfs/2996399/SK_Produktfeatures_DE_EN.pdf  /kvalita  301
 /hubfs/*    /    301
 /hs-fs/*    /    301
 
