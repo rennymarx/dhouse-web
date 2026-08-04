@@ -1,13 +1,3 @@
-/* dhouse.cz - listovaci prohlizec katalogu
- * ------------------------------------------------------------------
- * Samostatny modul, aktivuje se jen na strankach, kde je [data-flipbook].
- * PDF NERENDERUJE - listuje predrenderovane obrazky stran (viz _tools/build-katalogy.py).
- * Stejny princip jako epaper vyrobce: rychle i na mobilu, plne PDF je jen ke stazeni.
- *
- * Swipe zajistuje nativni CSS scroll-snap, ne vlastni touch matematika.
- * Obrazky mimo okno +-4 strany se uvolnuji - 96 dekodovanych stran by jinak
- * na mobilu snedlo stovky MB pameti (nativni loading="lazy" nikdy neuvolnuje).
- */
 /* Doskroluje na #katalogy po nacteni rozvrzeni.
  * Proc: na /galerie je nad sekci 35 karet inspiraci. Prohlizec skoci na kotvu
  * driv, nez se jejich rozvrzeni dolozi, a sekce se pak posune o tisice pixelu
@@ -20,7 +10,6 @@
     var el = document.getElementById('katalogy');
     if (!el) return;
     var top = el.getBoundingClientRect().top;
-    // doskroluj jen kdyz sekce neni prakticky na miste (uzivatel mohl mezitim scrollovat)
     if (Math.abs(top) > 120) { el.scrollIntoView({ block: 'start' }); }
   }
   window.addEventListener('load', function () {
@@ -29,6 +18,19 @@
   });
 })();
 
+/* dhouse.cz - listovaci prohlizec katalogu
+ * ------------------------------------------------------------------
+ * Samostatny modul, aktivuje se jen na strankach, kde je [data-flipbook].
+ * PDF NERENDERUJE - listuje predrenderovane obrazky stran (_tools/build-katalogy.py).
+ *
+ * Na siroke obrazovce zobrazuje DVOJSTRANU jako u fyzickeho katalogu
+ * (obalka sama, pak 2-3, 4-5 ...), na uzke jednu stranu. Pri zmene sirky
+ * se stopa prestavi a drzi aktualni stranu.
+ *
+ * Swipe zajistuje nativni CSS scroll-snap, ne vlastni touch matematika.
+ * Obrazky mimo okno +-4 dvojstrany se uvolnuji - 96 dekodovanych stran by
+ * na mobilu snedlo stovky MB (nativni loading="lazy" NIKDY neuvolnuje).
+ */
 (function () {
   'use strict';
 
@@ -36,7 +38,8 @@
   if (!cards.length) return;
 
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var LOAD = 2;   // kolik stran kolem aktualni drzet nactene
+  var wide = window.matchMedia ? window.matchMedia('(min-width: 900px)') : null;
+  var LOAD = 2;   // kolik dvojstran kolem aktualni drzet nactene
   var KEEP = 4;   // za touto hranici se src uvolni (hystereze pri rychlem swipu)
 
   function pad(n, w) { var s = String(n); while (s.length < w) { s = '0' + s; } return s; }
@@ -67,11 +70,25 @@
     return b.pattern.replace('{n}', pad(i, 3)).replace('{w}', String(w));
   }
 
-  // modul zije -> odkryj JS-only ovladani (bez JS zustane jen odkaz na PDF)
+  /* Rozlozeni na dvojstrany jako u fyzickeho katalogu:
+     [1], [2,3], [4,5], ... a posledni pripadne sama. */
+  function computeSpreads(n, dbl) {
+    var out = [], i;
+    if (!dbl) {
+      for (i = 1; i <= n; i++) { out.push([i]); }
+      return out;
+    }
+    out.push([1]);
+    for (i = 2; i <= n; i += 2) {
+      out.push(i + 1 <= n ? [i, i + 1] : [i]);
+    }
+    return out;
+  }
+
   document.documentElement.classList.add('fb-ready');
 
-  var ui = null, cur = null, page = 0, lastFocus = null, pushed = false, inerted = [];
-  var prevOverflow = '';
+  var ui = null, cur = null, spreads = [], idx = -1, isDouble = false;
+  var lastFocus = null, pushed = false, inerted = [], prevOverflow = '';
 
   /* ---------------------------------------------------------- overlay */
 
@@ -96,7 +113,7 @@
         '<button class="fb__nav fb__nav--next" type="button" aria-label="Další strana"><span aria-hidden="true">›</span></button>' +
       '</div>' +
       '<div class="fb__foot">' +
-        '<span class="fb__counter" aria-hidden="true"><b>1</b><span> / </span><i>1</i></span>' +
+        '<span class="fb__counter" aria-hidden="true"></span>' +
         '<input class="fb__scrub" type="range" min="1" max="1" value="1" step="1" aria-label="Přejít na stranu" />' +
         '<p class="fb__status sr-only" role="status" aria-live="polite"></p>' +
       '</div>';
@@ -111,21 +128,19 @@
       track: r.querySelector('.fb__track'),
       prev: r.querySelector('.fb__nav--prev'),
       next: r.querySelector('.fb__nav--next'),
-      cnum: r.querySelector('.fb__counter b'),
-      ctot: r.querySelector('.fb__counter i'),
+      counter: r.querySelector('.fb__counter'),
       scrub: r.querySelector('.fb__scrub'),
       status: r.querySelector('.fb__status'),
       imgs: []
     };
 
     ui.close.addEventListener('click', function () { closeFb(false); });
-    ui.prev.addEventListener('click', function () { goTo(page - 1, true); });
-    ui.next.addEventListener('click', function () { goTo(page + 1, true); });
-    ui.scrub.addEventListener('input', function () { goTo(parseInt(ui.scrub.value, 10), false); });
+    ui.prev.addEventListener('click', function () { goTo(idx - 1, true); });
+    ui.next.addEventListener('click', function () { goTo(idx + 1, true); });
+    ui.scrub.addEventListener('input', function () { goTo(parseInt(ui.scrub.value, 10) - 1, false); });
     ui.fs.addEventListener('click', toggleFs);
     if (!fsEnabled()) { ui.fs.hidden = true; }
 
-    // aktualni strana ze scrollu (swipe / trackpad), throttle pres rAF
     var raf = 0;
     ui.track.addEventListener('scroll', function () {
       if (raf) return;
@@ -134,57 +149,86 @@
         if (!cur) return;
         var w = ui.track.clientWidth;
         if (!w) return;
-        setPage(Math.round(ui.track.scrollLeft / w) + 1);
+        setIdx(Math.round(ui.track.scrollLeft / w));
       });
     }, { passive: true });
 
     document.addEventListener('keydown', onKey);
     document.addEventListener('fullscreenchange', syncFs);
     document.addEventListener('webkitfullscreenchange', syncFs);
+
+    // prepnuti mezi jednou stranou a dvojstranou pri zmene sirky okna
+    if (wide) {
+      var onWide = function () {
+        if (!cur || !ui.root.classList.contains('is-open')) return;
+        var keep = spreads[idx] ? spreads[idx][0] : 1;
+        layout(cur, keep);
+      };
+      if (wide.addEventListener) { wide.addEventListener('change', onWide); }
+      else if (wide.addListener) { wide.addListener(onWide); }
+    }
   }
 
-  function buildTrack(b) {
+  /* Postavi stopu podle aktualniho rezimu a nastavi se na stranu `startPage`. */
+  function layout(b, startPage) {
+    isDouble = !!(wide && wide.matches);
+    spreads = computeSpreads(b.pages, isDouble);
+
     ui.track.innerHTML = '';
-    ui.track.style.setProperty('--fb-ratio', String(b.ratio));
     var frag = document.createDocumentFragment();
-    for (var i = 1; i <= b.pages; i++) {
-      var p = document.createElement('div');
-      p.className = 'fb__page';
-      var img = document.createElement('img');
-      img.className = 'fb__img';
-      img.alt = '';
-      img.decoding = 'async';
-      img.draggable = false;
-      p.appendChild(img);
-      frag.appendChild(p);
+    for (var s = 0; s < spreads.length; s++) {
+      var pg = document.createElement('div');
+      pg.className = 'fb__page' + (spreads[s].length > 1 ? ' fb__page--double' : '');
+      for (var k = 0; k < spreads[s].length; k++) {
+        var img = document.createElement('img');
+        img.className = 'fb__img';
+        img.alt = '';
+        img.decoding = 'async';
+        img.draggable = false;
+        pg.appendChild(img);
+      }
+      frag.appendChild(pg);
     }
     ui.track.appendChild(frag);
     ui.imgs = ui.track.querySelectorAll('.fb__img');
+
+    ui.scrub.max = String(spreads.length);
+    idx = -1;
+    // najdi dvojstranu obsahujici pozadovanou stranu
+    var target = 0;
+    for (var i = 0; i < spreads.length; i++) {
+      if (spreads[i].indexOf(startPage) > -1) { target = i; break; }
+    }
+    goTo(target, false);
   }
 
-  /* -------------------------------------------- okno nactenych stran */
+  /* ---------------------------------------------- okno nactenych stran */
 
   function syncWindow() {
-    var lo = page - LOAD, hi = page + LOAD, kl = page - KEEP, kh = page + KEEP;
-    for (var i = 1; i <= cur.pages; i++) {
-      var img = ui.imgs[i - 1];
-      if (!img) continue;
-      if (i >= lo && i <= hi) {
-        if (!img.getAttribute('src')) {
-          var parts = [];
-          for (var k = 0; k < cur.widths.length; k++) {
-            parts.push(urlFor(cur, i, cur.widths[k]) + ' ' + cur.widths[k] + 'w');
+    var lo = idx - LOAD, hi = idx + LOAD, kl = idx - KEEP, kh = idx + KEEP;
+    var flat = 0;
+    for (var s = 0; s < spreads.length; s++) {
+      for (var k = 0; k < spreads[s].length; k++) {
+        var img = ui.imgs[flat++];
+        if (!img) continue;
+        var n = spreads[s][k];
+        if (s >= lo && s <= hi) {
+          if (!img.getAttribute('src')) {
+            var parts = [];
+            for (var w = 0; w < cur.widths.length; w++) {
+              parts.push(urlFor(cur, n, cur.widths[w]) + ' ' + cur.widths[w] + 'w');
+            }
+            img.setAttribute('sizes', isDouble ? '50vw' : '100vw');
+            img.setAttribute('srcset', parts.join(', '));
+            img.setAttribute('src', urlFor(cur, n, cur.widths[cur.widths.length - 1]));
+            img.alt = cur.title + ', strana ' + n;
           }
-          img.setAttribute('sizes', '100vw');
-          img.setAttribute('srcset', parts.join(', '));
-          img.setAttribute('src', urlFor(cur, i, cur.widths[cur.widths.length - 1]));
-          img.alt = cur.title + ', strana ' + i;
-        }
-      } else if (i < kl || i > kh) {
-        if (img.getAttribute('src')) {
-          img.removeAttribute('src');       // uvolni dekodovanou bitmapu
-          img.removeAttribute('srcset');
-          img.alt = '';
+        } else if (s < kl || s > kh) {
+          if (img.getAttribute('src')) {
+            img.removeAttribute('src');
+            img.removeAttribute('srcset');
+            img.alt = '';
+          }
         }
       }
     }
@@ -194,10 +238,10 @@
 
   function goTo(i, smooth) {
     if (!cur) return;
-    i = Math.min(Math.max(1, i), cur.pages);
-    var slide = ui.track.children[i - 1];
+    i = Math.min(Math.max(0, i), spreads.length - 1);
+    var slide = ui.track.children[i];
     if (!slide) return;
-    setPage(i);
+    setIdx(i);
     var behavior = (smooth && !reduced) ? 'smooth' : 'auto';
     if (ui.track.scrollTo) {
       try { ui.track.scrollTo({ left: slide.offsetLeft, behavior: behavior }); }
@@ -207,38 +251,41 @@
     }
   }
 
+  function label(sp) {
+    return sp.length > 1 ? (sp[0] + '–' + sp[1]) : String(sp[0]);
+  }
+
   var annT = 0;
-  function setPage(i) {
+  function setIdx(i) {
     if (!cur) return;
-    i = Math.min(Math.max(1, i), cur.pages);
-    if (i === page) return;
-    page = i;
-    ui.cnum.textContent = String(i);
-    if (ui.scrub.value !== String(i)) { ui.scrub.value = String(i); }
-    ui.prev.disabled = (i <= 1);
-    ui.next.disabled = (i >= cur.pages);
+    i = Math.min(Math.max(0, i), spreads.length - 1);
+    if (i === idx) return;
+    idx = i;
+    var sp = spreads[i];
+    ui.counter.innerHTML = '<b>' + label(sp) + '</b><span> / </span><i>' + cur.pages + '</i>';
+    if (ui.scrub.value !== String(i + 1)) { ui.scrub.value = String(i + 1); }
+    ui.prev.disabled = (i <= 0);
+    ui.next.disabled = (i >= spreads.length - 1);
     syncWindow();
-    // debounce, at ctecka nedrmoli pri rychlem swipu
     window.clearTimeout(annT);
     annT = window.setTimeout(function () {
-      if (cur) { ui.status.textContent = 'Strana ' + page + ' z ' + cur.pages; }
+      if (cur) { ui.status.textContent = 'Strana ' + label(spreads[idx]) + ' z ' + cur.pages; }
     }, 350);
   }
 
   function onKey(e) {
     if (!ui || !ui.root.classList.contains('is-open')) return;
-    // range input si sipky obsluhuje sam
     if (e.target === ui.scrub && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) return;
     switch (e.key) {
       case 'Escape':
-        if (fsEl()) return;                 // fullscreen ukonci prohlizec sam
+        if (fsEl()) return;
         e.preventDefault(); closeFb(false); break;
       case 'ArrowRight': case 'PageDown':
-        e.preventDefault(); goTo(page + 1, true); break;
+        e.preventDefault(); goTo(idx + 1, true); break;
       case 'ArrowLeft': case 'PageUp':
-        e.preventDefault(); goTo(page - 1, true); break;
-      case 'Home': e.preventDefault(); goTo(1, false); break;
-      case 'End': e.preventDefault(); goTo(cur.pages, false); break;
+        e.preventDefault(); goTo(idx - 1, true); break;
+      case 'Home': e.preventDefault(); goTo(0, false); break;
+      case 'End': e.preventDefault(); goTo(spreads.length - 1, false); break;
       case 'Tab': trapTab(e); break;
     }
   }
@@ -281,7 +328,7 @@
     }
   }
   function trapTab(e) {
-    if (hasInert) return;                   // inert staci, trap netreba
+    if (hasInert) return;
     var f = Array.prototype.filter.call(
       ui.root.querySelectorAll('a[href], button:not([disabled]), input, [tabindex="0"]'),
       function (el) { return !el.hidden && el.offsetParent !== null; });
@@ -296,21 +343,17 @@
 
   /* ------------------------------------------------------ open / close */
 
-  function openFb(b, start, trigger, fromHash) {
+  function openFb(b, startPage, trigger, fromHash) {
     if (!ui) build();
     cur = b;
-    page = 0;
     lastFocus = trigger || document.activeElement;
     ui.title.textContent = b.title;
-    ui.ctot.textContent = String(b.pages);
-    ui.scrub.max = String(b.pages);
     if (b.pdf) { ui.pdf.href = b.pdf; ui.pdf.hidden = false; } else { ui.pdf.hidden = true; }
-    buildTrack(b);
     ui.root.classList.add('is-open');
     prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     setInert(true);
-    goTo(start || 1, false);
+    layout(b, startPage || 1);
     ui.close.focus();
     if (!fromHash) {
       try { history.pushState({ fb: b.id }, '', '#katalog=' + b.id); pushed = true; } catch (e) { /* nic */ }
@@ -321,10 +364,9 @@
     if (!ui || !ui.root.classList.contains('is-open')) return;
     if (fsEl()) { toggleFs(); }
     ui.root.classList.remove('is-open');
-    ui.track.innerHTML = '';                // uvolni vsechny obrazky
+    ui.track.innerHTML = '';
     ui.imgs = [];
-    cur = null;
-    page = 0;
+    cur = null; spreads = []; idx = -1;
     setInert(false);
     document.body.style.overflow = prevOverflow;
     if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
@@ -336,12 +378,11 @@
     }
   }
 
-  // Zavri jen tehdy, kdyz jsme stav sami pushnuli (tlacitko zpet na Androidu).
-  // Bez teto podminky by stray popstate pri otevreni z odkazu #katalog=...
-  // prohlizec okamzite zase zavrel.
+  // Zavri jen kdyz jsme stav sami pushnuli (tlacitko zpet na Androidu).
+  // Bez teto podminky by stray popstate zavrel prohlizec otevreny z #katalog=...
   window.addEventListener('popstate', function () { if (pushed) { closeFb(true); } });
 
-  /* -------------------------------------------- napojeni karet + odkaz */
+  /* ------------------------------------------- napojeni karet + odkaz */
 
   books.forEach(function (b) {
     var btn = b.el.querySelector('[data-fb-open]');

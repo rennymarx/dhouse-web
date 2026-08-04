@@ -705,8 +705,16 @@ body.nav-scrolled .nav__cta { background: var(--green); border-color: var(--gree
   overflow: hidden;
 }
 .atelier-block__map iframe { width: 100%; height: 100%; border: 0; display: block; }
-/* mapa je dnes staticky obrazek v odkazu (viz atelier.html) */
-a.atelier-block__map { display: block; position: relative; }
+/* Mapa je dnes staticky obrazek v odkazu (viz atelier.html).
+   POZOR: `aspect-ratio: 4/3` z .atelier-block__map se v gridu chova zradne --
+   radek je vysoky podle praveho sloupce (585 px), ratio z toho dopocita SIRKU
+   780 px a mapa pretece pres okraj sloupce (642 px) do textu vedle.
+   Na desktopu proto ratio vypiname a necháme grid urcit oba rozmery. */
+a.atelier-block__map { display: block; position: relative; aspect-ratio: auto; }
+@media (max-width: 860px) {
+  /* jeden sloupec: vyska radku je auto, takze ratio musi zpatky, jinak se mapa slehne */
+  a.atelier-block__map { aspect-ratio: 4 / 3; }
+}
 .atelier-block__map img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease); }
 a.atelier-block__map:hover img { transform: scale(1.03); }
 @media (prefers-reduced-motion: reduce) { .atelier-block__map img { transition: none; } }
@@ -1567,6 +1575,14 @@ body.nav-open .progress { opacity: 0; } /* nekreslit přes otevřené mobilní m
   object-fit: contain;
   -webkit-user-drag: none; user-select: none;
 }
+
+/* Dvojstrana (siroka obrazovka): dve strany vedle sebe jako u fyzickeho
+   katalogu. Kazda dostane pulku sirky, object-fit ji uvnitr dopocita,
+   object-position je pritlaci k sobe, aby se dotykaly v hrbetu. */
+.fb__page--double { display: flex; }
+.fb__page--double .fb__img { width: 50%; }
+.fb__page--double .fb__img:first-child { object-position: right center; }
+.fb__page--double .fb__img:last-child { object-position: left center; }
 
 .fb__nav {
   position: absolute; top: 0; bottom: 0; width: clamp(52px, 9vw, 120px);
