@@ -8,6 +8,27 @@
  * Obrazky mimo okno +-4 strany se uvolnuji - 96 dekodovanych stran by jinak
  * na mobilu snedlo stovky MB pameti (nativni loading="lazy" nikdy neuvolnuje).
  */
+/* Doskroluje na #katalogy po nacteni rozvrzeni.
+ * Proc: na /galerie je nad sekci 35 karet inspiraci. Prohlizec skoci na kotvu
+ * driv, nez se jejich rozvrzeni dolozi, a sekce se pak posune o tisice pixelu
+ * niz -- clovek z e-mailove kampane skonci uprostred galerie misto u katalogu.
+ * Merene na mobilu: skok na 8045, sekce nakonec na 14215. */
+(function () {
+  'use strict';
+  if (window.location.hash !== '#katalogy') return;
+  function fix() {
+    var el = document.getElementById('katalogy');
+    if (!el) return;
+    var top = el.getBoundingClientRect().top;
+    // doskroluj jen kdyz sekce neni prakticky na miste (uzivatel mohl mezitim scrollovat)
+    if (Math.abs(top) > 120) { el.scrollIntoView({ block: 'start' }); }
+  }
+  window.addEventListener('load', function () {
+    fix();
+    window.setTimeout(fix, 250);
+  });
+})();
+
 (function () {
   'use strict';
 

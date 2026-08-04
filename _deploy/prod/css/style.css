@@ -1442,6 +1442,9 @@ body.nav-open .progress { opacity: 0; } /* nekreslit přes otevřené mobilní m
    PDF se v prohlizeci nerenderuje. Namespace .doccard / .fb.
    ============================================================ */
 
+/* odsazeni kotvy, aby sekce neskoncila pod lepici hlavickou */
+#katalogy { scroll-margin-top: 88px; }
+
 .docgrid { align-items: start; }
 
 .doccard {
