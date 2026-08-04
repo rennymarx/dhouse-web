@@ -89,6 +89,7 @@
 
   var ui = null, cur = null, spreads = [], idx = -1, isDouble = false;
   var lastFocus = null, pushed = false, inerted = [], prevOverflow = '';
+  var openedFromHash = false;   // prisel z odkazu #katalog=<slug> (e-mailova kampan)
 
   /* ---------------------------------------------------------- overlay */
 
@@ -355,7 +356,9 @@
     setInert(true);
     layout(b, startPage || 1);
     ui.close.focus();
-    if (!fromHash) {
+    if (fromHash) {
+      openedFromHash = true;
+    } else {
       try { history.pushState({ fb: b.id }, '', '#katalog=' + b.id); pushed = true; } catch (e) { /* nic */ }
     }
   }
@@ -369,6 +372,13 @@
     cur = null; spreads = []; idx = -1;
     setInert(false);
     document.body.style.overflow = prevOverflow;
+    // Kdyz prohlizec otevrel odkaz z kampane, stranka za nim zustala na zacatku
+    // galerie. Po zavreni cloveka posun k sekci katalogu, at nekouka na 35 kuchyni.
+    if (openedFromHash) {
+      openedFromHash = false;
+      var sec = document.getElementById('katalogy');
+      if (sec) { sec.scrollIntoView({ block: 'start' }); }
+    }
     if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
     if (pushed && !fromPop) {
       pushed = false;
