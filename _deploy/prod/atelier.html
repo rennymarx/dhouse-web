@@ -46,13 +46,14 @@
     </div>
 
     <div class="atelier-block">
-      <div class="atelier-block__map">
-        <iframe
-          src="https://mapy.com/en/zakladni?source=addr&id=9103756&x=14.4597550&y=50.0697802&z=17&frame=1"
-          title="Mapa atelieru dhouse · Náměstí Svatopluka Čecha 1350/5, Praha 10 — Vršovice"
-          allowfullscreen>
-        </iframe>
-      </div>
+      <!-- Staticky obrazek misto vlozene mapy: mapy.com pri nacteni bez cookies
+           presmeruje pres login.seznam.cz, ktery ma X-Frame-Options: DENY, takze
+           novy navstevnik videl rozbity ramecek. Obrazek generuje _tools/build-mapa.py. -->
+      <a class="atelier-block__map" href="https://mapy.com/cs/zakladni?source=addr&amp;id=9103756&amp;x=14.4597550&amp;y=50.0697802&amp;z=17"
+         target="_blank" rel="noopener" aria-label="Otevřít mapu atelieru dhouse na Mapy.com">
+        <img src="/assets/mapa-atelier.jpg" width="1280" height="960" loading="lazy" decoding="async"
+             alt="Mapa okolí atelieru dhouse — Náměstí Svatopluka Čecha 1350/5, Praha 10 — Vršovice" />
+      </a>
       <div class="atelier-block__info">
         <div class="contact-row">
           <span class="contact-row__label">Adresa</span>

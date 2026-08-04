@@ -89,6 +89,76 @@
   </div>
 </section>
 
+<!-- KATALOGY VYROBCE — listovaci prohlizec + PDF ke stazeni.
+     Obrazky stran generuje _tools/build-katalogy.py, prohlizec je js/flipbook.js. -->
+<section class="section section--pad section--panel" id="katalogy">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Katalogy SACHSENKÜCHEN</p>
+        <h2 class="h2 mt-sm">Prolistujte si manufakturu<span class="dot">.</span></h2>
+      </div>
+      <p class="section-head__lead">Originální katalogy výrobce — stránku po stránce přímo tady v prohlížeči, nebo celé v PDF ke stažení.</p>
+    </div>
+
+    <div class="grid grid--two docgrid reveal">
+
+      <article class="doccard"
+        data-flipbook="look-book-no-1"
+        data-fb-title="Look Book No. 1"
+        data-fb-pages="96"
+        data-fb-ratio="1.0"
+        data-fb-widths="800,1400"
+        data-fb-pattern="/assets/katalogy/look-book-no-1/strana-{n}-{w}.webp"
+        data-fb-pdf="/assets/katalogy/look-book-no-1/look-book-no-1.pdf">
+        <div class="doccard__cover">
+          <img src="/assets/katalogy/look-book-no-1/obalka.webp" width="900" height="900"
+               loading="lazy" decoding="async" alt="Obálka katalogu Look Book No. 1" />
+        </div>
+        <div class="doccard__body">
+          <p class="eyebrow eyebrow--muted">Hlavní katalog</p>
+          <h3 class="doccard__title">Look Book No. 1</h3>
+          <p class="doccard__meta">96 stran · německy a anglicky · 19,0 MB</p>
+          <p class="doccard__text">Materiály, povrchy a modelové řady v obrazovém katalogu — dýhy, laky, keramika, linoleum. Inspirace, ze které s klientkami vycházíme v atelieru; konkrétní řešení pak navrhujeme na míru.</p>
+          <div class="doccard__actions">
+            <button class="btn btn--sm doccard__open" type="button" data-fb-open>Listovat katalogem <span class="arrow">→</span></button>
+            <a class="btn btn--ghost btn--sm" href="/assets/katalogy/look-book-no-1/look-book-no-1.pdf" download>Stáhnout PDF</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="doccard"
+        data-flipbook="news-features-2026"
+        data-fb-title="News &amp; Features 2026"
+        data-fb-pages="72"
+        data-fb-ratio="0.75"
+        data-fb-widths="800,1400"
+        data-fb-pattern="/assets/katalogy/news-features-2026/strana-{n}-{w}.webp"
+        data-fb-pdf="/assets/katalogy/news-features-2026/news-features-2026.pdf">
+        <div class="doccard__cover">
+          <img src="/assets/katalogy/news-features-2026/obalka.webp" width="900" height="1200"
+               loading="lazy" decoding="async" alt="Obálka katalogu News &amp; Features 2026" />
+        </div>
+        <div class="doccard__body">
+          <p class="eyebrow eyebrow--muted">Novinky sezóny</p>
+          <h3 class="doccard__title">News &amp; Features 2026</h3>
+          <p class="doccard__meta">72 stran · anglicky · 14,6 MB</p>
+          <p class="doccard__text">Co je pro rok 2026 nové — dekory, fronty, kování a technická řešení. Přehled toho, co si u nás můžete objednat jako první.</p>
+          <div class="doccard__actions">
+            <button class="btn btn--sm doccard__open" type="button" data-fb-open>Listovat katalogem <span class="arrow">→</span></button>
+            <a class="btn btn--ghost btn--sm" href="/assets/katalogy/news-features-2026/news-features-2026.pdf" download>Stáhnout PDF</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="text-center mt-lg" style="font-size: 0.85rem; color: var(--ink-faint);">
+      Katalogy vydává SACHSENKÜCHEN GmbH. Zveřejněno jako autorizované zastoupení pro Českou republiku.
+    </p>
+  </div>
+</section>
+
 <section class="section section--pad section--deep" id="cta">
   <div class="wrap text-center">
     <p class="eyebrow">Líbí se vám některá kuchyně?</p>
@@ -132,6 +202,7 @@
 </footer>
 
 <script src="/js/main.js" defer></script>
+<script src="/js/flipbook.js" defer></script>
 <script defer>document.addEventListener('DOMContentLoaded',function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();});</script>
 </body>
 </html>

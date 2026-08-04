@@ -1,0 +1,34 @@
+{
+  "catalogs": [
+    {
+      "slug": "look-book-no-1",
+      "title": "Look Book No. 1",
+      "kicker": "Hlavni katalog",
+      "lang": "de",
+      "langLabel": "nemecky",
+      "pageCount": 96,
+      "pageRatio": 1.0,
+      "cover": "/assets/katalogy/look-book-no-1/obalka.webp",
+      "pdf": {
+        "url": "/assets/katalogy/look-book-no-1/look-book-no-1.pdf",
+        "bytes": 19892262,
+        "sizeLabel": "19,0 MB"
+      }
+    },
+    {
+      "slug": "news-features-2026",
+      "title": "News & Features 2026",
+      "kicker": "Novinky sezony",
+      "lang": "en",
+      "langLabel": "anglicky",
+      "pageCount": 72,
+      "pageRatio": 0.75,
+      "cover": "/assets/katalogy/news-features-2026/obalka.webp",
+      "pdf": {
+        "url": "/assets/katalogy/news-features-2026/news-features-2026.pdf",
+        "bytes": 15338224,
+        "sizeLabel": "14,6 MB"
+      }
+    }
+  ]
+}

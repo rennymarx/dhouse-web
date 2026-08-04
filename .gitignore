@@ -19,3 +19,6 @@ TEXTY-K-REVIZI.md
 # velké zdrojové fotky realizací (76 MB) — do gitu jde jen kopie v _deploy/site (kvůli Netlify),
 # pracovní složku necommitujeme dvakrát; na disku zůstává pro generátor a preview
 /assets/realizace/
+
+# stazena PDF katalogu (pracovni cache, do gitu nepatri)
+/_tools/_cache/

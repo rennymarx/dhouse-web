@@ -1,8 +1,8 @@
 # Netlify redirects — produkce dhouse.cz
 # Stare HubSpot asset URL (po prepnuti DNS zaniknou) -> homepage.
 # Dva konkretni katalogy maji blizsi cil nez pausalni homepage:
-/hubfs/2996399/SK_Journal_2023.pdf           /galerie  301
-/hubfs/2996399/SK_Produktfeatures_DE_EN.pdf  /kvalita  301
+/hubfs/2996399/SK_Journal_2023.pdf           /galerie#katalogy  301
+/hubfs/2996399/SK_Produktfeatures_DE_EN.pdf  /galerie#katalogy  301
 /hubfs/*    /    301
 /hs-fs/*    /    301
 
@@ -64,14 +64,14 @@
 /sachsenkuechen/*                      /kvalita  301
 /sachsenkuchen                         /kvalita  301
 /sachsenkuchen/*                       /kvalita  301
-/sachsenkuchen-produktfeatures-2023    /kvalita  301
-/sachsenkuchen-produktfeatures-2023/*  /kvalita  301
+/sachsenkuchen-produktfeatures-2023    /galerie#katalogy  301
+/sachsenkuchen-produktfeatures-2023/*  /galerie#katalogy  301
 /worktop                               /kvalita  301
 /worktop/*                             /kvalita  301
 /polyston                              /kvalita  301
 /polyston/*                            /kvalita  301
-/badjournal-2023                       /kvalita  301
-/badjournal-2023/*                     /kvalita  301
+/badjournal-2023                       /galerie#katalogy  301
+/badjournal-2023/*                     /galerie#katalogy  301
 
 # -- Vzorove/vyprodejove kuchyne a katalogy -> /galerie
 #    Stare stranky konkretnich modelu (RENA, ALINA, LARA...). Presnou
@@ -94,12 +94,12 @@
 /vyprodej-kuchyne-alina-fabia/*        /galerie  301
 /vyprodej-kuchyne-lara                 /galerie  301
 /vyprodej-kuchyne-lara/*               /galerie  301
-/sachsenkuchen-journal                 /galerie  301
-/sachsenkuchen-journal/*               /galerie  301
-/sachsenkuchen-journal-2023            /galerie  301
-/sachsenkuchen-journal-2023/*          /galerie  301
-/neuheiten-2023                        /galerie  301
-/neuheiten-2023/*                      /galerie  301
+/sachsenkuchen-journal                 /galerie#katalogy  301
+/sachsenkuchen-journal/*               /galerie#katalogy  301
+/sachsenkuchen-journal-2023            /galerie#katalogy  301
+/sachsenkuchen-journal-2023/*          /galerie#katalogy  301
+/neuheiten-2023                        /galerie#katalogy  301
+/neuheiten-2023/*                      /galerie#katalogy  301
 /360-2                                 /galerie  301
 /360-2/*                               /galerie  301
 /infini                                /galerie  301
@@ -156,10 +156,10 @@
 # Stara PDF obnovit nelze - Wayback ma jen crawlerem oriznute 1MB
 # fragmenty bez %%EOF; ChecklistCZ.pdf neni v archivu vubec.
 /wp-content/uploads/2020/04/ChecklistCZ.pdf                            /404.html  404
-/wp-content/uploads/2018/02/Sachsenkuechen-Journal-2018.pdf            /404.html  404
+/wp-content/uploads/2018/02/Sachsenkuechen-Journal-2018.pdf            /galerie#katalogy  301
 /wp-content/uploads/2018/02/Kueppersbusch_Katalog_2017_DE_26062017.pdf  /404.html  404
 /wp-content/uploads/2018/02/katalog_maly_2015_web.pdf                  /404.html  404
-/wp-content/uploads/2019/09/Sachsenkuechen-Journal-2019.pdf            /404.html  404
+/wp-content/uploads/2019/09/Sachsenkuechen-Journal-2019.pdf            /galerie#katalogy  301
 /wp-content/uploads/2019/09/SK-Inner-Values-2017-EN.pdf                /404.html  404
 /wp-content/uploads/2019/10/Katalog_kuppersbusch_2019.pdf              /404.html  404
 /wp-content/uploads/2019/10/TEKA_drezy_2019_1_a4_cz.pdf                /404.html  404
@@ -167,11 +167,11 @@
 # Katalogy z flipbook stranek (/badjournal-2023, /neuheiten-2023, /sachsenkuchen-journal*)
 # dostavaji stejny cil jako jejich HubSpot kopie pod /hubfs/ - jsou to nejcastejsi
 # odkazy v e-mailovych kampanich, 404 by tady byla primá ztrata kliku.
-/wp-content/uploads/2023/01/SK_Journal_2023.pdf                 /galerie  301
-/wp-content/uploads/2023/01/SK_Produktfeatures_DE_EN2023.pdf    /kvalita  301
-/wp-content/uploads/2023/01/Sachsenkuechen_Badjournal2023.pdf   /kvalita  301
-/wp-content/uploads/2023/01/Sachsenkuechen_Neuheiten_D2023.pdf  /galerie  301
-/wp-content/uploads/2022/11/SK_Journal_2022.pdf                 /galerie  301
+/wp-content/uploads/2023/01/SK_Journal_2023.pdf                 /galerie#katalogy  301
+/wp-content/uploads/2023/01/SK_Produktfeatures_DE_EN2023.pdf    /galerie#katalogy  301
+/wp-content/uploads/2023/01/Sachsenkuechen_Badjournal2023.pdf   /galerie#katalogy  301
+/wp-content/uploads/2023/01/Sachsenkuechen_Neuheiten_D2023.pdf  /galerie#katalogy  301
+/wp-content/uploads/2022/11/SK_Journal_2022.pdf                 /galerie#katalogy  301
 
 # Rocniky, ve kterych NEMAME zadny obnoveny soubor (archiv z nich nic nezachytil).
 # Musi byt PRED obecnym pravidlem nize, jinak by pozadavek na .pdf v techto

@@ -705,6 +705,11 @@ body.nav-scrolled .nav__cta { background: var(--green); border-color: var(--gree
   overflow: hidden;
 }
 .atelier-block__map iframe { width: 100%; height: 100%; border: 0; display: block; }
+/* mapa je dnes staticky obrazek v odkazu (viz atelier.html) */
+a.atelier-block__map { display: block; position: relative; }
+.atelier-block__map img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease); }
+a.atelier-block__map:hover img { transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .atelier-block__map img { transition: none; } }
 .atelier-block__info {
   display: flex; flex-direction: column; gap: 24px;
   padding: clamp(20px, 3vw, 32px);
@@ -1429,4 +1434,173 @@ body.nav-open .progress { opacity: 0; } /* nekreslit přes otevřené mobilní m
 }
 @media (prefers-reduced-motion: reduce) {
   .cookie { transition: none; }
+}
+
+/* ============================================================
+   17) KATALOGY VYROBCE — karta + listovaci prohlizec (flipbook)
+   Obrazky stran jsou predrenderovane (viz _tools/build-katalogy.py),
+   PDF se v prohlizeci nerenderuje. Namespace .doccard / .fb.
+   ============================================================ */
+
+.docgrid { align-items: start; }
+
+.doccard {
+  display: grid;
+  grid-template-columns: clamp(110px, 26%, 190px) 1fr;
+  gap: clamp(18px, 2.4vw, 32px);
+  align-items: start;
+  padding: clamp(18px, 2vw, 28px);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  transition: border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.doccard:hover,
+.doccard:focus-within {
+  border-color: var(--ink);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+}
+.doccard__cover {
+  overflow: hidden;
+  background: var(--panel);
+  box-shadow: var(--shadow-soft);
+}
+.doccard__cover img {
+  width: 100%; height: auto; display: block;
+  transition: transform .5s var(--ease);
+}
+.doccard:hover .doccard__cover img { transform: scale(1.04); }
+.fb-ready .doccard__cover { cursor: pointer; }
+
+.doccard__body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.doccard__title {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.2; color: var(--ink);
+}
+.doccard__meta {
+  margin: 0; font-family: var(--font-mono); font-weight: 500; font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint);
+}
+.doccard__text { margin: 0; font-size: 0.95rem; color: var(--ink-muted); max-width: 46ch; }
+.doccard__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+/* JS-only ovladani: bez modulu zustane jen odkaz na PDF */
+.doccard__open { display: none; }
+.fb-ready .doccard__open { display: inline-flex; }
+
+@media (max-width: 520px) {
+  .doccard { grid-template-columns: 1fr; }
+  .doccard__cover { max-width: 220px; }
+}
+
+/* ---------- prohlizec ---------- */
+
+.fb {
+  position: fixed; inset: 0;
+  z-index: 110; /* nad lightboxem (100) a cookie listou (90), pod kurzorem (300) */
+  display: none; flex-direction: column;
+  background: #14100c;   /* plne kryci - katalog se cte, prosvitajici text rusi */
+  color: var(--bg);
+  overscroll-behavior: contain;
+}
+.fb.is-open { display: flex; }
+/* mosazny focus ring je na temer cerne necitelny -> zeleny */
+.fb :focus-visible { outline: 2px solid var(--green-soft); outline-offset: 3px; }
+
+.fb__bar {
+  display: flex; align-items: center; gap: 16px; flex: none;
+  padding: 14px clamp(14px, 3vw, 32px);
+  border-bottom: 1px solid rgba(245, 243, 238, 0.14);
+}
+.fb__title {
+  flex: 1; min-width: 0; margin: 0;
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.fb__tools { display: flex; gap: 8px; flex: none; }
+
+/* vlastni trida, ne .btn — main.js navesuje magneticky efekt na .btn
+   jednorazove pri nacteni a tato tlacitka vznikaji az pozdeji */
+.fb__btn {
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  font-family: var(--font-mono); font-weight: 500; font-size: 11px; line-height: 1;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--bg); background: rgba(20, 16, 12, 0.4);
+  border: 1px solid rgba(245, 243, 238, 0.3);
+  padding: 11px 14px; cursor: pointer;
+  transition: background .2s var(--ease), border-color .2s var(--ease);
+}
+.fb__btn:hover { background: var(--green); border-color: var(--green); }
+
+.fb__stage { position: relative; flex: 1; min-height: 0; }
+.fb__track {
+  height: 100%; display: flex;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pinch-zoom;   /* swipe listuje, pinch zoomuje */
+  scrollbar-width: none;
+}
+.fb__track::-webkit-scrollbar { display: none; }
+
+.fb__page {
+  flex: 0 0 100%; height: 100%;
+  scroll-snap-align: center; scroll-snap-stop: always;
+  padding: clamp(10px, 2vw, 28px);
+  box-sizing: border-box;
+}
+/* Sizing: box vyplni stranu, skutecny obrazek uvnitr letterboxuje object-fit.
+   POZOR na dva slepe konce, kterymi to proslo:
+   1) .fb__page jako grid s auto radkem -> procentni vyska nemela definitni
+      referenci, spadla na auto a ctvercovy Look Book se nafoukl a orezal;
+   2) position:absolute + inset -> u nahrazenych elementu (img) s auto rozmery
+      inset box neroztahne, pouzije se prirozena velikost.
+   Blokovy .fb__page s definitni vyskou + width/height 100% funguje pro
+   libovolny pomer stran (Look Book 1:1 i News & Features 3:4). */
+.fb__img {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  -webkit-user-drag: none; user-select: none;
+}
+
+.fb__nav {
+  position: absolute; top: 0; bottom: 0; width: clamp(52px, 9vw, 120px);
+  display: grid; place-items: center;
+  color: var(--bg); font-size: 2rem; line-height: 1; cursor: pointer;
+  opacity: 0.55; transition: opacity .25s var(--ease);
+}
+.fb__nav:hover, .fb__nav:focus-visible { opacity: 1; }
+.fb__nav[disabled] { opacity: 0; pointer-events: none; }
+.fb__nav--prev { left: 0; background: linear-gradient(to right, rgba(20,16,12,0.55), transparent); }
+.fb__nav--next { right: 0; background: linear-gradient(to left, rgba(20,16,12,0.55), transparent); }
+
+.fb__foot {
+  display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); flex: none;
+  padding: 12px clamp(14px, 3vw, 32px);
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid rgba(245, 243, 238, 0.14);
+}
+.fb__counter {
+  flex: none; white-space: nowrap;
+  font-family: var(--font-mono); font-weight: 500; font-size: 11px;
+  letter-spacing: 0.2em; color: rgba(245, 243, 238, 0.7);
+}
+.fb__counter b { color: var(--bg); font-weight: 600; }
+.fb__counter i { font-style: normal; }
+.fb__scrub {
+  flex: 1; min-width: 0; height: 24px; background: transparent;
+  accent-color: var(--green-soft); cursor: pointer;
+}
+
+/* telefon na sirku — hlavicka at nekrade vysku */
+@media (max-height: 520px) {
+  .fb__bar, .fb__foot { padding-top: 8px; padding-bottom: 8px; }
+  .fb__title { display: none; }
+}
+
+/* listovani je funkcni pohyb (ne brand animace) -> reduced-motion respektujeme */
+@media (prefers-reduced-motion: reduce) {
+  .fb__img, .doccard, .doccard__cover img, .fb__btn, .fb__nav { transition: none; }
 }
