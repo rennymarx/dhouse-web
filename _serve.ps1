@@ -36,6 +36,7 @@ $mime = @{
 $redirects = @{
     '/galerie' = '/galerie.html'
     '/kvalita' = '/kvalita.html'
+    '/reference' = '/reference.html'
     '/atelier' = '/atelier.html'
     '/kontakt' = '/kontakt.html'
     '/dekujeme' = '/dekujeme.html'
