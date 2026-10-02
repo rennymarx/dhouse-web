@@ -15,7 +15,7 @@ if (Test-Path $out) { Remove-Item -Recurse -Force $out }
 New-Item -ItemType Directory -Force $out | Out-Null
 
 # kopie webu do rootu (cesty jsou uz root-relativni, zadny prepis netreba)
-$items = @('index.html','galerie.html','kvalita.html','atelier.html','kontakt.html',
+$items = @('index.html','galerie.html','kvalita.html','reference.html','atelier.html','kontakt.html',
            'dekujeme.html','impressum.html','obchodni-podminky.html','ochrana-osobnich-udaju.html',
            '404.html','sitemap.xml','css','js','blog','assets','galerie','wp-content')
 foreach ($i in $items) {

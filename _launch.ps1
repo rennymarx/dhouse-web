@@ -10,7 +10,7 @@ if (Test-Path $prod) { Remove-Item -Recurse -Force $prod }
 New-Item -ItemType Directory -Force $prod | Out-Null
 
 $utf8 = New-Object System.Text.UTF8Encoding $false
-$items = @('index.html','galerie.html','kvalita.html','atelier.html','kontakt.html',
+$items = @('index.html','galerie.html','kvalita.html','reference.html','atelier.html','kontakt.html',
            'dekujeme.html','impressum.html','obchodni-podminky.html','ochrana-osobnich-udaju.html',
            '404.html','sitemap.xml','css','js','blog','assets','galerie','wp-content')
 foreach ($i in $items) {
