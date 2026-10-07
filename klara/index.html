@@ -409,9 +409,9 @@ const MODULES = {
 };
 
 /* ===== NASAZENÍ (dhouse.cz/klara) ===== */
-// Make webhook „Klára výsledek“ – adresu doplní Robert. Dokud je prázdná, odeslání se přeskočí a jen se přesměruje.
+// Make webhook „Klára výsledek testu (dhouse.cz/klara)“ → scénář „Klára — výsledek testu → DataStore“. Prázdná adresa = odeslání se přeskočí.
 // Pozor: doména webhooku musí být povolená v CSP connect-src (_deploy/prod/_headers) – hook.eu1.make.com už je.
-const KLARA_WEBHOOK_URL = '';
+const KLARA_WEBHOOK_URL = 'https://hook.eu1.make.com/pqr3zr4rh610pmrnjiekytszitqd1kg5';
 const HANDOFF_BASE = 'https://online.dhouse.cz/klara/dotaznik';
 const PAGE_PARAMS = new URLSearchParams(location.search);
 const DEBUG = PAGE_PARAMS.get('debug') === '1';
@@ -649,8 +649,8 @@ function bindScreen(q) {
     sendResult({
       id: state.id, kod: r.code,
       osa1: r.result[1], osa2: r.result[2], osa3: r.result[3], osa4: r.result[4],
-      veta: (state.answers.q10 || '').trim(), bolest: pain ? pain.t : '',
-      signaly: r.signals, email: state.email, odpovedi: state.answers
+      veta: state.answers.q10 || '', bolest: pain ? pain.t : '',
+      signaly: r.signals.join('; '), email: state.email || '', odpovedi: JSON.stringify(state.answers)
     }).then(() => { location.href = hb.dataset.href; });
   });
 }
