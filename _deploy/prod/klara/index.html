@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">   <!-- po dobu testu -->
+  <style>html{color-scheme:dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Klára – test kuchyně</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap">
+<!-- Meta Pixel (dhouse) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '818976925290103');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=818976925290103&ev=PageView&noscript=1"></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+<style>
+/* Layout: one-column stepper (max 640px) on a warm dark ground; image-led question cards, option rows as tall tappable buttons, sticky bottom action bar. Single committed dark look (brand LP is dark). */
+:root {
+  color-scheme: dark;
+  --bg: #15130f;
+  --surface: #1e1b16;
+  --surface-2: #28241d;
+  --line: #3b352c;
+  --fg: #f3ede4;
+  --muted: #a99f91;
+  --accent: #e8893a;
+  --accent-ink: #1a120a;
+  --font-display: "Fraunces", "Georgia", "Times New Roman", serif;
+  --font-body: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  --radius: 14px;
+  --col: 640px;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+#app { min-height: 100%; display: flex; flex-direction: column; }
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.top-inner {
+  max-width: var(--col); margin: 0 auto; padding: 12px 16px 10px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.brand { font-weight: 700; letter-spacing: 0.02em; font-size: 15px; }
+.brand span { color: var(--accent); }
+.step { font-size: 13px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.progress { height: 3px; background: var(--line); }
+.progress i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .35s ease; }
+main { flex: 1; width: 100%; max-width: var(--col); margin: 0 auto; padding-block: 24px 120px; padding-inline: 16px; }
+.eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 10px; }
+h1, h2, .q { font-family: var(--font-display); font-weight: 500; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(34px, 7vw, 46px); line-height: 1.08; letter-spacing: -0.01em; }
+h2 { font-size: clamp(26px, 5.4vw, 34px); line-height: 1.15; }
+.q { font-size: clamp(22px, 4.8vw, 28px); line-height: 1.22; margin-top: 14px; }
+p { margin: 0; }
+.lead { color: var(--fg); max-width: 60ch; }
+.muted { color: var(--muted); }
+.stack { display: flex; flex-direction: column; gap: 14px; }
+.stack-lg { display: flex; flex-direction: column; gap: 22px; }
+.hint { font-size: 14px; color: var(--muted); letter-spacing: 0.04em; }
+figure { margin: 0; }
+.photo { width: 100%; max-width: 100%; border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+.photo img { display: block; width: 100%; height: auto; }
+.photo.wide { aspect-ratio: 6 / 5; }
+.photo.tall { aspect-ratio: 4 / 5; max-height: 62vh; }
+.photo.tall img, .photo.wide img { width: 100%; height: 100%; object-fit: cover; }
+.options { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.opt {
+  display: flex; align-items: center; gap: 14px; width: 100%; text-align: left;
+  background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 15px 16px; font: inherit; line-height: 1.35; cursor: pointer;
+  transition: border-color .15s, background .15s, transform .08s;
+}
+.opt:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+.opt:active { transform: scale(.995); }
+.opt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.opt .box { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--muted); display: grid; place-items: center; }
+.opt.multi .box { border-radius: 6px; }
+.opt .box i { width: 10px; height: 10px; border-radius: 50%; background: transparent; }
+.opt.multi .box i { border-radius: 2px; }
+.opt[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+.opt[aria-pressed="true"] .box { border-color: var(--accent); }
+.opt[aria-pressed="true"] .box i { background: var(--accent); }
+.opt[disabled] { opacity: .45; cursor: not-allowed; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pick { position: relative; border: 2px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); padding: 0; cursor: pointer; font: inherit; color: var(--fg); text-align: left; }
+.pick img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+.pick .cap { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; font-size: 14px; font-weight: 600; }
+.pick .cap b { color: var(--accent); font-weight: 700; }
+.pick .cap .box { width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--muted); display: grid; place-items: center; }
+.pick .cap .box i { width: 10px; height: 10px; border-radius: 2px; }
+.pick[aria-pressed="true"] { border-color: var(--accent); }
+.pick[aria-pressed="true"] .cap .box { border-color: var(--accent); }
+.pick[aria-pressed="true"] .cap .box i { background: var(--accent); }
+.pick[disabled] { opacity: .45; cursor: not-allowed; }
+.pick:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.thumbs { display: flex; gap: 10px; }
+.thumbs img { width: 92px; height: 92px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); }
+.strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.strip img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 8px; display: block; }
+textarea {
+  width: 100%; min-height: 128px; resize: vertical; font: inherit; color: var(--fg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px;
+}
+input[type="email"] {
+  width: 100%; font: inherit; color: var(--fg); background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 14px 16px;
+}
+textarea:focus, input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.examples { font-size: 14px; color: var(--muted); font-style: italic; border-left: 2px solid var(--line); padding-left: 12px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 999px;
+  padding: 15px 26px; font: inherit; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 14px;
+  cursor: pointer; transition: filter .15s, transform .08s;
+}
+.btn:hover { filter: brightness(1.06); }
+.btn:active { transform: scale(.98); }
+.btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.btn[disabled] { opacity: .4; cursor: not-allowed; }
+.btn.block { width: 100%; }
+.link { background: none; border: 0; color: var(--muted); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 6px 0; }
+.link:hover { color: var(--fg); }
+.link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
+  background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(8px);
+  border-top: 1px solid var(--line);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+}
+.bar-inner { max-width: var(--col); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: var(--muted); }
+.meta span::before { content: "·"; margin-right: 10px; color: var(--line); }
+.meta span:first-child::before { content: none; margin: 0; }
+.note { font-size: 13px; color: var(--muted); border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; }
+.note b { color: var(--accent); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: 11px; }
+blockquote { margin: 0; padding: 18px 20px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 var(--radius) var(--radius) 0; }
+blockquote .small { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+blockquote .quote { font-family: var(--font-display); font-size: clamp(20px, 4.4vw, 26px); line-height: 1.3; }
+.module { padding: 22px 0 26px; border-top: 1px solid var(--line); }
+.module .axis { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.module .axis b { color: var(--accent); font-weight: 600; }
+.module h2 { margin-bottom: 12px; }
+.module p + p { margin-top: 10px; }
+.module .body { max-width: 62ch; }
+.cta { margin-top: 10px; padding: 26px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); display: flex; flex-direction: column; gap: 14px; }
+.panel { border: 1px solid var(--accent); border-radius: var(--radius); padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 12px; background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
+.panel h3 { margin: 0; font-family: var(--font-body); font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; font-size: 14px; }
+.kv dt { color: var(--muted); font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 13px; }
+.kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 13px; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; overflow-wrap: anywhere; }
+details { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; }
+summary { cursor: pointer; font-weight: 600; color: var(--muted); }
+details[open] summary { margin-bottom: 10px; color: var(--fg); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.tag { display: inline-block; padding: 2px 9px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); font-size: 13px; margin: 2px 4px 2px 0; }
+.fade { animation: fade .28s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .fade { animation: none; } .progress i { transition: none; } }
+@media (max-width: 420px) { .thumbs img { width: 76px; height: 76px; } .opt { padding: 13px 14px; font-size: 16px; } }
+</style>
+
+<div id="app">
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">atelier <span>dhouse</span></div>
+      <div class="step" id="stepLabel">Vizuální test</div>
+    </div>
+    <div class="progress"><i id="progressBar"></i></div>
+  </header>
+  <main id="screen" aria-live="polite"></main>
+  <footer class="bar" id="bar" hidden>
+    <div class="bar-inner">
+      <button class="link" id="backBtn" type="button">← Zpět</button>
+      <button class="btn" id="nextBtn" type="button">Pokračovat</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ===== SCORING (začátek) ===== */
+const AXES = {
+  1: { name: 'Vizuální klid ↔ zabydlenost', A: -3, C: 3 },
+  2: { name: 'Atmosféra ↔ samotná kuchyň', A: -3, C: 3 },
+  3: { name: 'Funkce ↔ estetický zážitek', A: -3, C: 3 },
+  4: { name: 'Praktická investice ↔ výrazný detail', A: -3, C: 2 }
+};
+const QUESTIONS = [
+  { id: 'q1', type: 'single', image: 'img/cotswolds.jpg', imgShape: 'wide', alt: 'Zelená venkovská kuchyň s mosaznými úchytkami, otevřenými dveřmi do zahrady a psem u prahu',
+    title: 'Podívejte se na tenhle interiér.', question: 'Co vás na něm přitáhlo jako první?',
+    options: [
+      { k: 'barvy', t: 'Barvy a samotná kuchyň', s: { 2: 2 } },
+      { k: 'materialy', t: 'Materiály – dřevo, kámen, kov', s: { 2: 1, 3: 1 } },
+      { k: 'svetlo', t: 'Světlo a výhled ven', s: { 2: -2 } },
+      { k: 'klid', t: 'Klid a pocit, že se tu nikam nespěchá', s: { 1: -1, 2: -2 } },
+      { k: 'zabydlene', t: 'To, že působí zabydleně a skutečně', s: { 1: 1, 2: -1 } },
+      { k: 'cely_obraz', t: 'Nevím. Prostě se mi líbí celý obraz.', s: { 2: -2 } }
+    ] },
+  { id: 'q2', type: 'single', title: 'Teď si něco představte.',
+    lead: 'Z té stejné fotografie zmizí zahrada. Pes. Květiny. Krásné nádobí. Sluneční světlo. Zůstane jen kuchyň.',
+    question: 'Chtěla byste ji pořád?',
+    options: [
+      { k: 'ano', t: 'Ano. Právě tu kuchyň bych chtěla.', s: { 2: 3 } },
+      { k: 'asi_ano', t: 'Asi ano, ale už mě přitahuje výrazně méně.', s: { 2: 1 } },
+      { k: 'nejsem_si_jista', t: 'Nejsem si jistá.', s: { 2: -1 } },
+      { k: 'ne', t: 'Ne. Teď vidím, že mě přitahovalo hlavně všechno kolem ní.', s: { 2: -3 }, signal: 'kopíruje atmosféru' }
+    ] },
+  { id: 'q3', type: 'single', image: 'img/byt.jpg', imgShape: 'tall', alt: 'Světlá kuchyň v novém bytě s ostrůvkem, barovými židlemi a oknem do města',
+    title: 'A teď obyčejné úterní ráno.',
+    lead: 'Žádná fotografie. Na lince stojí kávovar. Někdo tam nechal hrnek. Přinesete nákup. Potřebujete rychle udělat snídani.',
+    question: 'Ve které kuchyni by vám bylo příjemněji?',
+    options: [
+      { k: 'schovane', t: 'Chci mít většinu věcí schovanou. Prázdná plocha mě uklidňuje.', s: { 1: -4 } },
+      { k: 'rad', t: 'Několik každodenních věcí může zůstat venku, ale potřebuju řád.', s: {} },
+      { k: 'po_ruce', t: 'Mám ráda věci po ruce. Kuchyň má vypadat, že se v ní žije.', s: { 1: 4 } },
+      { k: 'jedno_funguje', t: 'Je mi to jedno, pokud všechno dobře funguje.', s: { 1: 1, 3: -2 } }
+    ] },
+  { id: 'q4', type: 'multi', max: 2, image: 'img/dubai.jpg', imgShape: 'tall', alt: 'Minimalistická kuchyň s mramorovým ostrovem a výhledem na mrakodrapy',
+    title: 'Kdyby nikdo nikdy neviděl, kolik vaše kuchyň stála…', question: 'Za kterou z těchto věcí byste si stejně ráda připlatila?', hint: 'Vyberte maximálně dvě.',
+    options: [
+      { k: 'deska', t: 'Materiál pracovní desky, který miluju na pohled i na dotek', s: { 3: 1, 4: 1 } },
+      { k: 'zasuvky', t: 'Perfektní zásuvky, kování a vnitřní vybavení', s: { 3: -1, 4: -2 } },
+      { k: 'spotrebic', t: 'Spotřebič, který používám skoro každý den', s: { 3: -1, 4: -2 } },
+      { k: 'dvirka', t: 'Ručně lakované nebo jinak výjimečné provedení dvířek', s: { 3: 1, 4: 2 } },
+      { k: 'osvetleni', t: 'Opravdu dobré osvětlení', s: { 4: -1 } },
+      { k: 'plocha', t: 'Velký pracovní prostor', s: { 3: -1, 4: -2 } },
+      { k: 'vyrazny', t: 'Výrazný prvek, který mě pokaždé potěší, když vejdu dovnitř', s: { 3: 1, 4: 3 } },
+      { k: 'nic', t: 'Nic z toho. Raději bych peníze použila jinde.', s: { 3: -1, 4: -1 } }
+    ] },
+  { id: 'q5', type: 'multi', max: 2, title: 'Naopak: co byste klidně oželela?', hint: 'Vyberte maximálně dvě.',
+    options: [
+      { k: 'ostrov', t: 'Velký kuchyňský ostrov', s: {} },
+      { k: 'luxusni_znacka', t: 'Luxusní značku spotřebičů', s: {} },
+      { k: 'kamen', t: 'Přírodní kámen', s: { 3: -1, 4: -1 } },
+      { k: 'police', t: 'Otevřené police a dekorace', s: { 1: -2 } },
+      { k: 'vinoteka', t: 'Vestavěnou vinotéku', s: { 4: -1 } },
+      { k: 'trendy', t: 'Nejnovější trendy detail', s: { 2: 1 } },
+      { k: 'sjednoceny', t: 'Dokonale sjednocený vzhled za každou cenu', s: { 1: 2, 3: -1 } },
+      { k: 'nevim', t: 'Nevím. Tohle je přesně to, v čem potřebuju mít jasno.', s: {}, signal: 'potřebuje pomoct s prioritami' }
+    ] },
+  { id: 'q6a', type: 'pick2', title: 'Podívejte se na čtyři úplně rozdílné kuchyně.',
+    question: 'Vyberte dvě, ve kterých byste chtěla strávit zítřejší ráno.', hint: 'Ne ty nejkrásnější. Ty, ve kterých byste chtěla být.',
+    options: [
+      { k: 'A', t: 'New England', image: 'img/new-england.jpg', s: { 1: 1 } },
+      { k: 'B', t: 'Cotswolds', image: 'img/cotswolds.jpg', s: { 1: 1 } },
+      { k: 'C', t: 'Dubai / moderna', image: 'img/dubai.jpg', s: { 1: -1 } },
+      { k: 'D', t: 'Dům u moře', image: 'img/u-more.jpg', s: { 1: -1 } }
+    ] },
+  { id: 'q6b', type: 'single', showPicks: true, title: 'A co mají vaše dvě volby společného?',
+    options: [
+      { k: 'svetlo', t: 'Hodně světla', s: { 2: -2 } },
+      { k: 'materialy', t: 'Teplé přírodní materiály', s: { 2: 2, 3: 1 } },
+      { k: 'klid_malo', t: 'Klid a málo věcí', s: { 1: -2 } },
+      { k: 'tradice', t: 'Pocit tradice a domova', s: { 1: 1, 2: -2 } },
+      { k: 'luxus', t: 'Výrazný, luxusní dojem', s: { 2: 1, 3: 2, 4: 1 } },
+      { k: 'prostor', t: 'Velký prostor', s: { 2: -2 } },
+      { k: 'barvy', t: 'Barvy', s: { 2: 2 } },
+      { k: 'nedokazu', t: 'Nedokážu říct.', s: { 2: -1 } }
+    ] },
+  { id: 'q7', type: 'single', title: 'Která z těchto vět je vám nejbližší?',
+    options: [
+      { k: '15let', t: 'Chci kuchyň, která mě nebude štvát ani za patnáct let.', s: { 3: -1 } },
+      { k: 'presne_tuhle', t: 'Chci kuchyň, do které vejdu a pokaždé si řeknu „ano, přesně tuhle jsem chtěla“.', s: { 3: 3, 4: 1 } },
+      { k: 'fungovalo', t: 'Nejdůležitější je, aby všechno fungovalo přesně podle mě.', s: { 3: -3 } },
+      { k: 'krasna_i_prakticka', t: 'Chci, aby byla krásná i praktická. Odmítám si mezi tím vybírat.', s: {} },
+      { k: 'nevim_poznam', t: 'Vlastně pořád nevím, co chci. Jen poznám, když to vidím.', s: { 2: -1, 3: 1 }, signal: 'rozhoduje se očima' }
+    ] },
+  { id: 'q8', type: 'single', title: 'Představte si, že je pět let po rekonstrukci.', question: 'Která chyba by vás štvala nejvíc?',
+    options: [
+      { k: 'zaplatila', t: 'Zaplatila jsem hodně za něco, čeho si dnes skoro nevšímám.', s: { 4: -2 } },
+      { k: 'usetrila', t: 'Ušetřila jsem na věci, kterou používám každý den.', s: { 3: -1, 4: -2 } },
+      { k: 'spatne_funguje', t: 'Kuchyň je krásná, ale špatně se mi v ní funguje.', s: { 3: -2 } },
+      { k: 'modni', t: 'Vybrala jsem něco módního a už se mi to nelíbí.', s: { 2: 1, 3: 1 } },
+      { k: 'opatrna', t: 'Byla jsem příliš opatrná a kuchyň je sice správná, ale vůbec mě netěší.', s: { 3: 3, 4: 2 }, signal: 'bojí se nudné kuchyně' }
+    ] },
+  { id: 'q9', type: 'single', title: 'Co vás v dnešní kuchyni štve nejvíc?', isPain: true,
+    options: [
+      { k: 'plocha', t: 'Nedostatek pracovní plochy', s: { 3: -1 } },
+      { k: 'ulozne', t: 'Málo nebo špatně řešených úložných prostor', s: { 1: -1, 3: -1 } },
+      { k: 'misto', t: 'Věci nemají svoje místo', s: { 1: -1, 3: -1 } },
+      { k: 'svetlo', t: 'Špatné světlo', s: {} },
+      { k: 'materialy', t: 'Materiály a povrchy', s: { 3: 2 } },
+      { k: 'vzhled', t: 'Vzhled', s: { 3: 3 } },
+      { k: 'dispozice', t: 'Dispozice a pohyb po kuchyni', s: { 3: -2 } },
+      { k: 'nic_sveho', t: 'Nic zásadního. Prostě už chci něco svého.', s: { 3: 1, 4: 1 } }
+    ] },
+  { id: 'q10', type: 'text', title: 'Poslední otázka.',
+    question: 'Kdybyste si v nové kuchyni mohla splnit jednu jedinou věc, co by to bylo?',
+    lead: 'Napište to vlastními slovy. Nemusí to být materiál ani konkrétní výrobek.',
+    examples: 'Příklady: „Chci konečně velkou pracovní plochu.“ / „Chci ráno vejít do kuchyně a mít tam klid.“ / „Chci ten tmavě zelený lak, po kterém koukám deset let.“ / „Chci, aby nebylo nic vidět.“ / „Chci mít všechno po ruce.“ / „Chci kuchyň, která nebude působit jako kuchyňské studio.“' }
+];
+
+function scoreAnswers(answers) {
+  const scores = { 1: 0, 2: 0, 3: 0, 4: 0 };
+  const signals = [];
+  for (const q of QUESTIONS) {
+    if (!q.options) continue;
+    const picked = [].concat(answers[q.id] || []);
+    for (const k of picked) {
+      const opt = q.options.find(o => o.k === k);
+      if (!opt) continue;
+      for (const ax in opt.s) scores[ax] += opt.s[ax];
+      if (opt.signal) signals.push(opt.signal);
+    }
+  }
+  const result = {};
+  for (const ax of [1, 2, 3, 4]) {
+    const t = AXES[ax];
+    result[ax] = scores[ax] <= t.A ? 'A' : (scores[ax] >= t.C ? 'C' : 'B');
+  }
+  return { scores, result, signals, code: [1, 2, 3, 4].map(ax => ax + result[ax]).join('') };
+}
+/* ===== SCORING (konec) ===== */
+
+const MODULES = {
+  '1A': { axis: 1, title: 'Potřebujete vizuální klid', paras: [
+    'Ve vašich odpovědích se opakuje potřeba klidu, čistých ploch a prostoru, ve kterém oči nemusí pořád něco zpracovávat.',
+    'To ale neznamená, že potřebujete studenou minimalistickou kuchyň.',
+    'Můžete milovat dřevo, barvy i tradiční prvky — pokud celek působí uspořádaně a nic vás vizuálně neruší.',
+    'Pro vás bude pravděpodobně důležitější než konkrétní styl dobře promyšlené ukládání, dostatek uzavřených skříněk a pracovní plocha, která nemusí být neustále plná věcí.',
+    'Tady bychom nepodceňovali úložné prostory a celkovou kompozici.' ] },
+  '1B': { axis: 1, title: 'Potřebujete rovnováhu', paras: [
+    'Máte ráda pořádek, ale nechcete žít v kuchyni, která působí jako showroom.',
+    'Některé věci chcete schovat. Jiné chcete mít po ruce.',
+    'Prázdná pracovní deska vás může těšit, ale stejně důležitý je pro vás pocit, že se v prostoru opravdu žije.',
+    'U vás nebude klíčové všechno ukrýt ani všechno vystavit. Důležitější bude rozhodnout, co smí zůstat vidět a co potřebuje svoje místo.',
+    'Právě tahle rovnováha často odděluje kuchyň, která vypadá dobře na fotografii, od kuchyně, ve které se dobře žije.' ] },
+  '1C': { axis: 1, title: 'Chcete kuchyň, ve které je vidět život', paras: [
+    'Dokonale prázdná kuchyň vás možná zaujme na fotografii, ale doma potřebujete něco jiného.',
+    'Máte ráda prostor, ve kterém mohou být některé věci vidět, kde je po ruce hrnek, mísa, koření nebo prkénko a kde nemusíte každou stopu života okamžitě uklidit.',
+    'To není nepořádek. Je to způsob, jakým prostor používáte.',
+    'Pro vás může být důležitější snadný přístup a přirozenost než absolutně čistá pracovní plocha.',
+    'Pozor proto na návrh, který bude krásný jen tehdy, když v něm nebude nic.' ] },
+  '2A': { axis: 2, title: 'Silně reagujete na atmosféru', paras: [
+    'Na interiérech vás nepřitahují jen skříňky, pracovní desky nebo barvy.',
+    'Velkou roli u vás hraje světlo, okolní prostor, materiály domu, výhled, textilie, květiny nebo celkový pocit, který fotografie vytváří.',
+    'To je důležitá informace. Neznamená to, že nevíte, co chcete. Jen je potřeba vždy oddělit: Co z té fotografie si můžu přenést do své kuchyně — a co patří domu, světlu nebo životu kolem ní?',
+    'Právě u vás má smysl být opatrná s kopírováním konkrétních interiérů.',
+    'Často totiž nehledáte stejnou kuchyň. Hledáte stejný pocit.' ] },
+  '2B': { axis: 2, title: 'Atmosféra i samotný design jsou pro vás důležité', paras: [
+    'Dokážete se nechat strhnout celým obrazem, ale zároveň si všímáte i samotné kuchyně.',
+    'Barvy, materiály a proporce pro vás nejsou jen kulisou. Současně ale vnímáte, jak prostor působí jako celek.',
+    'To je výhoda — pokud si při výběru dokážete položit dvě oddělené otázky: Líbí se mi opravdu tahle kuchyň? Nebo se mi líbí hlavně způsob, jakým je celý prostor nafocený a zařízený?',
+    'U vás pravděpodobně nebude problém nedostatek vkusu. Spíš příliš mnoho dobrých možností.' ] },
+  '2C': { axis: 2, title: 'Víte poměrně přesně, co se vám líbí', paras: [
+    'Na krásném interiéru si umíte všimnout samotné kuchyně a oddělit ji od okolního příběhu.',
+    'Pokud se vám líbí určitý materiál, barva, tvar nebo detail, pravděpodobně vás přitahuje sám o sobě — ne jen proto, že je zasazený do nádherného domu.',
+    'To je dobrá zpráva. Vaším rizikem nebude tolik převzít cizí představu o krásném životě. Spíš můžete být příliš rychle rozhodnutá, protože už „víte, co chcete“.',
+    'I u jasného vkusu proto stojí za to ještě ověřit, jestli to, co milujete na pohled, opravdu funguje v každodenním životě.' ] },
+  '3A': { axis: 3, title: 'Funkce je pro vás základ', paras: [
+    'Krásná kuchyň vám nestačí.',
+    'Potřebujete, aby věci byly tam, kde je očekáváte, aby se dobře otevíraly, abyste měla dost pracovní plochy a aby vám prostor každý den nepřidával zbytečné kroky a drobné nepohodlí.',
+    'To neznamená, že vám nezáleží na vzhledu. Jen nechcete za krásu platit každodenním podrážděním.',
+    'U vás má smysl věnovat velkou pozornost dispozici, výškám, úložným prostorům, vnitřnímu vybavení a detailům, které na fotografii skoro nejsou vidět. Právě ty totiž budete používat nejčastěji.' ] },
+  '3B': { axis: 3, title: 'Nechcete si vybírat mezi krásou a funkcí', paras: [
+    'U vás jsou praktická stránka a estetika téměř stejně důležité.',
+    'Nestačí vám kuchyň, která perfektně funguje, ale nic ve vás nevyvolává. Stejně tak nechcete krásný objekt, který vás při každodenním používání začne štvát.',
+    'To je možná nejnáročnější kombinace — ale také velmi zdravá.',
+    'U vás bude důležité nedělat kompromis příliš brzy. Když něco vypadá skvěle, ale nefunguje, není to správně. A když něco funguje, ale každý den vás to esteticky ruší, také to není správně.' ] },
+  '3C': { axis: 3, title: 'Kuchyň vás musí těšit', paras: [
+    'Ve vašem rozhodování hraje velmi silnou roli estetický zážitek.',
+    'Barva, povrch, proporce, detail nebo materiál pro vás nejsou zbytečný luxus. Jsou součástí toho, proč se doma cítíte dobře.',
+    'To neznamená, že funkce není důležitá. Jen pro vás nebude stačit, když někdo řekne: „Tohle je praktičtější.“ Pokud se vám to nebude líbit, budete to vidět každý den.',
+    'U věcí, které určují celkový charakter kuchyně, proto nemá smysl šetřit jen proto, že existuje levnější varianta. Levnější řešení, které vás bude roky štvát, není levné.' ] },
+  '4A': { axis: 4, title: 'Chcete investovat hlavně tam, kde rozdíl používáte', paras: [
+    'Ve vašich odpovědích se opakují věci, které nejsou vždy na první pohled nejefektnější.',
+    'Dobré kování. Promyšlené zásuvky. Pracovní plocha. Osvětlení. Spotřebič, který opravdu používáte.',
+    'To naznačuje, že pro vás má hodnotu především to, co funguje každý den. Jste ochotná utratit víc, pokud rozdíl skutečně poznáte.',
+    'Tady bychom investici stavěli od používání směrem ven — a teprve potom řešili efektní detaily.' ] },
+  '4B': { axis: 4, title: 'Potřebujete dobrý základ i něco navíc', paras: [
+    'Nechcete utrácet za efekt bez důvodu. Současně ale nechcete, aby výsledkem byla dokonale rozumná kuchyň, která vám nic nedělá.',
+    'Pro vás bude pravděpodobně nejlepší investovat nejdřív do věcí, které používáte každý den, a potom si dovolit jednu nebo dvě věci, které jsou čistě pro radost.',
+    'Výraznou barvu. Krásnou pracovní desku. Neobvyklé světlo. Detail, který možná nikdo nepotřebuje — ale vy ho chcete.',
+    'Právě tyhle věci často způsobí, že kuchyň není jen správná, ale opravdu vaše.' ] },
+  '4C': { axis: 4, title: 'Potřebujete jednu věc, kvůli které se otočíte', paras: [
+    'Ve vašich odpovědích je silná potřeba mít v prostoru něco, co není jen praktické. Něco, co vás potěší pokaždé, když do kuchyně vejdete.',
+    'Nemusí to být nejdražší položka. Ale musí být vaše.',
+    'Může to být barva, kámen, dřevo, světlo, výrazná digestoř nebo detail, kterého si možná návštěva ani nevšimne.',
+    'U vás by byla chyba všechno podřídit jen racionalitě. Kuchyň, která je bezchybná, ale nic ve vás nevyvolává, by vás pravděpodobně začala nudit.',
+    'Proto má smysl najít jednu věc, na které nechcete dělat kompromis — a dovolit si ji.' ] }
+};
+
+/* ===== NASAZENÍ (dhouse.cz/klara) ===== */
+// Make webhook „Klára výsledek“ – adresu doplní Robert. Dokud je prázdná, odeslání se přeskočí a jen se přesměruje.
+// Pozor: doména webhooku musí být povolená v CSP connect-src (_deploy/prod/_headers) – hook.eu1.make.com už je.
+const KLARA_WEBHOOK_URL = '';
+const HANDOFF_BASE = 'https://online.dhouse.cz/klara/dotaznik';
+const PAGE_PARAMS = new URLSearchParams(location.search);
+const DEBUG = PAGE_PARAMS.get('debug') === '1';
+
+// UTM z reklamy jdou do dotazníku beze změny; utm_term nese ID + kód výsledku.
+function handoffUrl(id, code) {
+  const p = new URLSearchParams();
+  const defaults = { utm_source: 'facebook', utm_medium: 'paid', utm_campaign: 'klara', utm_content: '' };
+  for (const key in defaults) {
+    const v = PAGE_PARAMS.get(key) || defaults[key];
+    if (v) p.set(key, v);
+  }
+  p.set('utm_term', `${id}-${code}`);
+  return `${HANDOFF_BASE}?${p.toString()}`;
+}
+
+// Odeslání výsledku na Make: keepalive, max 1,5 s čekání, chyba nikdy nezastaví přesměrování.
+function sendResult(payload) {
+  if (!KLARA_WEBHOOK_URL) return Promise.resolve();
+  const req = fetch(KLARA_WEBHOOK_URL, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload), keepalive: true
+  }).catch(() => {});
+  return Promise.race([req, new Promise(res => setTimeout(res, 1500))]);
+}
+
+/* ===== STAV A VYKRESLOVÁNÍ ===== */
+const SCREENS = ['intro', ...QUESTIONS.map(q => q.id), 'email', 'result'];
+let state = { step: 0, answers: {}, email: '', id: '' };
+const $ = sel => document.querySelector(sel);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function makeId() { return Math.random().toString(36).slice(2, 10); }
+function current() { return SCREENS[state.step]; }
+function go(step) { state.step = Math.max(0, Math.min(SCREENS.length - 1, step)); render(); window.scrollTo(0, 0); }
+
+function render() {
+  const id = current();
+  const main = $('#screen');
+  const bar = $('#bar');
+  const qIndex = QUESTIONS.findIndex(q => q.id === id);
+  const label = $('#stepLabel');
+  const prog = $('#progressBar');
+  if (qIndex >= 0) { label.textContent = `Otázka ${qIndex + 1} / ${QUESTIONS.length}`; prog.style.width = `${((qIndex + 1) / QUESTIONS.length) * 100}%`; }
+  else if (id === 'intro') { label.textContent = 'Vizuální test'; prog.style.width = '0%'; }
+  else { label.textContent = id === 'email' ? 'Hotovo' : 'Vaše mapa'; prog.style.width = '100%'; }
+
+  let html = '';
+  if (id === 'intro') html = renderIntro();
+  else if (id === 'email') html = renderEmail();
+  else if (id === 'result') html = renderResult();
+  else html = renderQuestion(QUESTIONS[qIndex]);
+  main.innerHTML = `<div class="fade">${html}</div>`;
+
+  // spodní lišta
+  const q = qIndex >= 0 ? QUESTIONS[qIndex] : null;
+  const showBar = !!q;
+  bar.hidden = !showBar;
+  if (showBar) {
+    const next = $('#nextBtn');
+    const needsNext = q.type !== 'single';
+    next.hidden = !needsNext;
+    next.textContent = q.id === 'q10' ? 'Ukázat moji mapu' : 'Pokračovat';
+    next.disabled = !isComplete(q);
+  }
+  bindScreen(q);
+}
+
+function isComplete(q) {
+  const a = state.answers[q.id];
+  if (q.type === 'single') return !!a;
+  if (q.type === 'multi') return Array.isArray(a) && a.length >= 1;
+  if (q.type === 'pick2') return Array.isArray(a) && a.length === 2;
+  if (q.type === 'text') return true;
+  return false;
+}
+
+function renderIntro() {
+  return `
+    <div class="stack-lg">
+      <div>
+        <p class="eyebrow">Vizuální test · Co je opravdu vaše?</p>
+        <h1>Možná se vám líbí anglický venkov i čistá moderna. To vůbec nevadí.</h1>
+      </div>
+      <div class="strip" aria-hidden="true">
+        <img src="img/rustikal.jpg" alt=""><img src="img/new-england.jpg" alt=""><img src="img/cotswolds.jpg" alt="">
+        <img src="img/dubai.jpg" alt=""><img src="img/u-more.jpg" alt=""><img src="img/byt.jpg" alt="">
+      </div>
+      <div class="stack">
+        <p class="lead">V tomhle testu nehledáme váš „styl“. Hledáme něco užitečnějšího: co vás na interiérech skutečně přitahuje, jak doma opravdu žijete a za co vám bude stát utratit peníze i za deset let.</p>
+        <p class="lead">Neexistuje správná odpověď. Vyberte vždy tu první, která vás napadne.</p>
+      </div>
+      <div class="meta"><span>Pár minut</span><span>11 otázek</span><span>Bez registrace</span></div>
+      <div><button class="btn" id="startBtn" type="button">Začít</button></div>
+    </div>`;
+}
+
+function renderQuestion(q) {
+  const a = state.answers[q.id];
+  let body = '';
+  if (q.image) body += `<figure class="photo ${q.imgShape || 'wide'}"><img src="${q.image}" alt="${esc(q.alt || '')}"></figure>`;
+  if (q.showPicks) {
+    const picks = (state.answers.q6a || []).map(k => QUESTIONS.find(x => x.id === 'q6a').options.find(o => o.k === k)).filter(Boolean);
+    body += `<div class="thumbs">${picks.map(o => `<img src="${o.image}" alt="${esc(o.t)}" title="${esc(o.t)}">`).join('')}</div>`;
+  }
+  body += `<div><h2>${esc(q.title)}</h2>${q.lead ? `<p class="lead" style="margin-top:12px">${esc(q.lead)}</p>` : ''}${q.question ? `<p class="q">${esc(q.question)}</p>` : ''}${q.hint ? `<p class="hint" style="margin-top:8px">${esc(q.hint)}</p>` : ''}</div>`;
+
+  if (q.type === 'single') {
+    body += `<div class="options" role="group" aria-label="${esc(q.question || q.title)}">` + q.options.map(o =>
+      `<button type="button" class="opt" data-k="${o.k}" aria-pressed="${a === o.k}"><span class="box"><i></i></span><span>${esc(o.t)}</span></button>`).join('') + `</div>`;
+  } else if (q.type === 'multi') {
+    const sel = a || [];
+    body += `<div class="options" role="group" aria-label="${esc(q.question || q.title)}">` + q.options.map(o => {
+      const on = sel.includes(o.k); const dis = !on && sel.length >= q.max;
+      return `<button type="button" class="opt multi" data-k="${o.k}" aria-pressed="${on}" ${dis ? 'disabled' : ''}><span class="box"><i></i></span><span>${esc(o.t)}</span></button>`; }).join('') + `</div>`;
+  } else if (q.type === 'pick2') {
+    const sel = a || [];
+    body += `<div class="grid2" role="group" aria-label="${esc(q.question)}">` + q.options.map(o => {
+      const on = sel.includes(o.k); const dis = !on && sel.length >= 2;
+      return `<button type="button" class="pick" data-k="${o.k}" aria-pressed="${on}" ${dis ? 'disabled' : ''}><img src="${o.image}" alt="${esc(o.t)}"><span class="cap"><span><b>${o.k}</b> – ${esc(o.t)}</span><span class="box"><i></i></span></span></button>`; }).join('') + `</div>`;
+  } else if (q.type === 'text') {
+    body += `<div class="stack"><textarea id="q10text" placeholder="Napište to vlastními slovy…" maxlength="400">${esc(a || '')}</textarea><p class="examples">${esc(q.examples)}</p></div>`;
+  }
+  return `<div class="stack-lg">${body}</div>`;
+}
+
+function renderEmail() {
+  return `
+    <div class="stack-lg">
+      <div><p class="eyebrow">Hotovo</p><h1>Vaše mapa je hotová.</h1></div>
+      <p class="lead">Chcete ji mít i v e-mailu, abyste se k ní mohla vrátit?</p>
+      <form id="emailForm" class="stack" novalidate>
+        <label for="emailInput" class="muted" style="font-size:14px">Váš e-mail</label>
+        <input type="email" id="emailInput" autocomplete="email" placeholder="jmeno@email.cz" value="${esc(state.email)}">
+        <button class="btn block" type="submit">Poslat moji mapu</button>
+        <div style="text-align:center"><button class="link" type="button" id="skipEmail">Ne, děkuji. Zobrazit výsledek tady.</button></div>
+      </form>
+      <p class="note"><b>Prototyp</b> · E-mail se zatím neodesílá. V ostré verzi odejde stejná mapa, jakou uvidíte na stránce.</p>
+    </div>`;
+}
+
+function renderResult() {
+  const r = scoreAnswers(state.answers);
+  const sentence = (state.answers.q10 || '').trim();
+  const q9 = QUESTIONS.find(q => q.id === 'q9');
+  const pain = q9.options.find(o => o.k === state.answers.q9);
+  const codePretty = [1, 2, 3, 4].map(ax => ax + r.result[ax]).join(' / ');
+  if (!state.id) state.id = makeId();
+  const handoff = handoffUrl(state.id, r.code);
+
+  const mods = [1, 2, 3, 4].map(ax => {
+    const key = ax + r.result[ax]; const m = MODULES[key];
+    return `<section class="module"><div class="axis">Osa ${ax} · ${esc(AXES[ax].name)} · <b>${key}</b></div><h2>${esc(m.title)}</h2><div class="body">${m.paras.map(p => `<p>${esc(p)}</p>`).join('')}</div></section>`;
+  }).join('');
+
+  const qa = [1, 2, 3, 4].map(ax => `<tr><td>Osa ${ax}</td><td>${esc(AXES[ax].name)}</td><td>${r.scores[ax] > 0 ? '+' : ''}${r.scores[ax]}</td><td>A ≤ ${AXES[ax].A} · C ≥ +${AXES[ax].C}</td><td><b>${r.result[ax]}</b></td></tr>`).join('');
+  const picked = QUESTIONS.filter(q => q.options).map(q => `<tr><td>${q.id}</td><td>${[].concat(state.answers[q.id] || []).map(k => `<span class="tag">${esc(k)}</span>`).join('') || '<span class="muted">—</span>'}</td></tr>`).join('');
+
+  return `
+    <div class="stack-lg">
+      <div><p class="eyebrow">Vaše mapa</p>
+        ${sentence ? `<blockquote><div class="small">Vaše kuchyň by měla začít tady</div><div class="quote">„${esc(sentence)}“</div></blockquote>` : ''}
+      </div>
+      <p class="lead">Vaše kuchyň nemusí mít jeden styl. Potřebuje ale čtyři věci, které se ve vašich odpovědích opakovaly.</p>
+      <div>${mods}</div>
+      <div class="cta">
+        <h2>Teď už víte, co ve své kuchyni hledáte.</h2>
+        <p class="lead">Pokud chcete, můžeme z téhle mapy vyjít při skutečném návrhu vaší kuchyně.</p>
+        <p class="lead">Nemusíte mít vybraná dvířka, spotřebiče ani přesný styl. Právě od toho je další krok.</p>
+        <div><button class="btn" id="handoffBtn" type="button" data-href="${esc(handoff)}">Chci jít o krok dál</button></div>
+      </div>
+      ${DEBUG ? `<div class="panel" id="handoffPanel">
+        <h3>Prototyp · předání do praktického dotazníku</h3>
+        <p class="muted" style="font-size:14px">V ostré verzi tlačítko otevře praktický dotazník v Konverzkách s touto adresou. UTM z reklamy jdou dál beze změny, kód výsledku jede v utm_term:</p>
+        <code>${esc(handoff)}</code>
+        <dl class="kv">
+          <dt>klara_kod</dt><dd>${codePretty}</dd>
+          <dt>klara_osa1–4</dt><dd>${[1, 2, 3, 4].map(ax => r.result[ax]).join(', ')}</dd>
+          <dt>klara_veta</dt><dd>${sentence ? esc(sentence) : '<span class="muted">(nevyplněno)</span>'}</dd>
+          <dt>klara_bolest</dt><dd>${pain ? esc(pain.t) : '<span class="muted">(nevyplněno)</span>'}</dd>
+          <dt>klara_signaly</dt><dd>${r.signals.length ? r.signals.map(s => `<span class="tag">${esc(s)}</span>`).join('') : '<span class="muted">žádné</span>'}</dd>
+          <dt>e-mail</dt><dd>${state.email ? esc(state.email) : '<span class="muted">nezadán</span>'}</dd>
+        </dl>
+      </div>
+      <details>
+        <summary>Kontrola bodování (jen pro prototyp)</summary>
+        <div style="overflow-x:auto"><table><thead><tr><th>Osa</th><th>Název</th><th>Skóre</th><th>Prahy</th><th>Výsledek</th></tr></thead><tbody>${qa}</tbody></table></div>
+        <div style="overflow-x:auto;margin-top:12px"><table><thead><tr><th>Otázka</th><th>Zvolené odpovědi (klíče z matice)</th></tr></thead><tbody>${picked}</tbody></table></div>
+      </details>` : ''}
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <button class="link" type="button" id="againBtn">Vyplnit test znovu</button>
+        <span class="muted" style="font-size:13px">Kód: ${codePretty}</span>
+      </div>
+    </div>`;
+}
+
+function bindScreen(q) {
+  const start = $('#startBtn'); if (start) start.addEventListener('click', () => go(1));
+  $('#backBtn').onclick = () => go(state.step - 1);
+  $('#nextBtn').onclick = () => { if (q && q.type === 'text') state.answers.q10 = ($('#q10text')?.value || '').trim(); go(state.step + 1); };
+
+  if (q && q.type === 'single') {
+    document.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
+      state.answers[q.id] = b.dataset.k;
+      document.querySelectorAll('.opt').forEach(x => x.setAttribute('aria-pressed', x === b));
+      setTimeout(() => go(state.step + 1), 320);
+    }));
+  }
+  if (q && (q.type === 'multi' || q.type === 'pick2')) {
+    const max = q.type === 'pick2' ? 2 : q.max;
+    document.querySelectorAll('[data-k]').forEach(b => b.addEventListener('click', () => {
+      const sel = [].concat(state.answers[q.id] || []);
+      const k = b.dataset.k; const i = sel.indexOf(k);
+      if (i >= 0) sel.splice(i, 1); else if (sel.length < max) sel.push(k);
+      state.answers[q.id] = sel;
+      if (q.type === 'pick2') state.answers.q6b = undefined; // nové obrázky = nová otázka 6b
+      render();
+      if (q.type === 'pick2' && sel.length === 2) setTimeout(() => go(state.step + 1), 380);
+    }));
+  }
+  if (q && q.type === 'text') {
+    const ta = $('#q10text'); ta.addEventListener('input', () => { state.answers.q10 = ta.value; });
+    setTimeout(() => ta.focus({ preventScroll: true }), 50);
+  }
+  const form = $('#emailForm');
+  if (form) {
+    form.addEventListener('submit', e => { e.preventDefault(); state.email = $('#emailInput').value.trim(); go(state.step + 1); });
+    $('#skipEmail').addEventListener('click', () => { state.email = ''; go(state.step + 1); });
+  }
+  const hb = $('#handoffBtn');
+  if (hb) hb.addEventListener('click', () => {
+    if (hb.disabled) return;
+    hb.disabled = true;
+    const r = scoreAnswers(state.answers);
+    const pain = QUESTIONS.find(x => x.id === 'q9').options.find(o => o.k === state.answers.q9);
+    sendResult({
+      id: state.id, kod: r.code,
+      osa1: r.result[1], osa2: r.result[2], osa3: r.result[3], osa4: r.result[4],
+      veta: (state.answers.q10 || '').trim(), bolest: pain ? pain.t : '',
+      signaly: r.signals, email: state.email, odpovedi: state.answers
+    }).then(() => { location.href = hb.dataset.href; });
+  });
+  const again = $('#againBtn');
+  if (again) again.addEventListener('click', () => { state = { step: 0, answers: {}, email: '', id: '' }; go(0); });
+}
+
+// Návrat z dotazníku tlačítkem Zpět (bfcache) – tlačítko znovu povolit.
+window.addEventListener('pageshow', e => { const b = $('#handoffBtn'); if (e.persisted && b) b.disabled = false; });
+
+function startApp(saved) {
+  if (saved && typeof saved === 'object' && saved.answers) state = Object.assign({ step: 0, answers: {}, email: '', id: '' }, saved);
+  render();
+}
+try { if (window.claude && window.claude.hot && typeof window.claude.hot.snapshot === 'function') window.claude.hot.snapshot(() => state); } catch (e) {}
+if (window.claude && window.claude.hot && typeof window.claude.hot.ready === 'function') window.claude.hot.ready(startApp);
+else startApp((window.claude && window.claude.hot && window.claude.hot.data) || null);
+</script>
+</body>
+</html>
