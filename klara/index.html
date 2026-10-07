@@ -549,7 +549,7 @@ function renderEmail() {
         <button class="btn block" type="submit">Poslat moji mapu</button>
         <div style="text-align:center"><button class="link" type="button" id="skipEmail">Ne, děkuji. Zobrazit výsledek tady.</button></div>
       </form>
-      <p class="note"><b>Prototyp</b> · E-mail se zatím neodesílá. V ostré verzi odejde stejná mapa, jakou uvidíte na stránce.</p>
+      ${DEBUG ? `<p class="note"><b>Prototyp</b> · E-mail se zatím neodesílá. V ostré verzi odejde stejná mapa, jakou uvidíte na stránce.</p>` : ''}
     </div>`;
 }
 
