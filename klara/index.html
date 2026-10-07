@@ -601,8 +601,7 @@ function renderResult() {
         <div style="overflow-x:auto"><table><thead><tr><th>Osa</th><th>Název</th><th>Skóre</th><th>Prahy</th><th>Výsledek</th></tr></thead><tbody>${qa}</tbody></table></div>
         <div style="overflow-x:auto;margin-top:12px"><table><thead><tr><th>Otázka</th><th>Zvolené odpovědi (klíče z matice)</th></tr></thead><tbody>${picked}</tbody></table></div>
       </details>` : ''}
-      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
-        <button class="link" type="button" id="againBtn">Vyplnit test znovu</button>
+      <div style="display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap">
         <span class="muted" style="font-size:13px">Kód: ${codePretty}</span>
       </div>
     </div>`;
@@ -654,8 +653,6 @@ function bindScreen(q) {
       signaly: r.signals, email: state.email, odpovedi: state.answers
     }).then(() => { location.href = hb.dataset.href; });
   });
-  const again = $('#againBtn');
-  if (again) again.addEventListener('click', () => { state = { step: 0, answers: {}, email: '', id: '' }; go(0); });
 }
 
 // Návrat z dotazníku tlačítkem Zpět (bfcache) – tlačítko znovu povolit.
