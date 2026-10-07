@@ -86,6 +86,13 @@ Robert (Claude Cowork agent) přidává články týdně. Přesný postup je v
 [blog/ROBERT.md](blog/ROBERT.md). Lidská kontrola: po každém pushi otevři
 `https://<staging-url>/blog/_check.html` — všechny řádky musí být ✅.
 
+**Blog je zatím SKRYTÝ** (od 2026-10, chybí obsah). Stránky `/blog` zůstávají
+na webu jako záloha, ale nevedou na ně odkazy z menu/patičky a nejsou v sitemapě.
+Zapnutí: ve všech `*.html` (včetně `_tools/_tpl-*.html` a `_deploy/prod/`) nahradit
+`<!--BLOG-SKRYTO <a href="/blog">Blog</a> -->` → `<a href="/blog">Blog</a>`
+a v `sitemap.xml` (+ `_deploy/prod/sitemap.xml`) odkomentovat blok `BLOG-SKRYTO`.
+Náhled článků na homepage (`#blog-preview`) se zapíná zvlášť odebráním `hidden`.
+
 ---
 
 ## Časté úpravy obsahu

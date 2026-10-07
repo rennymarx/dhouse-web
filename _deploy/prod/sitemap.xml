@@ -30,6 +30,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- BLOG-SKRYTO: blog zatim bez obsahu, vratit odkomentovanim (spolu s polozkou Blog v menu)
   <url>
     <loc>https://www.dhouse.cz/blog/</loc>
     <changefreq>weekly</changefreq>
@@ -40,6 +41,7 @@
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
+  -->
   <url>
     <loc>https://www.dhouse.cz/galerie/bez-kompromisu/</loc>
     <changefreq>monthly</changefreq>
