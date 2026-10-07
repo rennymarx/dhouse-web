@@ -438,6 +438,18 @@ function sendResult(payload) {
   return Promise.race([req, new Promise(res => setTimeout(res, 1500))]);
 }
 
+// Data výsledku pro Make (scénář ukládá do DataStore; s mapa: 'poslat' navíc pošle mapu e-mailem).
+function resultPayload() {
+  const r = scoreAnswers(state.answers);
+  const pain = QUESTIONS.find(x => x.id === 'q9').options.find(o => o.k === state.answers.q9);
+  return {
+    id: state.id, kod: r.code,
+    osa1: r.result[1], osa2: r.result[2], osa3: r.result[3], osa4: r.result[4],
+    veta: state.answers.q10 || '', bolest: pain ? pain.t : '',
+    signaly: r.signals.join('; '), email: state.email || '', odpovedi: JSON.stringify(state.answers)
+  };
+}
+
 /* ===== STAV A VYKRESLOVÁNÍ ===== */
 const SCREENS = ['intro', ...QUESTIONS.map(q => q.id), 'email', 'result'];
 let state = { step: 0, answers: {}, email: '', id: '' };
@@ -543,7 +555,7 @@ function renderEmail() {
     <div class="stack-lg">
       <div><p class="eyebrow">Hotovo</p><h1>Vaše mapa je hotová.</h1></div>
       <p class="lead">Chcete ji mít i v e-mailu, abyste se k ní mohla vrátit?</p>
-      <form id="emailForm" class="stack" novalidate>
+      <form id="emailForm" class="stack">
         <label for="emailInput" class="muted" style="font-size:14px">Váš e-mail</label>
         <input type="email" id="emailInput" autocomplete="email" placeholder="jmeno@email.cz" value="${esc(state.email)}">
         <button class="btn block" type="submit">Poslat moji mapu</button>
@@ -637,21 +649,20 @@ function bindScreen(q) {
   }
   const form = $('#emailForm');
   if (form) {
-    form.addEventListener('submit', e => { e.preventDefault(); state.email = $('#emailInput').value.trim(); go(state.step + 1); });
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      state.email = $('#emailInput').value.trim();
+      // Mapa e-mailem: Make ji pošle přes Ecomail (z radek@dhouse.cz). Nečeká se, výsledek se ukáže hned.
+      if (state.email) { if (!state.id) state.id = makeId(); sendResult(Object.assign(resultPayload(), { mapa: 'poslat' })); }
+      go(state.step + 1);
+    });
     $('#skipEmail').addEventListener('click', () => { state.email = ''; go(state.step + 1); });
   }
   const hb = $('#handoffBtn');
   if (hb) hb.addEventListener('click', () => {
     if (hb.disabled) return;
     hb.disabled = true;
-    const r = scoreAnswers(state.answers);
-    const pain = QUESTIONS.find(x => x.id === 'q9').options.find(o => o.k === state.answers.q9);
-    sendResult({
-      id: state.id, kod: r.code,
-      osa1: r.result[1], osa2: r.result[2], osa3: r.result[3], osa4: r.result[4],
-      veta: state.answers.q10 || '', bolest: pain ? pain.t : '',
-      signaly: r.signals.join('; '), email: state.email || '', odpovedi: JSON.stringify(state.answers)
-    }).then(() => { location.href = hb.dataset.href; });
+    sendResult(resultPayload()).then(() => { location.href = hb.dataset.href; });
   });
 }
 
