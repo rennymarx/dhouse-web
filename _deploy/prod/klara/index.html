@@ -224,7 +224,7 @@ const QUESTIONS = [
       { k: 'zabydlene', t: 'To, že působí zabydleně a skutečně', s: { 1: 1, 2: -1 } },
       { k: 'cely_obraz', t: 'Nevím. Prostě se mi líbí celý obraz.', s: { 2: -2 } }
     ] },
-  { id: 'q2', type: 'single', title: 'Teď si něco představte.',
+  { id: 'q2', type: 'single', image: 'img/cotswolds.jpg', imgShape: 'wide', alt: 'Stejný interiér jako u předchozí otázky', title: 'Teď si něco představte.',
     lead: 'Z té stejné fotografie zmizí zahrada. Pes. Květiny. Krásné nádobí. Sluneční světlo. Zůstane jen kuchyň.',
     question: 'Chtěla byste ji pořád?',
     options: [
@@ -450,6 +450,12 @@ function resultPayload() {
   };
 }
 
+// Vlastní události Meta Pixelu; s blokovaným pixelem se tiše přeskočí.
+function pixelEvent(name) {
+  if (typeof fbq === 'function') fbq('trackCustom', name);
+}
+let completeTracked = false; // KlaraTestComplete jen při prvním vykreslení mapy
+
 /* ===== STAV A VYKRESLOVÁNÍ ===== */
 const SCREENS = ['intro', ...QUESTIONS.map(q => q.id), 'email', 'result'];
 let state = { step: 0, answers: {}, email: '', id: '' };
@@ -477,6 +483,7 @@ function render() {
   else if (id === 'result') html = renderResult();
   else html = renderQuestion(QUESTIONS[qIndex]);
   main.innerHTML = `<div class="fade">${html}</div>`;
+  if (id === 'result' && !completeTracked) { completeTracked = true; pixelEvent('KlaraTestComplete'); }
 
   // spodní lišta
   const q = qIndex >= 0 ? QUESTIONS[qIndex] : null;
@@ -590,10 +597,10 @@ function renderResult() {
       <p class="lead">Vaše kuchyň nemusí mít jeden styl. Potřebuje ale čtyři věci, které se ve vašich odpovědích opakovaly.</p>
       <div>${mods}</div>
       <div class="cta">
-        <h2>Teď už víte, co ve své kuchyni hledáte.</h2>
-        <p class="lead">Pokud chcete, můžeme z téhle mapy vyjít při skutečném návrhu vaší kuchyně.</p>
-        <p class="lead">Nemusíte mít vybraná dvířka, spotřebiče ani přesný styl. Právě od toho je další krok.</p>
-        <div><button class="btn" id="handoffBtn" type="button" data-href="${esc(handoff)}">Chci jít o krok dál</button></div>
+        <h2>Chcete s tím pokračovat?</h2>
+        <p class="lead">Pokud právě plánujete novou kuchyň, můžeme z téhle mapy vyjít a podívat se, jak ji převést do skutečného prostoru. Následuje několik krátkých praktických otázek a potom výběr termínu osobní schůzky v atelieru dhouse. Schůzka je nezávazná; nemusíte mít vybraný styl ani hotové zadání.</p>
+        <p class="lead">Nemusíte mít vybraná dvířka, spotřebiče ani přesný styl. Vaše mapa je výchozí bod.</p>
+        <div><button class="btn" id="handoffBtn" type="button" data-href="${esc(handoff)}">Chci pokračovat k termínu</button></div>
       </div>
       ${DEBUG ? `<div class="panel" id="handoffPanel">
         <h3>Prototyp · předání do praktického dotazníku</h3>
@@ -620,7 +627,7 @@ function renderResult() {
 }
 
 function bindScreen(q) {
-  const start = $('#startBtn'); if (start) start.addEventListener('click', () => go(1));
+  const start = $('#startBtn'); if (start) start.addEventListener('click', () => { pixelEvent('KlaraTestStart'); go(1); });
   $('#backBtn').onclick = () => go(state.step - 1);
   $('#nextBtn').onclick = () => { if (q && q.type === 'text') state.answers.q10 = ($('#q10text')?.value || '').trim(); go(state.step + 1); };
 
@@ -662,6 +669,7 @@ function bindScreen(q) {
   if (hb) hb.addEventListener('click', () => {
     if (hb.disabled) return;
     hb.disabled = true;
+    pixelEvent('KlaraContinueClick');
     sendResult(resultPayload()).then(() => { location.href = hb.dataset.href; });
   });
 }
