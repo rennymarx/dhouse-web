@@ -604,7 +604,7 @@ function renderResult() {
       </div>
       ${DEBUG ? `<div class="panel" id="handoffPanel">
         <h3>Prototyp · předání do praktického dotazníku</h3>
-        <p class="muted" style="font-size:14px">V ostré verzi tlačítko otevře praktický dotazník v Konverzkách s touto adresou. UTM z reklamy jdou dál beze změny, kód výsledku jede v utm_term:</p>
+        <p class="muted" style="font-size:14px">V ostré verzi tlačítko otevře praktický dotazník v Konverzkách s touto adresou. UTM z reklamy jdou dál beze změny, v utm_term jede jen ID výsledku (kód jde webhookem):</p>
         <code>${esc(handoff)}</code>
         <dl class="kv">
           <dt>klara_kod</dt><dd>${codePretty}</dd>
