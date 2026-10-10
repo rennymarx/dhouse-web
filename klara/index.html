@@ -416,7 +416,7 @@ const HANDOFF_BASE = 'https://online.dhouse.cz/klara/dotaznik';
 const PAGE_PARAMS = new URLSearchParams(location.search);
 const DEBUG = PAGE_PARAMS.get('debug') === '1';
 
-// UTM z reklamy jdou do dotazníku beze změny; utm_term nese ID + kód výsledku.
+// UTM z reklamy jdou do dotazníku beze změny; utm_term nese jen ID.
 function handoffUrl(id, code) {
   const p = new URLSearchParams();
   const defaults = { utm_source: 'facebook', utm_medium: 'paid', utm_campaign: 'klara', utm_content: '' };
@@ -424,7 +424,7 @@ function handoffUrl(id, code) {
     const v = PAGE_PARAMS.get(key) || defaults[key];
     if (v) p.set(key, v);
   }
-  p.set('utm_term', `${id}-${code}`);
+  p.set('utm_term', `${id}`);
   return `${HANDOFF_BASE}?${p.toString()}`;
 }
 
@@ -583,7 +583,7 @@ function renderResult() {
 
   const mods = [1, 2, 3, 4].map(ax => {
     const key = ax + r.result[ax]; const m = MODULES[key];
-    return `<section class="module"><div class="axis">Osa ${ax} · ${esc(AXES[ax].name)} · <b>${key}</b></div><h2>${esc(m.title)}</h2><div class="body">${m.paras.map(p => `<p>${esc(p)}</p>`).join('')}</div></section>`;
+    return `<section class="module"><h2>${esc(m.title)}</h2><div class="body">${m.paras.map(p => `<p>${esc(p)}</p>`).join('')}</div></section>`;
   }).join('');
 
   const qa = [1, 2, 3, 4].map(ax => `<tr><td>Osa ${ax}</td><td>${esc(AXES[ax].name)}</td><td>${r.scores[ax] > 0 ? '+' : ''}${r.scores[ax]}</td><td>A ≤ ${AXES[ax].A} · C ≥ +${AXES[ax].C}</td><td><b>${r.result[ax]}</b></td></tr>`).join('');
@@ -598,7 +598,7 @@ function renderResult() {
       <div>${mods}</div>
       <div class="cta">
         <h2>Chcete s tím pokračovat?</h2>
-        <p class="lead">Pokud právě plánujete novou kuchyň, můžeme z téhle mapy vyjít a podívat se, jak ji převést do skutečného prostoru. Následuje několik krátkých praktických otázek a potom výběr termínu osobní schůzky v atelieru dhouse. Schůzka je nezávazná; nemusíte mít vybraný styl ani hotové zadání.</p>
+        <p class="lead">Pokud právě plánujete novou kuchyň, můžeme z téhle mapy vyjít a podívat se, jak ji převést do skutečného prostoru. Následuje několik krátkých praktických otázek a potom výběr termínu osobní schůzky v pražském atelieru dhouse. Schůzka je nezávazná; nemusíte mít vybraný styl ani hotové zadání.</p>
         <p class="lead">Nemusíte mít vybraná dvířka, spotřebiče ani přesný styl. Vaše mapa je výchozí bod.</p>
         <div><button class="btn" id="handoffBtn" type="button" data-href="${esc(handoff)}">Chci pokračovat k termínu</button></div>
       </div>
@@ -620,9 +620,6 @@ function renderResult() {
         <div style="overflow-x:auto"><table><thead><tr><th>Osa</th><th>Název</th><th>Skóre</th><th>Prahy</th><th>Výsledek</th></tr></thead><tbody>${qa}</tbody></table></div>
         <div style="overflow-x:auto;margin-top:12px"><table><thead><tr><th>Otázka</th><th>Zvolené odpovědi (klíče z matice)</th></tr></thead><tbody>${picked}</tbody></table></div>
       </details>` : ''}
-      <div style="display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap">
-        <span class="muted" style="font-size:13px">Kód: ${codePretty}</span>
-      </div>
     </div>`;
 }
 
