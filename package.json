@@ -1,0 +1,8 @@
+{
+  "name": "dhouse-web",
+  "private": true,
+  "description": "Závislosti jen pro Netlify Functions (netlify/functions); statický web build nepotřebuje.",
+  "dependencies": {
+    "@netlify/blobs": "8.1.0"
+  }
+}

@@ -20,3 +20,8 @@
 [build]
   publish = "_deploy/prod"
   command = ""
+
+# Netlify Functions (Klara - pocitadlo kroku testu: klara-krok, klara-stats). Zavislost @netlify/blobs v package.json.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
