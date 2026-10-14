@@ -24,10 +24,11 @@ function dny(od, ddo) {
 }
 
 export default async (req) => {
-  const secret = (globalThis.Netlify?.env?.get('KLARA_STATS_KEY')) || process.env.KLARA_STATS_KEY;
+  // mezery a konce řádků okolo (při vkládání do Netlify) se ignorují
+  const secret = ((globalThis.Netlify?.env?.get('KLARA_STATS_KEY')) || process.env.KLARA_STATS_KEY || '').trim();
   if (!secret) return json({ chyba: 'KLARA_STATS_KEY neni nastaven' }, 503);
   const url = new URL(req.url);
-  if (!timingSafeEqual(sha(url.searchParams.get('key') || ''), sha(secret))) return json({ chyba: 'neplatny klic' }, 401);
+  if (!timingSafeEqual(sha((url.searchParams.get('key') || '').trim()), sha(secret))) return json({ chyba: 'neplatny klic' }, 401);
 
   const dnes = denPraha();
   const od = url.searchParams.get('od') || dnes;
