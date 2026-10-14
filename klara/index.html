@@ -494,6 +494,31 @@ function observeStep(el, name) {
   observers.push(io);
 }
 let completeTracked = false; // KlaraTestComplete jen při prvním vykreslení mapy
+// „Stránka načtena“ až ve chvíli, kdy je stránka opravdu vidět – předběžné načtení (prerender, aplikace Facebooku)
+// ani karta otevřená na pozadí se nepočítají, dokud se nezobrazí.
+function trackWhenVisible(name) {
+  if (document.prerendering) { document.addEventListener('prerenderingchange', () => trackWhenVisible(name), { once: true }); return; }
+  if (document.visibilityState === 'visible') { trackStep(name); return; }
+  const onVis = () => {
+    if (document.visibilityState !== 'visible') return;
+    document.removeEventListener('visibilitychange', onVis);
+    trackStep(name);
+  };
+  document.addEventListener('visibilitychange', onVis);
+}
+
+/* ===== POJISTKA PROTI DVOJITÉMU ŤUKNUTÍ ===== */
+// Ťuknutí, které vede na jinou obrazovku (Začít, Dál, Zpět, odpověď s automatickým posunem, e-mail),
+// zamkne další ťuknutí, dokud se nezobrazí další obrazovka a zároveň neuplyne 400 ms
+// (jinak by druhé ťuknutí přeskočilo otázku nebo „propadlo“ na novou obrazovku).
+// U otázek s výběrem více odpovědí se druhé ťuknutí do 400 ms ignoruje, aby hned nezrušilo výběr.
+const TAP_GUARD_MS = 400;
+let navLock = false, navUntil = 0, pickUntil = 0;
+const nowMs = () => performance.now();
+function canNav() { return !navLock && nowMs() >= navUntil; }
+function lockNav() { navLock = true; navUntil = nowMs() + TAP_GUARD_MS; }
+function canPick() { return canNav() && nowMs() >= pickUntil; }
+function lockPick() { pickUntil = nowMs() + TAP_GUARD_MS; }
 
 /* ===== STAV A VYKRESLOVÁNÍ ===== */
 const SCREENS = ['intro', ...QUESTIONS.map(q => q.id), 'email', 'result'];
@@ -511,6 +536,7 @@ function go(step) {
 }
 
 function render() {
+  navLock = false; // obrazovka je vykreslená; zbytek pojistky hlídá navUntil
   const id = current();
   const main = $('#screen');
   const bar = $('#bar');
@@ -674,27 +700,38 @@ function renderResult() {
 }
 
 function bindScreen(q) {
-  const start = $('#startBtn'); if (start) start.addEventListener('click', () => { trackStep('KlaraTestStart'); go(1); });
-  $('#backBtn').onclick = () => go(state.step - 1);
-  $('#nextBtn').onclick = () => { if (q && q.type === 'text') state.answers.q10 = ($('#q10text')?.value || '').trim(); go(state.step + 1); };
+  const start = $('#startBtn'); if (start) start.addEventListener('click', () => { if (!canNav()) return; lockNav(); trackStep('KlaraTestStart'); go(1); });
+  $('#backBtn').onclick = () => { if (!canNav()) return; lockNav(); go(state.step - 1); };
+  $('#nextBtn').onclick = () => {
+    if (!canNav()) return; lockNav();
+    if (q && q.type === 'text') state.answers.q10 = ($('#q10text')?.value || '').trim();
+    go(state.step + 1);
+  };
 
   if (q && q.type === 'single') {
     document.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
+      if (!canNav()) return; lockNav();
       state.answers[q.id] = b.dataset.k;
       document.querySelectorAll('.opt').forEach(x => x.setAttribute('aria-pressed', x === b));
-      setTimeout(() => go(state.step + 1), 320);
+      const at = state.step;
+      setTimeout(() => { if (state.step === at) go(at + 1); }, 320);
     }));
   }
   if (q && (q.type === 'multi' || q.type === 'pick2')) {
     const max = q.type === 'pick2' ? 2 : q.max;
     document.querySelectorAll('[data-k]').forEach(b => b.addEventListener('click', () => {
+      if (!canPick()) return; lockPick();
       const sel = [].concat(state.answers[q.id] || []);
       const k = b.dataset.k; const i = sel.indexOf(k);
       if (i >= 0) sel.splice(i, 1); else if (sel.length < max) sel.push(k);
       state.answers[q.id] = sel;
       if (q.type === 'pick2') state.answers.q6b = undefined; // nové obrázky = nová otázka 6b
       render();
-      if (q.type === 'pick2' && sel.length === 2) setTimeout(() => go(state.step + 1), 380);
+      if (q.type === 'pick2' && sel.length === 2) {
+        lockNav();
+        const at = state.step;
+        setTimeout(() => { if (state.step === at && isComplete(q)) go(at + 1); }, 380);
+      }
     }));
   }
   if (q && q.type === 'text') {
@@ -705,16 +742,17 @@ function bindScreen(q) {
   if (form) {
     form.addEventListener('submit', e => {
       e.preventDefault();
+      if (!canNav()) return; lockNav();
       state.email = $('#emailInput').value.trim();
       // Mapa e-mailem: Make ji pošle přes Ecomail (z radek@dhouse.cz). Nečeká se, výsledek se ukáže hned.
       if (state.email) { if (!state.id) state.id = makeId(); sendResult(Object.assign(resultPayload(), { mapa: 'poslat' }), () => trackStep('KlaraEmailOdeslan')); }
       go(state.step + 1);
     });
-    $('#skipEmail').addEventListener('click', () => { state.email = ''; go(state.step + 1); });
+    $('#skipEmail').addEventListener('click', () => { if (!canNav()) return; lockNav(); state.email = ''; go(state.step + 1); });
   }
   const hb = $('#handoffBtn');
   if (hb) hb.addEventListener('click', () => {
-    if (hb.disabled) return;
+    if (hb.disabled || !canNav()) return;
     hb.disabled = true;
     trackStep('KlaraContinueClick');
     sendResult(resultPayload()).then(() => { location.href = hb.dataset.href; });
@@ -727,6 +765,7 @@ window.addEventListener('pageshow', e => { const b = $('#handoffBtn'); if (e.per
 function startApp(saved) {
   if (saved && typeof saved === 'object' && saved.answers) state = Object.assign({ step: 0, answers: {}, email: '', id: '' }, saved);
   render();
+  trackWhenVisible('KlaraNacteno');
 }
 try { if (window.claude && window.claude.hot && typeof window.claude.hot.snapshot === 'function') window.claude.hot.snapshot(() => state); } catch (e) {}
 if (window.claude && window.claude.hot && typeof window.claude.hot.ready === 'function') window.claude.hot.ready(startApp);

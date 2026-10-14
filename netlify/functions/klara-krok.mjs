@@ -8,8 +8,8 @@ import { randomUUID } from 'node:crypto';
 import { storeName, denPraha, seg } from '../lib/klara.mjs';
 
 // jen známé kroky testu (KlaraObr_… pro mezistránky)
-const KROK = /^Klara(TestStart|Q(0[1-9]|10)|TestComplete|Mapa[1-4]|EmailVidet|EmailOdeslan|CTAVidet|ContinueClick|Obr_[A-Za-z0-9]{1,20})$/;
-const MAX_ITEMS = 30; // jeden celý průchod testem má 25 kroků
+const KROK = /^Klara(Nacteno|TestStart|Q(0[1-9]|10)|TestComplete|Mapa[1-4]|EmailVidet|EmailOdeslan|CTAVidet|ContinueClick|Obr_[A-Za-z0-9]{1,20})$/;
+const MAX_ITEMS = 30; // jeden celý průchod testem má 22 kroků
 
 export default async (req, context) => {
   if (req.method !== 'POST') return new Response(null, { status: 405 });
