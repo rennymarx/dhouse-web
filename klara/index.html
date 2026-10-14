@@ -481,13 +481,15 @@ function trackStep(name) {
     if (navigator.sendBeacon) navigator.sendBeacon(KROK_URL, JSON.stringify({ krok: name, utm_source: UTM.utm_source, utm_content: UTM.utm_content || '' }));
   } catch (e) {}
 }
-// Krok „je vidět“: prvek aspoň z 50 % na obrazovce.
+// Krok „je vidět“: prvek aspoň z 50 % na obrazovce. Blok vyšší než obrazovka (velké písmo na telefonu)
+// se počítá, když zabere aspoň polovinu výšky obrazovky.
 let observers = [];
 function observeStep(el, name) {
   if (!el || sentSteps.has(name) || !('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver(entries => {
-    if (entries.some(en => en.isIntersecting && en.intersectionRatio >= 0.5)) { trackStep(name); io.disconnect(); }
-  }, { threshold: 0.5 });
+    if (entries.some(en => en.isIntersecting && (en.intersectionRatio >= 0.5 ||
+        (en.rootBounds && en.intersectionRect.height >= 0.5 * en.rootBounds.height)))) { trackStep(name); io.disconnect(); }
+  }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] });
   io.observe(el);
   observers.push(io);
 }
