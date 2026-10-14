@@ -511,14 +511,16 @@ function trackWhenVisible(name) {
 // Ťuknutí, které vede na jinou obrazovku (Začít, Dál, Zpět, odpověď s automatickým posunem, e-mail),
 // zamkne další ťuknutí, dokud se nezobrazí další obrazovka a zároveň neuplyne 400 ms
 // (jinak by druhé ťuknutí přeskočilo otázku nebo „propadlo“ na novou obrazovku).
-// U otázek s výběrem více odpovědí se druhé ťuknutí do 400 ms ignoruje, aby hned nezrušilo výběr.
+// U otázek s výběrem více odpovědí se opakované ťuknutí na tutéž odpověď do 400 ms ignoruje, aby hned
+// nezrušilo výběr; rychlé ťuknutí na jinou odpověď platí.
 const TAP_GUARD_MS = 400;
-let navLock = false, navUntil = 0, pickUntil = 0;
+const NEW_SCREEN_GUARD_MS = 150; // ťuknutí zdržená vykreslováním nesmí „propadnout“ na právě zobrazenou obrazovku
+let navLock = false, navUntil = 0, pickUntil = 0, pickKey = '';
 const nowMs = () => performance.now();
 function canNav() { return !navLock && nowMs() >= navUntil; }
 function lockNav() { navLock = true; navUntil = nowMs() + TAP_GUARD_MS; }
-function canPick() { return canNav() && nowMs() >= pickUntil; }
-function lockPick() { pickUntil = nowMs() + TAP_GUARD_MS; }
+function canPick(k) { return canNav() && !(k === pickKey && nowMs() < pickUntil); }
+function lockPick(k) { pickKey = k; pickUntil = nowMs() + TAP_GUARD_MS; }
 
 /* ===== STAV A VYKRESLOVÁNÍ ===== */
 const SCREENS = ['intro', ...QUESTIONS.map(q => q.id), 'email', 'result'];
@@ -533,6 +535,7 @@ function go(step) {
   const from = QUESTIONS.find(q => q.id === current());
   if (from && step > state.step && isComplete(from)) trackStep(QUESTION_STEPS[from.id]);
   state.step = Math.max(0, Math.min(SCREENS.length - 1, step)); render(); window.scrollTo(0, 0);
+  navUntil = Math.max(navUntil, nowMs() + NEW_SCREEN_GUARD_MS);
 }
 
 function render() {
@@ -720,9 +723,10 @@ function bindScreen(q) {
   if (q && (q.type === 'multi' || q.type === 'pick2')) {
     const max = q.type === 'pick2' ? 2 : q.max;
     document.querySelectorAll('[data-k]').forEach(b => b.addEventListener('click', () => {
-      if (!canPick()) return; lockPick();
+      const k = b.dataset.k;
+      if (!canPick(k)) return; lockPick(k);
       const sel = [].concat(state.answers[q.id] || []);
-      const k = b.dataset.k; const i = sel.indexOf(k);
+      const i = sel.indexOf(k);
       if (i >= 0) sel.splice(i, 1); else if (sel.length < max) sel.push(k);
       state.answers[q.id] = sel;
       if (q.type === 'pick2') state.answers.q6b = undefined; // nové obrázky = nová otázka 6b
