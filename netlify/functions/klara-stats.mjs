@@ -57,9 +57,11 @@ export default async (req, context) => {
       }
     }));
   }
-  const rows = [...soucty.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)).map(([k, pocet]) => {
+  const rows = [...soucty.entries()].map(([k, pocet]) => {
     const [den, src, content, krok] = k.split('/');
     return { den, utm_source: unseg(src), utm_content: unseg(content), krok, pocet };
   });
+  const cmp = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+  rows.sort((a, b) => cmp(a.den, b.den) || cmp(a.utm_source, b.utm_source) || cmp(a.utm_content, b.utm_content) || cmp(a.krok, b.krok));
   return json(rows);
 };
