@@ -8,10 +8,11 @@
 /hubfs/*    /    301
 /hs-fs/*    /    301
 
-# Kratky odkaz pro SMS po poptavce (Roadmapa 03): rezervace VIP navstevy showroomu.
-# 302, aby slo cil pozdeji zmenit bez cache v prohlizeci. dhouse.cz/navsteva
-# presmeruje HubSpot na www, odtud toto pravidlo na HubSpot Meetings.
-/navsteva  https://dhouse.cz/meetings/radek-dhouse/40min-konzultace?utm_source=sms&utm_medium=sms&utm_campaign=poptavka  302
+# Kratky odkaz z prvni SMS po poptavce (Roadmapa 03): samostatna rezervacni stranka
+# v Konverzkach (447962) se stejnym VIP kalendarem a merenim Schedule. UTM preda
+# stranka do kalendare. 302, aby slo cil zmenit bez cache v prohlizeci.
+# dhouse.cz/navsteva presmeruje HubSpot na www, odtud toto pravidlo.
+/navsteva  https://online.dhouse.cz/kuchyne26/rezervace-sms?utm_source=dhouse&utm_medium=sms&utm_campaign=sms_poptavka&utm_content=prvni_sms_v1  302
 
 # Stare verzovane staging cesty /1/ /2/ -> root (v2 = hlavni stranka, verze zruseny)
 /1/*  /:splat  301
